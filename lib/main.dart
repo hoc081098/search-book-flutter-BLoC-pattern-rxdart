@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'book_api.dart';
 import 'book_bloc.dart';
@@ -13,29 +14,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BookBlocProvider(
-        bloc: BookBloc(BookApi()),
-        child: MaterialApp(
-          title: 'Demo bloc pattern',
-          theme: new ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: new MyHomePage(),
-        ));
+      bloc: BookBloc(BookApi()),
+      child: MaterialApp(
+        title: 'Demo bloc pattern',
+        theme: new ThemeData(
+          fontFamily: 'NunitoSans',
+          brightness: Brightness.dark,
+        ),
+        home: new MyHomePage(),
+      ),
+    );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => new _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     final BookBloc bloc = BookBlocProvider.of(context);
 
     return new Scaffold(
       body: new Container(
+        padding: new EdgeInsets.only(
+            left: 8.0,
+            right: 8.0,
+            bottom: 8.0,
+            top: MediaQuery
+                .of(context)
+                .padding
+                .top),
         decoration: new BoxDecoration(
           gradient: new LinearGradient(
             colors: <Color>[
@@ -52,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             new Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
               child: new TextField(
                 decoration: InputDecoration(
                   labelText: 'Search book...',
@@ -62,6 +69,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 maxLines: 1,
                 onChanged: bloc.query.add,
+              ),
+            ),
+            new Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: new StreamBuilder<String>(
+                stream: bloc.searchText,
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.hasError) {
+                    return new Center(
+                      child: new Text(
+                        snapshot.error.toString(),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .body1,
+                      ),
+                    );
+                  }
+                  final s = snapshot.data ?? "";
+                  return new Text(
+                    s,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  );
+                },
               ),
             ),
             new Expanded(
@@ -82,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: new CircularProgressIndicator(),
                     );
                   }
+                  snapshot.data.forEach((d) => debugPrint(d.toString()));
                   return _buildListBook(snapshot.data);
                 },
               ),
@@ -93,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildListBook(List<Book> data) {
+    debugPrint(data.length.toString());
     return new ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) => _buildBookItem(data[index]),
@@ -100,23 +136,55 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _buildBookItem(Book book) {
-    return new Row(
-      children: <Widget>[
-        new Image.network(
-          book.thumbnail,
-          width: 128.0,
-          height: 192.0,
-          fit: BoxFit.cover,
+    return new Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: new Material(
+        elevation: 3.0,
+        color: Colors.transparent,
+        borderRadius: new BorderRadius.all(new Radius.circular(4.0)),
+        child: new Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            new Image.network(
+              book.thumbnail,
+              width: 64.0,
+              height: 96.0,
+              fit: BoxFit.cover,
+            ),
+            new Expanded(
+              child: new ExpansionTile(
+                title: new ListTile(
+                  title: Text(
+                    book.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  subtitle: Text(
+                    book.subtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                children: [
+                  Text(
+                    'Authors: ',
+                    style: new TextStyle(fontSize: 12.0),
+                  ),
+                  book.authors.map<Widget>(
+                        (author) =>
+                        Text(
+                          author,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: new TextStyle(fontSize: 12.0),
+                        ),
+                  ),
+                ].expand<Widget>((i) => i is Iterable ? i : [i]).toList(),
+              ),
+            ),
+          ],
         ),
-        new ExpansionTile(
-          title: new ListTile(
-            title: new Text(book.title),
-            subtitle: new Text(book.subtitle),
-          ),
-          children:
-              book.authors.map<Widget>((author) => new Text(author)).toList(),
-        ),
-      ],
+      ),
     );
   }
 }
