@@ -49,10 +49,7 @@ class MyHomePage extends StatelessWidget {
           left: 8.0,
           right: 8.0,
           bottom: 8.0,
-          top: MediaQuery
-              .of(context)
-              .padding
-              .top,
+          top: MediaQuery.of(context).padding.top,
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -84,9 +81,9 @@ class MyHomePage extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         return (snapshot.data ?? false)
             ? Padding(
-          padding: const EdgeInsets.only(bottom: 16.0, top: 8.0),
-          child: CircularProgressIndicator(),
-        )
+                padding: const EdgeInsets.only(bottom: 16.0, top: 8.0),
+                child: CircularProgressIndicator(),
+              )
             : Container();
       },
       stream: bloc.isLoading,
@@ -110,9 +107,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   Widget _buildBookItem(Book book, BuildContext context) {
-    final textTheme = Theme
-        .of(context)
-        .textTheme;
+    final textTheme = Theme.of(context).textTheme;
     final caption = textTheme.caption.copyWith(color: Colors.black54);
 
     final listTile = ListTile(
@@ -130,11 +125,9 @@ class MyHomePage extends StatelessWidget {
       ),
     );
 
-    final authors = <Widget>[Text('Authors: ', style: caption)]
-      ..addAll(
+    final authors = <Widget>[Text('Authors: ', style: caption)]..addAll(
         book.authors.map<Widget>(
-              (author) =>
-              Text(
+          (author) => Text(
                 author,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -192,10 +185,7 @@ class MyHomePage extends StatelessWidget {
       child: StreamBuilder<List<Book>>(
         stream: bloc.books,
         builder: (BuildContext context, AsyncSnapshot<List<Book>> snapshot) {
-          final body1Style = Theme
-              .of(context)
-              .textTheme
-              .body1;
+          final body1Style = Theme.of(context).textTheme.body1;
           if (snapshot.hasError) {
             final error = snapshot.error;
             return Center(

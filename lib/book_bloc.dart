@@ -29,10 +29,10 @@ class BookBloc {
         .asBroadcastStream();
     _resultTextStream = _booksListObservable
         .withLatestFrom<String, String>(
-      _queryController,
+          _queryController,
           (bookList, queryString) =>
-      'Search for $queryString, has ${bookList.length} books',
-    )
+              'Search for $queryString, has ${bookList.length} books',
+        )
         .asBroadcastStream();
   }
 
