@@ -6,39 +6,47 @@ import 'book_api.dart';
 import 'book_model.dart';
 
 class BookBloc {
-  final BookApi api;
-  final PublishSubject<String> _queryStreamController = new PublishSubject();
-  Observable<List<Book>> _booksListStreamController;
-  Stream<String> _searchTextStreamController;
+  final BookApi _api;
+  final _queryController = PublishSubject<String>();
+  final _loadingController = BehaviorSubject<bool>(seedValue: false);
+  Observable<List<Book>> _booksListObservable;
+  Stream<String> _resultTextStream;
 
-  Sink<String> get query => _queryStreamController.sink;
+  Sink<String> get query => _queryController;
 
-  Stream<List<Book>> get books => _booksListStreamController;
+  Stream<List<Book>> get books => _booksListObservable;
 
-  Stream<String> get searchText => _searchTextStreamController;
+  Stream<String> get resultText => _resultTextStream;
 
-  BookBloc(this.api) {
-    _booksListStreamController = _queryStreamController.stream
+  Stream<bool> get isLoading => _loadingController;
+
+  BookBloc(this._api) : assert(_api != null) {
+    _booksListObservable = _queryController
         .debounce(Duration(microseconds: 400))
         .distinct()
         .map((s) => s.trim())
-        .where((s) => s.isNotEmpty)
-        .switchMap(_seachBook);
-    _searchTextStreamController = _booksListStreamController.withLatestFrom(
-      _queryStreamController,
-      (list, queryStr) => "Search for $queryStr, has ${list.length} books",
-    );
+        .switchMap(_searchBook)
+        .asBroadcastStream();
+    _resultTextStream = _booksListObservable
+        .withLatestFrom<String, String>(
+      _queryController,
+          (bookList, queryString) =>
+      'Search for $queryString, has ${bookList.length} books',
+    )
+        .asBroadcastStream();
+  }
+
+  Stream<List<Book>> _searchBook(String value) {
+    if (value.isEmpty) return Stream.fromIterable([]);
+    return Observable
+        .fromFuture(_api.searchBook(value))
+        .doOnListen(() => _loadingController.add(true))
+        .doOnError(() => _loadingController.add(false))
+        .doOnDone(() => _loadingController.add(false));
   }
 
   dispose() {
-    _queryStreamController.close();
-  }
-
-  Stream<List<Book>> _seachBook(String value) {
-    // Stream<List<Book>> stream = await api.searchBook(value);
-    // await for (var list in stream) {
-    //   yield list;
-    // }
-    return Stream.fromFuture(api.searchBook(value));
+    _queryController.close();
+    _loadingController.close();
   }
 }

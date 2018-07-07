@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart' show debugPrint;
 
 import 'book_model.dart';
 
@@ -12,13 +11,16 @@ class BookApi {
   const BookApi();
 
   Future<List<Book>> searchBook(String query) async {
-    final response = await http.get(BASE_URL + query);
+    final response = await http.get('$BASE_URL$query');
     final decoded = json.decode(response.body);
     if (response.statusCode != HttpStatus.OK) {
       throw new HttpException(decoded['error']['message']);
     }
-    (decoded['items'] as Iterable).forEach((d) => debugPrint(d.toString()));
+    if (decoded['items'] == null) {
+      throw new HttpException('Items is null');
+    }
     return (decoded['items'] as Iterable)
+        .cast<Map<String, dynamic>>()
         .map((json) => Book.fromJson(json))
         .toList();
   }

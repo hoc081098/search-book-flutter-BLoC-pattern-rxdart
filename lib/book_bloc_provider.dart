@@ -6,7 +6,9 @@ class BookBlocProvider extends InheritedWidget {
   final BookBloc bloc;
 
   const BookBlocProvider({@required this.bloc, Key key, Widget child})
-      : super(key: key, child: child);
+      : assert(bloc != null),
+        assert(child != null),
+        super(key: key, child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;

@@ -1,3 +1,6 @@
+import 'package:meta/meta.dart';
+
+@immutable
 class Book {
   final String id;
   final String title;
@@ -14,15 +17,16 @@ class Book {
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
-    final authors = json['volumeInfo']['authors'];
-    final imageLinks = json['volumeInfo']['imageLinks'];
+    final volumeInfo = json['volumeInfo'];
+    final authors = volumeInfo['authors'];
+    final imageLinks = volumeInfo['imageLinks'] ?? {};
+
     return Book(
       id: json['id'],
-      title: json['volumeInfo']['title'] ?? "",
-      subtitle: json['volumeInfo']['subtitle'] ?? "",
-      authors:
-      authors != null ? (authors as Iterable).cast<String>() : <String>[],
-      thumbnail: imageLinks != null ? imageLinks['thumbnail'] : "",
+      title: volumeInfo['title'] ?? '',
+      subtitle: volumeInfo['subtitle'] ?? '',
+      authors: authors?.cast<String>() ?? <String>[],
+      thumbnail: imageLinks['thumbnail'] ?? '',
     );
   }
 
