@@ -80,7 +80,7 @@ class BookBloc {
 
   BookBloc(this._bookApi) : assert(_bookApi != null) {
     _queryController
-        .debounce(Duration(microseconds: 400))
+        .debounce(Duration(milliseconds: 400))
         .distinct()
         .map((s) => s.trim())
         .switchMap(_searchBook)
