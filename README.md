@@ -6,7 +6,7 @@ Star :) if it is helpful
 
 ## Demo
 
-![Demo](demo.gif)
+<img height="480px" src="demo.gif">
 
 ## Develop
 
