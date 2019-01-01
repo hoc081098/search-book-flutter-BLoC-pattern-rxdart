@@ -30,7 +30,7 @@ class _BookBlocProviderState extends State<BookBlocProvider> {
 
   @override
   void dispose() {
-    debugPrint('##DEBUG BookBloc::dispose');
+    print('##DEBUG BookBloc::dispose');
     widget.bloc.dispose();
     super.dispose();
   }

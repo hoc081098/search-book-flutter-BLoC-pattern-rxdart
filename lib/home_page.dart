@@ -29,33 +29,42 @@ class MyHomePage extends StatelessWidget {
             stops: <double>[0.3, 0.7],
           ),
         ),
-        child: new StreamBuilder<HomePageState>(
-          stream: bloc.homePageState,
-          builder:
-              (BuildContext context, AsyncSnapshot<HomePageState> snapshot) {
-            return Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                _buildSearchTextField(bloc.query.add),
-                _buildResultText(snapshot.data?.resultText),
-                _buildLoadingIndicator(snapshot.data?.isLoading),
-                Expanded(
-                  child: _buildBookListView(
-                    snapshot,
-                    context,
-                  ),
-                )
-              ],
-            );
-          },
+        child: Column(
+          children: <Widget>[
+            _buildSearchTextField(bloc.query.add),
+            Expanded(
+              child: StreamBuilder<HomePageState>(
+                initialData: HomePageState.initial(),
+                stream: bloc.homePageState,
+                builder: (BuildContext context,
+                    AsyncSnapshot<HomePageState> snapshot) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      _buildResultText(snapshot.data?.resultText ?? ''),
+                      _buildLoadingIndicator(
+                          snapshot.data?.isFirstPageLoading ?? false),
+                      Expanded(
+                        child: _buildBookListView(
+                          snapshot,
+                          context,
+                          bloc.loadNextPage.add,
+                        ),
+                      )
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildLoadingIndicator(bool isLoading) {
-    return (isLoading ?? false)
+    return isLoading
         ? Padding(
             padding: const EdgeInsets.only(bottom: 16.0, top: 8.0),
             child: CircularProgressIndicator(),
@@ -139,7 +148,7 @@ class MyHomePage extends StatelessWidget {
 
   Widget _buildResultText(String resultText) {
     return Text(
-      resultText ?? '',
+      resultText,
       maxLines: 1,
       textScaleFactor: 0.9,
       textAlign: TextAlign.center,
@@ -148,22 +157,79 @@ class MyHomePage extends StatelessWidget {
   }
 
   Widget _buildBookListView(
-      AsyncSnapshot<HomePageState> snapshot, BuildContext context) {
-    if (snapshot.data?.error != null) {
-      final error = snapshot.data?.error;
+    AsyncSnapshot<HomePageState> snapshot,
+    BuildContext context,
+    void Function(void) loadNextPage,
+  ) {
+    final data = snapshot.data;
+
+    if (data.loadFirstPageError != null) {
+      final error = data.loadFirstPageError;
+
       return Center(
         child: Text(
-          error is HttpException ? error.message : 'An error occurred',
+          error is HttpException ? error.message : 'An error occurred $error',
           style: Theme.of(context).textTheme.body1.copyWith(fontSize: 18),
         ),
       );
     }
 
-    final books = snapshot.data?.books ?? <Book>[];
+    final booksData = data.books;
+
     return ListView.builder(
-      itemCount: books.length,
+      itemCount: booksData.length + 1,
       padding: EdgeInsets.all(0.0),
-      itemBuilder: (context, index) => _buildBookItem(books[index], context),
+      itemBuilder: (context, index) {
+        if (index < booksData.length) {
+          return _buildBookItem(booksData[index], context);
+        }
+
+        if (data.loadNextPageError != null) {
+          final error = data.loadNextPageError;
+
+          return Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Center(
+              child: Text(
+                error is HttpException
+                    ? error.message
+                    : 'An error occurred $error',
+                style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+              ),
+            ),
+          );
+        }
+
+        if (data.isNextPageLoading) {
+          print('build data.isNextPageLoading');
+
+          return Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2.0,
+              ),
+            ),
+          );
+        }
+
+        if (booksData.isNotEmpty) {
+          return Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: RaisedButton(
+              onPressed: () => loadNextPage(null),
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Load next page',
+                style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+              ),
+              elevation: 4.0,
+            ),
+          );
+        }
+
+        return Container();
+      },
     );
   }
 }
