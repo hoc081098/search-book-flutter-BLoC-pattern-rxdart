@@ -13,6 +13,7 @@ class DetailBloc implements BaseBloc {
   ///
   ///
   final ValueObservable<Book> book$;
+  final Stream<Object> error$;
 
   ///
   ///
@@ -26,21 +27,27 @@ class DetailBloc implements BaseBloc {
 
   DetailBloc._(
     this.book$,
+    this.error$,
     this.refresh,
     this._dispose,
   );
 
   factory DetailBloc(final BookApi api, final Book initial) {
     final refreshController = PublishSubject<Completer>();
+    final errorController = PublishSubject<Object>();
 
     final book$ = DistinctValueConnectableObservable.seeded(
-      refreshController.exhaustMap((completer) {
-        return Observable.fromFuture(api.getBookById(initial.id)).doOnEach((_) {
+      refreshController.exhaustMap((completer) async* {
+        try {
+          yield await api.getBookById(initial.id);
+        } catch (e) {
+          errorController.add(e);
+        } finally {
           if (completer != null && !completer.isCompleted) {
             completer.complete();
             completer = null;
           }
-        });
+        }
       }),
       seedValue: initial,
     );
@@ -49,9 +56,14 @@ class DetailBloc implements BaseBloc {
       book$.listen((book) {}),
       book$.connect(),
     ];
+    final controllers = <StreamController>[
+      refreshController,
+      errorController,
+    ];
 
     return DetailBloc._(
       book$,
+      errorController,
       () {
         final completer = Completer<void>();
         refreshController.add(completer);
@@ -59,6 +71,7 @@ class DetailBloc implements BaseBloc {
       },
       () async {
         await Future.wait(subscriptions.map((s) => s.cancel()));
+        await Future.wait(controllers.map((c) => c.close()));
       },
     );
   }
