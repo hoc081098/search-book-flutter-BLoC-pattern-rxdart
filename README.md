@@ -4,6 +4,11 @@ Search book using goole book api
 Using `BLoC` pattern with `rxdart` library <br/>
 Star :) if it is helpful
 
+## Trying
+
+Download ![APK](build/app/outputs/apk/release/app-release.apk)
+
+
 ## Demo
 
 <img height="480px" src="demo.gif">
