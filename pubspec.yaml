@@ -5,13 +5,19 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  rxdart: ^0.20.0
+  distinct_value_connectable_observable: ^1.0.0+3
+  flutter_bloc_pattern: ^0.0.1+1
   http: ^0.12.0
-  collection: 
+  collection: ^1.14.11
+  built_value: ^6.3.2 #flutter packages pub run build_runner build
+  sealed_unions: ^3.0.2
+  tuple: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.2.8
+  built_value_generator: ^6.3.2
 
 flutter:
   uses-material-design: true

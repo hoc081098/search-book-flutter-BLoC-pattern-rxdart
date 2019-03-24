@@ -4,10 +4,11 @@ import 'dart:io';
 
 import 'package:demo_bloc_pattern/model/book_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart' show debugPrint;
 
 class BookApi {
-  const BookApi();
+  final http.Client _client;
+
+  const BookApi(this._client);
 
   Future<List<Book>> searchBook({String query, int startIndex: 0}) async {
     final uri = Uri.https(
@@ -18,9 +19,10 @@ class BookApi {
         'startIndex': startIndex.toString(),
       },
     );
-    debugPrint('##DEBUG $uri');
-    final response = await http.get(uri);
+    
+    final response = await _client.get(uri);
     final decoded = json.decode(response.body);
+
     if (response.statusCode != HttpStatus.ok) {
       throw new HttpException(decoded['error']['message']);
     }

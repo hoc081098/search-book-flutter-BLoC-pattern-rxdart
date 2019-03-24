@@ -1,17 +1,19 @@
 import 'package:demo_bloc_pattern/api/book_api.dart';
-import 'package:demo_bloc_pattern/bloc/book_bloc.dart';
-import 'package:demo_bloc_pattern/bloc/book_bloc_provider.dart';
-import 'package:demo_bloc_pattern/home_page.dart';
+import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
+import 'package:demo_bloc_pattern/pages/home_page/home_page.dart';
+import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
   await SystemChrome.setEnabledSystemUIOverlays([]);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,9 +22,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'NunitoSans',
         brightness: Brightness.dark,
       ),
-      home: BookBlocProvider(
+      home: BlocProvider<HomeBloc>(
         child: MyHomePage(),
-        bloc: BookBloc(const BookApi()),
+        initBloc: () => HomeBloc(BookApi(http.Client())),
       ),
     );
   }

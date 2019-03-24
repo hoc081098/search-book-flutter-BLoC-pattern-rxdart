@@ -1,14 +1,15 @@
 import 'dart:io';
 
-import 'package:demo_bloc_pattern/bloc/book_bloc.dart';
-import 'package:demo_bloc_pattern/bloc/book_bloc_provider.dart';
 import 'package:demo_bloc_pattern/model/book_model.dart';
+import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
+import 'package:demo_bloc_pattern/pages/home_page/home_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = BookBlocProvider.of(context);
+    final bloc = BlocProvider.of<HomeBloc>(context);
 
     return Scaffold(
       body: Container(
@@ -31,11 +32,11 @@ class MyHomePage extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            _buildSearchTextField(bloc.query.add),
+            _buildSearchTextField(bloc.changeQuery),
             Expanded(
               child: StreamBuilder<HomePageState>(
                 initialData: HomePageState.initial(),
-                stream: bloc.homePageState,
+                stream: bloc.state$,
                 builder: (BuildContext context,
                     AsyncSnapshot<HomePageState> snapshot) {
                   return Column(
@@ -49,7 +50,7 @@ class MyHomePage extends StatelessWidget {
                         child: _buildBookListView(
                           snapshot,
                           context,
-                          bloc.loadNextPage.add,
+                          bloc.loadNextPage,
                         ),
                       )
                     ],
@@ -159,7 +160,7 @@ class MyHomePage extends StatelessWidget {
   Widget _buildBookListView(
     AsyncSnapshot<HomePageState> snapshot,
     BuildContext context,
-    void Function(void) loadNextPage,
+    void Function() loadNextPage,
   ) {
     final data = snapshot.data;
 
@@ -217,7 +218,7 @@ class MyHomePage extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: RaisedButton(
-              onPressed: () => loadNextPage(null),
+              onPressed: loadNextPage,
               padding: EdgeInsets.all(16.0),
               child: Text(
                 'Load next page',
