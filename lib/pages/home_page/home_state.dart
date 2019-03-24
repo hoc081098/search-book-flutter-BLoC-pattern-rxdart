@@ -12,9 +12,11 @@ abstract class HomePageState
   BuiltList<Book> get books;
 
   bool get isFirstPageLoading;
+  @nullable
   Object get loadFirstPageError;
 
   bool get isNextPageLoading;
+  @nullable
   Object get loadNextPageError;
 
   HomePageState._();

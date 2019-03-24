@@ -40,14 +40,8 @@ class _$HomePageState extends HomePageState {
     if (isFirstPageLoading == null) {
       throw new BuiltValueNullFieldError('HomePageState', 'isFirstPageLoading');
     }
-    if (loadFirstPageError == null) {
-      throw new BuiltValueNullFieldError('HomePageState', 'loadFirstPageError');
-    }
     if (isNextPageLoading == null) {
       throw new BuiltValueNullFieldError('HomePageState', 'isNextPageLoading');
-    }
-    if (loadNextPageError == null) {
-      throw new BuiltValueNullFieldError('HomePageState', 'loadNextPageError');
     }
   }
 
