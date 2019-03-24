@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:demo_bloc_pattern/dependency_injector.dart';
 import 'package:demo_bloc_pattern/model/book_model.dart';
+import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
+import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_state.dart';
 import 'package:flutter/material.dart';
@@ -125,23 +128,40 @@ class MyHomePage extends StatelessWidget {
         elevation: 6.0,
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            FadeInImage.assetNetwork(
-              image: book.thumbnail,
-              width: 64.0,
-              height: 96.0,
-              fit: BoxFit.cover,
-              placeholder: 'assets/no_image.png',
-            ),
-            Expanded(
-              child: ExpansionTile(
-                title: listTile,
-                children: authors,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext context) {
+              return DetailPage(
+                initBloc: () {
+                  final dependencyInjector = DependencyInjector.of(context);
+                  return DetailBloc(
+                    dependencyInjector.bookApi,
+                    dependencyInjector.sharedPref,
+                    book,
+                  );
+                },
+              );
+            }));
+          },
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              FadeInImage.assetNetwork(
+                image: book.thumbnail,
+                width: 64.0,
+                height: 96.0,
+                fit: BoxFit.cover,
+                placeholder: 'assets/no_image.png',
               ),
-            ),
-          ],
+              Expanded(
+                child: ExpansionTile(
+                  title: listTile,
+                  children: authors,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

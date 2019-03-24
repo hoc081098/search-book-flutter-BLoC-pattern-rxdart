@@ -12,6 +12,7 @@ dependencies:
   built_value: ^6.3.2 #flutter packages pub run build_runner build
   sealed_unions: ^3.0.2
   tuple: ^1.0.2
+  shared_preferences: ^0.4.3
 
 dev_dependencies:
   flutter_test:
