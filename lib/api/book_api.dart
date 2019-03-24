@@ -19,7 +19,7 @@ class BookApi {
         'startIndex': startIndex.toString(),
       },
     );
-    
+
     final response = await _client.get(uri);
     final decoded = json.decode(response.body);
 
@@ -31,5 +31,21 @@ class BookApi {
         .cast<Map<String, dynamic>>()
         .map((json) => Book.fromJson(json))
         .toList();
+  }
+
+  Future<Book> getBookById(String id) async {
+    final uri = Uri.https(
+      'www.googleapis.com',
+      '/books/v1/volumes/$id',
+    );
+
+    final response = await _client.get(uri);
+    final decoded = json.decode(response.body);
+
+    if (response.statusCode != HttpStatus.ok) {
+      throw new HttpException(decoded['error']['message']);
+    }
+
+    return Book.fromJson(decoded);
   }
 }

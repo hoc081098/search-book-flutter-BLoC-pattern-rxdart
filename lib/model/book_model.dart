@@ -7,6 +7,7 @@ class Book {
   final String subtitle;
   final List<String> authors;
   final String thumbnail;
+  final String largeImage;
 
   Book({
     this.id,
@@ -14,6 +15,7 @@ class Book {
     this.subtitle,
     this.authors,
     this.thumbnail,
+    this.largeImage,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
@@ -27,6 +29,7 @@ class Book {
       subtitle: volumeInfo['subtitle'] ?? '',
       authors: authors?.cast<String>() ?? <String>[],
       thumbnail: imageLinks['thumbnail'] ?? '',
+      largeImage: imageLinks['large'] ?? ''
     );
   }
 
