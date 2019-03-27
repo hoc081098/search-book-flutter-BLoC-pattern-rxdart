@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:demo_bloc_pattern/dependency_injector.dart';
-import 'package:demo_bloc_pattern/model/book_model.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
@@ -13,6 +13,20 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<HomeBloc>(context);
+
+    final searchTextField = Padding(
+      padding: const EdgeInsets.all(8),
+      child: TextField(
+        decoration: InputDecoration(
+          labelText: 'Search book...',
+          contentPadding: EdgeInsets.all(12.0),
+          filled: true,
+          prefixIcon: Icon(Icons.book),
+        ),
+        maxLines: 1,
+        onChanged: bloc.changeQuery,
+      ),
+    );
 
     return Scaffold(
       body: Container(
@@ -35,27 +49,38 @@ class MyHomePage extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            _buildSearchTextField(bloc.changeQuery),
+            searchTextField,
             Expanded(
               child: StreamBuilder<HomePageState>(
-                initialData: HomePageState.initial(),
                 stream: bloc.state$,
-                builder: (BuildContext context,
-                    AsyncSnapshot<HomePageState> snapshot) {
+                initialData: bloc.state$.value,
+                builder: (context, snapshot) {
+                  final HomePageState data = snapshot.data;
+
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      _buildResultText(snapshot.data?.resultText ?? ''),
-                      _buildLoadingIndicator(
-                          snapshot.data?.isFirstPageLoading ?? false),
-                      Expanded(
-                        child: _buildBookListView(
-                          snapshot,
-                          context,
-                          bloc.loadNextPage,
-                        ),
-                      )
+                      Text(
+                        data.resultText ?? '',
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context)
+                            .textTheme
+                            .body1
+                            .copyWith(fontSize: 14),
+                      ),
+                      data.isFirstPageLoading
+                          ? Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 16.0,
+                                top: 8.0,
+                              ),
+                              child: CircularProgressIndicator(),
+                            )
+                          : Container(),
+                      Expanded(child: HomeListViewWidget(state: data))
                     ],
                   );
                 },
@@ -66,162 +91,84 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildLoadingIndicator(bool isLoading) {
-    return isLoading
-        ? Padding(
-            padding: const EdgeInsets.only(bottom: 16.0, top: 8.0),
-            child: CircularProgressIndicator(),
-          )
-        : Container();
-  }
+class HomeListViewWidget extends StatelessWidget {
+  final HomePageState state;
 
-  Widget _buildSearchTextField(ValueChanged<String> onChanged) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: TextField(
-        decoration: InputDecoration(
-          labelText: 'Search book...',
-          contentPadding: EdgeInsets.all(12.0),
-          filled: true,
-          prefixIcon: Icon(Icons.book),
-        ),
-        maxLines: 1,
-        onChanged: onChanged,
-      ),
-    );
-  }
+  const HomeListViewWidget({Key key, @required this.state})
+      : assert(state != null),
+        super(key: key);
 
-  Widget _buildBookItem(Book book, BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final caption = textTheme.caption.copyWith(color: Colors.black54);
+  @override
+  Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<HomeBloc>(context);
 
-    final listTile = ListTile(
-      title: Text(
-        book.title,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style: textTheme.subhead.copyWith(color: Color(0xFF212121)),
-      ),
-      subtitle: Text(
-        book.subtitle,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: caption,
-      ),
-    );
+    if (state.loadFirstPageError != null) {
+      final error = state.loadFirstPageError;
 
-    final authors = <Widget>[Text('Authors: ', style: caption)]..addAll(
-        book.authors.map<Widget>(
-          (author) => Text(
-                author,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: caption,
-              ),
-        ),
-      );
-
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Material(
-        elevation: 6.0,
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (BuildContext context) {
-              return DetailPage(
-                initBloc: () {
-                  final dependencyInjector = DependencyInjector.of(context);
-                  return DetailBloc(
-                    dependencyInjector.bookApi,
-                    dependencyInjector.sharedPref,
-                    book,
-                  );
-                },
-              );
-            }));
-          },
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              FadeInImage.assetNetwork(
-                image: book.thumbnail,
-                width: 64.0,
-                height: 96.0,
-                fit: BoxFit.cover,
-                placeholder: 'assets/no_image.png',
-              ),
-              Expanded(
-                child: ExpansionTile(
-                  title: listTile,
-                  children: authors,
-                ),
-              ),
-            ],
+      return Column(
+        children: <Widget>[
+          Text(
+            error is HttpException ? error.message : 'An error occurred $error',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.body1.copyWith(fontSize: 18),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildResultText(String resultText) {
-    return Text(
-      resultText,
-      maxLines: 1,
-      textScaleFactor: 0.9,
-      textAlign: TextAlign.center,
-      overflow: TextOverflow.ellipsis,
-    );
-  }
-
-  Widget _buildBookListView(
-    AsyncSnapshot<HomePageState> snapshot,
-    BuildContext context,
-    void Function() loadNextPage,
-  ) {
-    final data = snapshot.data;
-
-    if (data.loadFirstPageError != null) {
-      final error = data.loadFirstPageError;
-
-      return Center(
-        child: Text(
-          error is HttpException ? error.message : 'An error occurred $error',
-          style: Theme.of(context).textTheme.body1.copyWith(fontSize: 18),
-        ),
+          FlatButton(
+            child: Text(
+              'Retry',
+              style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+            ),
+            onPressed: bloc.retry,
+          ),
+        ],
       );
     }
 
-    final booksData = data.books;
+    final BuiltList<BookItem> items = state.books;
 
     return ListView.builder(
-      itemCount: booksData.length + 1,
+      itemCount: items.length + 1,
       padding: EdgeInsets.all(0.0),
       itemBuilder: (context, index) {
-        if (index < booksData.length) {
-          return _buildBookItem(booksData[index], context);
+        if (index < items.length) {
+          return HomeBookItemWidget(book: items[index]);
         }
 
-        if (data.loadNextPageError != null) {
-          final error = data.loadNextPageError;
+        if (state.loadNextPageError != null) {
+          final Object error = state.loadNextPageError;
 
           return Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Center(
-              child: Text(
-                error is HttpException
-                    ? error.message
-                    : 'An error occurred $error',
-                style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
-              ),
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  error is HttpException
+                      ? error.message
+                      : 'An error occurred $error',
+                  textAlign: TextAlign.center,
+                  style:
+                      Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+                ),
+                FlatButton(
+                  child: Text(
+                    'Retry',
+                    style: Theme.of(context)
+                        .textTheme
+                        .body1
+                        .copyWith(fontSize: 16),
+                  ),
+                  onPressed: bloc.retry,
+                ),
+              ],
             ),
           );
         }
 
-        if (data.isNextPageLoading) {
+        if (state.isNextPageLoading) {
           print('build data.isNextPageLoading');
 
           return Padding(
@@ -234,11 +181,11 @@ class MyHomePage extends StatelessWidget {
           );
         }
 
-        if (booksData.isNotEmpty) {
+        if (items.isNotEmpty) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: RaisedButton(
-              onPressed: loadNextPage,
+              onPressed: bloc.loadNextPage,
               padding: EdgeInsets.all(16.0),
               child: Text(
                 'Load next page',
@@ -251,6 +198,122 @@ class MyHomePage extends StatelessWidget {
 
         return Container();
       },
+    );
+  }
+}
+
+class HomeBookItemWidget extends StatelessWidget {
+  final BookItem book;
+
+  const HomeBookItemWidget({Key key, @required this.book})
+      : assert(book != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(5.0, 5.0),
+            blurRadius: 10.0,
+          )
+        ],
+      ),
+      margin: const EdgeInsets.all(4.0),
+      child: Material(
+        color: Colors.white,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext context) {
+              return DetailPage(
+                initBloc: () {
+                  final dependencyInjector = DependencyInjector.of(context);
+                  return DetailBloc(
+                    dependencyInjector.bookApi,
+                    dependencyInjector.sharedPref,
+                    book.toBookModel(),
+                  );
+                },
+              );
+            }));
+          },
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 4.0,
+                    )
+                  ],
+                ),
+                child: FadeInImage.assetNetwork(
+                  image: book.thumbnail,
+                  width: 64.0 * 1.5,
+                  height: 96.0 * 1.5,
+                  fit: BoxFit.cover,
+                  placeholder: 'assets/no_image.png',
+                ),
+              ),
+              SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      book.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: textTheme.subhead.copyWith(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(height: 4.0),
+                    Text(
+                      book.subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: textTheme.caption.copyWith(
+                        color: Colors.black54,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Padding(
+                      child: book.isFavorited == true
+                          ? Icon(
+                              Icons.favorite,
+                              color: Theme.of(context).accentColor,
+                            )
+                          : book.isFavorited == false
+                              ? Icon(
+                                  Icons.favorite_border,
+                                  color: Theme.of(context).accentColor,
+                                )
+                              : Container(
+                                  width: 0,
+                                  height: 0,
+                                ),
+                      padding: const EdgeInsets.all(8),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

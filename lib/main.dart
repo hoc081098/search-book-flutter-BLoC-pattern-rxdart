@@ -37,7 +37,13 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider<HomeBloc>(
         child: MyHomePage(),
-        initBloc: () => HomeBloc(DependencyInjector.of(context).bookApi),
+        initBloc: () {
+          final dependencyInjector = DependencyInjector.of(context);
+          return HomeBloc(
+            dependencyInjector.bookApi,
+            dependencyInjector.sharedPref,
+          );
+        },
       ),
     );
   }

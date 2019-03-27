@@ -10,12 +10,12 @@ class Book {
   final String largeImage;
 
   Book({
-    this.id,
-    this.title,
-    this.subtitle,
-    this.authors,
-    this.thumbnail,
-    this.largeImage,
+    @required this.id,
+    @required this.title,
+    @required this.subtitle,
+    @required this.authors,
+    @required this.thumbnail,
+    @required this.largeImage,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
@@ -24,13 +24,12 @@ class Book {
     final imageLinks = volumeInfo['imageLinks'] ?? {};
 
     return Book(
-      id: json['id'],
-      title: volumeInfo['title'] ?? '',
-      subtitle: volumeInfo['subtitle'] ?? '',
-      authors: authors?.cast<String>() ?? <String>[],
-      thumbnail: imageLinks['thumbnail'] ?? '',
-      largeImage: imageLinks['large'] ?? ''
-    );
+        id: json['id'],
+        title: volumeInfo['title'] ?? '',
+        subtitle: volumeInfo['subtitle'] ?? '',
+        authors: authors?.cast<String>() ?? <String>[],
+        thumbnail: imageLinks['thumbnail'] ?? '',
+        largeImage: imageLinks['large'] ?? '');
   }
 
   @override

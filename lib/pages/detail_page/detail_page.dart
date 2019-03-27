@@ -1,4 +1,5 @@
 import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
+import 'package:demo_bloc_pattern/pages/detail_page/detail_state.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
@@ -22,7 +23,27 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail'),
+      ),
+      body: StreamBuilder<BookDetailState>(
+        stream: _bloc.bookDetail$,
+        builder: (context, snapshot) {
+          return Column(
+            children: <Widget>[
+              Center(
+                child: Text(snapshot.data.toString()),
+              ),
+              RaisedButton(
+                onPressed: _bloc.toggleFavorited,
+                child: Text('Toggle'),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   @override

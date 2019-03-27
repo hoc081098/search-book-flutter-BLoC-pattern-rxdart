@@ -16,7 +16,7 @@ class SharedPref {
     final favoritedIds$ = DistinctValueConnectableObservable(
       addOrRemoveFavoriteController.concatMap((bookId) async* {
         final sharedPref = await sharedPrefFuture;
-        final ids = List.of(sharedPref.getStringList('KEY'));
+        final ids = List.of(sharedPref.getStringList('KEY') ?? <String>[]);
 
         if (bookId == null) {
           yield SetBuilder<String>(ids).build();

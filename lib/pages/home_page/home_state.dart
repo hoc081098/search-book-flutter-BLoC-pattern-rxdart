@@ -6,10 +6,51 @@ import 'package:sealed_unions/sealed_unions.dart';
 
 part 'home_state.g.dart';
 
+///
+/// Represent from book item in list
+///
+abstract class BookItem implements Built<BookItem, BookItemBuilder> {
+  String get id;
+  String get title;
+  String get subtitle;
+  String get thumbnail;
+  @nullable
+  bool get isFavorited;
+
+  BookItem._();
+
+  factory BookItem([updates(BookItemBuilder b)]) = _$BookItem;
+
+  ///
+  /// Create [BookItem] from [Book]
+  ///
+  factory BookItem.fromBookModel(Book book) {
+    return BookItem((b) => b
+      ..id = book.id
+      ..title = book.title
+      ..subtitle = book.subtitle
+      ..thumbnail = book.thumbnail);
+  }
+
+  Book toBookModel() {
+    return Book(
+      authors: <String>[],
+      id: id,
+      largeImage: '',
+      subtitle: subtitle,
+      thumbnail: thumbnail,
+      title: title,
+    );
+  }
+}
+
+///
+/// Home page state
+///
 abstract class HomePageState
     implements Built<HomePageState, HomePageStateBuilder> {
   String get resultText;
-  BuiltList<Book> get books;
+  BuiltList<BookItem> get books;
 
   bool get isFirstPageLoading;
   @nullable
@@ -26,7 +67,7 @@ abstract class HomePageState
   factory HomePageState.initial() {
     return HomePageState((b) => b
       ..resultText = ''
-      ..books = ListBuilder<Book>()
+      ..books = ListBuilder<BookItem>()
       ..isFirstPageLoading = false
       ..loadFirstPageError = null
       ..isNextPageLoading = false
@@ -74,7 +115,7 @@ class PartialStateChange extends Union6Impl<
   }
 
   factory PartialStateChange.firstPageLoaded({
-    @required List<Book> books,
+    @required List<BookItem> books,
     @required String textQuery,
   }) {
     return PartialStateChange._(_factory.third(
@@ -90,7 +131,7 @@ class PartialStateChange extends Union6Impl<
   }
 
   factory PartialStateChange.nextPageLoaded({
-    @required List<Book> books,
+    @required List<BookItem> books,
     @required String textQuery,
   }) {
     return PartialStateChange._(
@@ -136,7 +177,7 @@ class LoadFirstPageError {
 }
 
 class FirstPageLoaded {
-  final List<Book> books;
+  final List<BookItem> books;
   final String textQuery;
 
   const FirstPageLoaded({@required this.books, @required this.textQuery});
@@ -153,7 +194,7 @@ class LoadingNextPage {
 }
 
 class NextPageLoaded {
-  final List<Book> books;
+  final List<BookItem> books;
   final String textQuery;
 
   const NextPageLoaded({@required this.books, @required this.textQuery});

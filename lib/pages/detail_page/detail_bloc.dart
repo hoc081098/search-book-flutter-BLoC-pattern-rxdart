@@ -22,7 +22,7 @@ class DetailBloc implements BaseBloc {
   ///
   ///
   final Future<void> Function() refresh;
-  final void Function(String) toggleFavorited;
+  final void Function() toggleFavorited;
 
   ///
   /// Clean up resource
@@ -44,6 +44,7 @@ class DetailBloc implements BaseBloc {
   ) {
     final refreshController = PublishSubject<Completer>();
     final errorController = PublishSubject<Object>();
+    final toggleController = PublishSubject<void>();
 
     final bookDetail$ = DistinctValueConnectableObservable(
       Observable.combineLatest2(
@@ -72,6 +73,9 @@ class DetailBloc implements BaseBloc {
     );
 
     final subscriptions = <StreamSubscription>[
+      toggleController
+          .throttle(Duration(milliseconds: 600))
+          .listen((_) => sharedPref.toggleFavorite(initial.id)),
       bookDetail$.listen((book) {}),
       bookDetail$.connect(),
     ];
@@ -88,7 +92,7 @@ class DetailBloc implements BaseBloc {
         refreshController.add(completer);
         return completer.future;
       },
-      sharedPref.toggleFavorite,
+      () => toggleController.add(null),
       () async {
         await Future.wait(subscriptions.map((s) => s.cancel()));
         await Future.wait(controllers.map((c) => c.close()));
