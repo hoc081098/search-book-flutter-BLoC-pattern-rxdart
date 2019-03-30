@@ -44,6 +44,8 @@ abstract class BookItem implements Built<BookItem, BookItemBuilder> {
   }
 }
 
+String _toString(o) => o.toString();
+
 ///
 /// Home page state
 ///
@@ -157,6 +159,10 @@ class PartialStateChange extends Union6Impl<
       ),
     );
   }
+
+  @override
+  String toString() =>
+      join<String>(_toString, _toString, _toString, _toString, _toString, _toString);
 }
 
 class LoadingFirstPage {
@@ -173,7 +179,7 @@ class LoadFirstPageError {
   const LoadFirstPageError({@required this.error, @required this.textQuery});
 
   @override
-  String toString() => 'LoadFirstPageError(error=$error,textQuery=textQuery)';
+  String toString() => 'LoadFirstPageError(error=$error,textQuery=$textQuery)';
 }
 
 class FirstPageLoaded {
@@ -183,7 +189,7 @@ class FirstPageLoaded {
   const FirstPageLoaded({@required this.books, @required this.textQuery});
 
   @override
-  String toString() => 'FirstPageLoaded(books=$books,textQuery=$textQuery)';
+  String toString() => 'FirstPageLoaded(books.length=${books.length},textQuery=$textQuery)';
 }
 
 class LoadingNextPage {
@@ -200,7 +206,7 @@ class NextPageLoaded {
   const NextPageLoaded({@required this.books, @required this.textQuery});
 
   @override
-  String toString() => 'NextPageLoaded(books=$books,textQuery=$textQuery)';
+  String toString() => 'NextPageLoaded(books.length=${books.length},textQuery=$textQuery)';
 }
 
 class LoadNextPageError {
@@ -239,6 +245,9 @@ class HomeIntent extends Union2Impl<SearchIntent, LoadNextPageIntent> {
       ),
     );
   }
+
+  @override
+  String toString() => join<String>(_toString, _toString);
 }
 
 class SearchIntent {
@@ -258,5 +267,5 @@ class LoadNextPageIntent {
 
   @override
   String toString() =>
-      'LoadNextPageIntent(search=$search,startIndex=startIndex)';
+      'LoadNextPageIntent(search=$search,startIndex=$startIndex)';
 }

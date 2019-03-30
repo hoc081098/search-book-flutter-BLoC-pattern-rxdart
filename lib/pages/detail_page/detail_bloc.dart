@@ -46,31 +46,31 @@ class DetailBloc implements BaseBloc {
     final errorController = PublishSubject<Object>();
     final toggleController = PublishSubject<void>();
 
-    final bookDetail$ = DistinctValueConnectableObservable(
-      Observable.combineLatest2(
-        refreshController.exhaustMap((completer) async* {
-          try {
-            yield await api.getBookById(initial.id);
-          } catch (e) {
-            errorController.add(e);
-          } finally {
-            completer.complete();
-          }
-        }).startWith(initial),
-        sharedPref.favoritedIds$,
-        (Book book, BuiltSet<String> ids) {
-          return BookDetailState(
-            (b) => b
-              ..id = book.id
-              ..title = book.title
-              ..subtitle = book.subtitle
-              ..authors = ListBuilder<String>(book.authors)
-              ..largeImage = book.largeImage
-              ..isFavorited = ids.contains(book.id),
-          );
-        },
-      ),
+    final state$ = Observable.combineLatest2(
+      refreshController.exhaustMap((completer) async* {
+        try {
+          yield await api.getBookById(initial.id);
+        } catch (e) {
+          errorController.add(e);
+        } finally {
+          completer.complete();
+        }
+      }).startWith(initial),
+      sharedPref.favoritedIds$,
+      (Book book, BuiltSet<String> ids) {
+        return BookDetailState(
+          (b) => b
+            ..id = book.id
+            ..title = book.title
+            ..subtitle = book.subtitle
+            ..authors = ListBuilder<String>(book.authors)
+            ..largeImage = book.largeImage
+            ..isFavorited = ids.contains(book.id),
+        );
+      },
     );
+
+    final bookDetail$ = publishValueDistinct(state$);
 
     final subscriptions = <StreamSubscription>[
       toggleController

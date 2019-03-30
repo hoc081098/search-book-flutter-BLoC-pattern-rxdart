@@ -25,6 +25,8 @@ class MyHomePage extends StatelessWidget {
         ),
         maxLines: 1,
         onChanged: bloc.changeQuery,
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.search,
       ),
     );
 
@@ -63,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         data.resultText ?? '',
-                        maxLines: 1,
+                        maxLines: 2,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context)
@@ -71,6 +73,7 @@ class MyHomePage extends StatelessWidget {
                             .body1
                             .copyWith(fontSize: 14),
                       ),
+                      SizedBox(height: 8),
                       data.isFirstPageLoading
                           ? Padding(
                               padding: const EdgeInsets.only(
@@ -107,21 +110,32 @@ class HomeListViewWidget extends StatelessWidget {
     if (state.loadFirstPageError != null) {
       final error = state.loadFirstPageError;
 
-      return Column(
-        children: <Widget>[
-          Text(
-            error is HttpException ? error.message : 'An error occurred $error',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.body1.copyWith(fontSize: 18),
-          ),
-          FlatButton(
-            child: Text(
-              'Retry',
-              style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+      return SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              error is HttpException
+                  ? error.message
+                  : 'An error occurred $error',
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              style: Theme.of(context).textTheme.body1.copyWith(fontSize: 15),
             ),
-            onPressed: bloc.retry,
-          ),
-        ],
+            SizedBox(height: 16),
+            RaisedButton(
+              elevation: 4,
+              child: Text(
+                'Retry',
+                style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+              ),
+              padding: EdgeInsets.all(16.0),
+              onPressed: bloc.retryFirstPage,
+            ),
+          ],
+        ),
       );
     }
 
@@ -150,10 +164,14 @@ class HomeListViewWidget extends StatelessWidget {
                       ? error.message
                       : 'An error occurred $error',
                   textAlign: TextAlign.center,
+                  maxLines: 2,
                   style:
-                      Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+                      Theme.of(context).textTheme.body1.copyWith(fontSize: 15),
                 ),
-                FlatButton(
+                SizedBox(height: 8),
+                RaisedButton(
+                  onPressed: bloc.retryNextPage,
+                  padding: EdgeInsets.all(16.0),
                   child: Text(
                     'Retry',
                     style: Theme.of(context)
@@ -161,7 +179,7 @@ class HomeListViewWidget extends StatelessWidget {
                         .body1
                         .copyWith(fontSize: 16),
                   ),
-                  onPressed: bloc.retry,
+                  elevation: 4.0,
                 ),
               ],
             ),
@@ -169,8 +187,6 @@ class HomeListViewWidget extends StatelessWidget {
         }
 
         if (state.isNextPageLoading) {
-          print('build data.isNextPageLoading');
-
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: Center(
@@ -211,6 +227,9 @@ class HomeBookItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('[HOME_PAGE] Book item build $book');
+
+    final bloc = BlocProvider.of<HomeBloc>(context);
     final textTheme = Theme.of(context).textTheme;
 
     return Container(
@@ -227,7 +246,8 @@ class HomeBookItemWidget extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(4.0),
       child: Material(
-        color: Colors.white,
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(8.0),
         child: InkWell(
           onTap: () {
             Navigator.push(context,
@@ -249,6 +269,10 @@ class HomeBookItemWidget extends StatelessWidget {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(8),
+                    topLeft: Radius.circular(8),
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey,
@@ -267,47 +291,65 @@ class HomeBookItemWidget extends StatelessWidget {
               ),
               SizedBox(width: 8),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      book.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: textTheme.subhead.copyWith(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black87),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(8),
+                      topRight: Radius.circular(8),
                     ),
-                    SizedBox(height: 4.0),
-                    Text(
-                      book.subtitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: textTheme.caption.copyWith(
-                        color: Colors.black54,
-                        fontSize: 16.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        book.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: textTheme.subhead.copyWith(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black87),
                       ),
-                    ),
-                    SizedBox(height: 8),
-                    Padding(
-                      child: book.isFavorited == true
-                          ? Icon(
-                              Icons.favorite,
-                              color: Theme.of(context).accentColor,
-                            )
-                          : book.isFavorited == false
-                              ? Icon(
-                                  Icons.favorite_border,
-                                  color: Theme.of(context).accentColor,
-                                )
-                              : Container(
-                                  width: 0,
-                                  height: 0,
+                      SizedBox(height: 4.0),
+                      Text(
+                        book.subtitle.isEmpty
+                            ? 'No subtitle...'
+                            : book.subtitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: textTheme.caption.copyWith(
+                          color: Colors.black54,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      book.isFavorited == null
+                          ? SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
                                 ),
-                      padding: const EdgeInsets.all(8),
-                    ),
-                  ],
+                              ),
+                            )
+                          : InkWell(
+                              onTap: () => bloc.toggleFavorited(book.id),
+                              child: Padding(
+                                child: book.isFavorited
+                                    ? Icon(
+                                        Icons.favorite,
+                                        color: Theme.of(context).accentColor,
+                                      )
+                                    : Icon(
+                                        Icons.favorite_border,
+                                        color: Theme.of(context).accentColor,
+                                      ),
+                                padding: const EdgeInsets.all(12),
+                              ),
+                            ),
+                    ],
+                  ),
                 ),
               )
             ],

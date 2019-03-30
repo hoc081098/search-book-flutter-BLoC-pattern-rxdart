@@ -4,6 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
 
 class SharedPref {
+  static const _favoritedIdsKey =
+      'com.hoc.search_book_api_demo_bloc_pattern_rxdart.favorited_ids';
+
   final void Function(String) toggleFavorite;
   final ValueObservable<BuiltSet<String>> favoritedIds$;
 
@@ -16,7 +19,8 @@ class SharedPref {
     final favoritedIds$ = DistinctValueConnectableObservable(
       addOrRemoveFavoriteController.concatMap((bookId) async* {
         final sharedPref = await sharedPrefFuture;
-        final ids = List.of(sharedPref.getStringList('KEY') ?? <String>[]);
+        final ids =
+            List.of(sharedPref.getStringList(_favoritedIdsKey) ?? <String>[]);
 
         if (bookId == null) {
           yield SetBuilder<String>(ids).build();
@@ -29,13 +33,13 @@ class SharedPref {
           ids.add(bookId);
         }
 
-        if (await sharedPref.setStringList('KEY', ids)) {
+        if (await sharedPref.setStringList(_favoritedIdsKey, ids)) {
           yield SetBuilder<String>(ids).build();
         }
       }),
     ).autoConnect();
 
-    favoritedIds$.listen((ids) => print('[] $ids'));
+    favoritedIds$.listen((ids) => print('[FAV_IDS] $ids'));
     addOrRemoveFavoriteController.add(null);
 
     return SharedPref._(

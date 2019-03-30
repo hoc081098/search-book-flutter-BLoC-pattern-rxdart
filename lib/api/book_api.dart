@@ -11,6 +11,8 @@ class BookApi {
   const BookApi(this._client);
 
   Future<List<Book>> searchBook({String query, int startIndex: 0}) async {
+    print('[API] searchBook query=$query, startIndex=$startIndex');
+
     final uri = Uri.https(
       'www.googleapis.com',
       '/books/v1/volumes',

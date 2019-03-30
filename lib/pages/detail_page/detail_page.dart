@@ -19,6 +19,7 @@ class _DetailPageState extends State<DetailPage> {
   void initState() {
     super.initState();
     _bloc = widget.initBloc();
+    _bloc.refresh().then((_) => print('[DETAIL] done'));
   }
 
   @override
@@ -33,7 +34,10 @@ class _DetailPageState extends State<DetailPage> {
           return Column(
             children: <Widget>[
               Center(
-                child: Text(snapshot.data.toString()),
+                child: Text(
+                  snapshot.data.toString(),
+                  textAlign: TextAlign.center,
+                ),
               ),
               RaisedButton(
                 onPressed: _bloc.toggleFavorited,
