@@ -10,6 +10,7 @@ abstract class BookDetailState
   String get subtitle;
   BuiltList<String> get authors;
   String get largeImage;
+  String get thumbnail;
   bool get isFavorited;
 
   BookDetailState._();

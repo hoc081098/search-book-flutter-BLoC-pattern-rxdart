@@ -18,6 +18,8 @@ class _$BookDetailState extends BookDetailState {
   @override
   final String largeImage;
   @override
+  final String thumbnail;
+  @override
   final bool isFavorited;
 
   factory _$BookDetailState([void updates(BookDetailStateBuilder b)]) =>
@@ -29,6 +31,7 @@ class _$BookDetailState extends BookDetailState {
       this.subtitle,
       this.authors,
       this.largeImage,
+      this.thumbnail,
       this.isFavorited})
       : super._() {
     if (id == null) {
@@ -45,6 +48,9 @@ class _$BookDetailState extends BookDetailState {
     }
     if (largeImage == null) {
       throw new BuiltValueNullFieldError('BookDetailState', 'largeImage');
+    }
+    if (thumbnail == null) {
+      throw new BuiltValueNullFieldError('BookDetailState', 'thumbnail');
     }
     if (isFavorited == null) {
       throw new BuiltValueNullFieldError('BookDetailState', 'isFavorited');
@@ -68,6 +74,7 @@ class _$BookDetailState extends BookDetailState {
         subtitle == other.subtitle &&
         authors == other.authors &&
         largeImage == other.largeImage &&
+        thumbnail == other.thumbnail &&
         isFavorited == other.isFavorited;
   }
 
@@ -76,10 +83,12 @@ class _$BookDetailState extends BookDetailState {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, id.hashCode), title.hashCode),
-                    subtitle.hashCode),
-                authors.hashCode),
-            largeImage.hashCode),
+                $jc(
+                    $jc($jc($jc(0, id.hashCode), title.hashCode),
+                        subtitle.hashCode),
+                    authors.hashCode),
+                largeImage.hashCode),
+            thumbnail.hashCode),
         isFavorited.hashCode));
   }
 
@@ -91,6 +100,7 @@ class _$BookDetailState extends BookDetailState {
           ..add('subtitle', subtitle)
           ..add('authors', authors)
           ..add('largeImage', largeImage)
+          ..add('thumbnail', thumbnail)
           ..add('isFavorited', isFavorited))
         .toString();
   }
@@ -121,6 +131,10 @@ class BookDetailStateBuilder
   String get largeImage => _$this._largeImage;
   set largeImage(String largeImage) => _$this._largeImage = largeImage;
 
+  String _thumbnail;
+  String get thumbnail => _$this._thumbnail;
+  set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
+
   bool _isFavorited;
   bool get isFavorited => _$this._isFavorited;
   set isFavorited(bool isFavorited) => _$this._isFavorited = isFavorited;
@@ -134,6 +148,7 @@ class BookDetailStateBuilder
       _subtitle = _$v.subtitle;
       _authors = _$v.authors?.toBuilder();
       _largeImage = _$v.largeImage;
+      _thumbnail = _$v.thumbnail;
       _isFavorited = _$v.isFavorited;
       _$v = null;
     }
@@ -164,6 +179,7 @@ class BookDetailStateBuilder
               subtitle: subtitle,
               authors: authors.build(),
               largeImage: largeImage,
+              thumbnail: thumbnail,
               isFavorited: isFavorited);
     } catch (_) {
       String _$failedField;

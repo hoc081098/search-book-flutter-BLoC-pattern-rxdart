@@ -58,15 +58,14 @@ class DetailBloc implements BaseBloc {
       }).startWith(initial),
       sharedPref.favoritedIds$,
       (Book book, BuiltSet<String> ids) {
-        return BookDetailState(
-          (b) => b
-            ..id = book.id
-            ..title = book.title
-            ..subtitle = book.subtitle
-            ..authors = ListBuilder<String>(book.authors)
-            ..largeImage = book.largeImage
-            ..isFavorited = ids.contains(book.id),
-        );
+        return BookDetailState((b) => b
+          ..id = book.id
+          ..title = book.title
+          ..subtitle = book.subtitle
+          ..authors = ListBuilder<String>(book.authors)
+          ..largeImage = book.largeImage
+          ..isFavorited = ids.contains(book.id)
+          ..thumbnail = book.thumbnail);
       },
     );
 
@@ -76,7 +75,7 @@ class DetailBloc implements BaseBloc {
       toggleController
           .throttle(Duration(milliseconds: 600))
           .listen((_) => sharedPref.toggleFavorite(initial.id)),
-      bookDetail$.listen((book) {}),
+      bookDetail$.listen((book) => print('[DETAIL] book=$book')),
       bookDetail$.connect(),
     ];
     final controllers = <StreamController>[

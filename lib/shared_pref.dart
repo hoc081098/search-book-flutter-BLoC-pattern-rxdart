@@ -16,35 +16,37 @@ class SharedPref {
     //ignore: close_sinks
     final addOrRemoveFavoriteController = PublishSubject<String>();
 
-    final favoritedIds$ = DistinctValueConnectableObservable(
-      addOrRemoveFavoriteController.concatMap((bookId) async* {
-        final sharedPref = await sharedPrefFuture;
-        final ids =
-            List.of(sharedPref.getStringList(_favoritedIdsKey) ?? <String>[]);
+    final favoritedIds$ =
+        addOrRemoveFavoriteController.concatMap((bookId) async* {
+      final sharedPref = await sharedPrefFuture;
+      final ids =
+          List.of(sharedPref.getStringList(_favoritedIdsKey) ?? <String>[]);
 
-        if (bookId == null) {
-          yield SetBuilder<String>(ids).build();
-          return;
-        }
+      if (bookId == null) {
+        yield SetBuilder<String>(ids).build();
+        return;
+      }
 
-        if (ids.contains(bookId)) {
-          ids.remove(bookId);
-        } else {
-          ids.add(bookId);
-        }
+      if (ids.contains(bookId)) {
+        ids.remove(bookId);
+      } else {
+        ids.add(bookId);
+      }
 
-        if (await sharedPref.setStringList(_favoritedIdsKey, ids)) {
-          yield SetBuilder<String>(ids).build();
-        }
-      }),
-    ).autoConnect();
+      if (await sharedPref.setStringList(_favoritedIdsKey, ids)) {
+        yield SetBuilder<String>(ids).build();
+      }
+    });
 
-    favoritedIds$.listen((ids) => print('[FAV_IDS] $ids'));
+    final favoritedIdsDistinctConnectable$ = publishValueDistinct(favoritedIds$)
+        .autoConnect()
+        ..listen((ids) => print('[FAV_IDS] $ids'));
+
     addOrRemoveFavoriteController.add(null);
 
     return SharedPref._(
       addOrRemoveFavoriteController.add,
-      favoritedIds$,
+      favoritedIdsDistinctConnectable$,
     );
   }
 }

@@ -1,13 +1,15 @@
 import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:demo_bloc_pattern/dependency_injector.dart';
+import 'package:demo_bloc_pattern/api/book_api.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_state.dart';
+import 'package:demo_bloc_pattern/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
+import 'package:flutter_provider/flutter_provider.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
@@ -238,7 +240,7 @@ class HomeBookItemWidget extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey,
+            color: Colors.teal,
             offset: Offset(5.0, 5.0),
             blurRadius: 10.0,
           )
@@ -250,19 +252,25 @@ class HomeBookItemWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (BuildContext context) {
-              return DetailPage(
-                initBloc: () {
-                  final dependencyInjector = DependencyInjector.of(context);
-                  return DetailBloc(
-                    dependencyInjector.bookApi,
-                    dependencyInjector.sharedPref,
-                    book.toBookModel(),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return Consumer<SharedPref>(
+                    builder: (context, sharedPref) {
+                      return Consumer<BookApi>(
+                        builder: (context, bookApi) {
+                          return DetailPage(
+                            initBloc: () => DetailBloc(
+                                bookApi, sharedPref, book.toBookModel()),
+                          );
+                        },
+                      );
+                    },
                   );
                 },
-              );
-            }));
+              ),
+            );
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -276,17 +284,20 @@ class HomeBookItemWidget extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey,
-                      offset: Offset(2.0, 2.0),
-                      blurRadius: 4.0,
+                      offset: Offset(5.0, 5.0),
+                      blurRadius: 10.0,
                     )
                   ],
                 ),
-                child: FadeInImage.assetNetwork(
-                  image: book.thumbnail,
-                  width: 64.0 * 1.5,
-                  height: 96.0 * 1.5,
-                  fit: BoxFit.cover,
-                  placeholder: 'assets/no_image.png',
+                child: Hero(
+                  tag: book.id,
+                  child: FadeInImage.assetNetwork(
+                    image: book.thumbnail,
+                    width: 64.0 * 1.5,
+                    height: 96.0 * 1.5,
+                    fit: BoxFit.cover,
+                    placeholder: 'assets/no_image.png',
+                  ),
                 ),
               ),
               SizedBox(width: 8),
@@ -345,7 +356,7 @@ class HomeBookItemWidget extends StatelessWidget {
                                         Icons.favorite_border,
                                         color: Theme.of(context).accentColor,
                                       ),
-                                padding: const EdgeInsets.all(12),
+                                padding: const EdgeInsets.all(16),
                               ),
                             ),
                     ],

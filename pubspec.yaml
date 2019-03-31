@@ -13,6 +13,7 @@ dependencies:
   sealed_unions: ^3.0.2
   tuple: ^1.0.2
   shared_preferences: ^0.4.3
+  flutter_provider: ^1.0.0
 
 dev_dependencies:
   flutter_test:
