@@ -5,15 +5,18 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  distinct_value_connectable_observable: ^2.0.0
-  flutter_bloc_pattern: ^0.0.1+1
+
   http: ^0.12.0
   collection: ^1.14.11
   built_value: ^6.3.2 #flutter packages pub run build_runner build
   sealed_unions: ^3.0.2
   tuple: ^1.0.2
   shared_preferences: ^0.4.3
-  flutter_provider: ^1.0.0
+  flutter_html: ^0.9.6
+  
+  flutter_provider: ^1.1.0
+  distinct_value_connectable_observable: ^2.0.0
+  flutter_bloc_pattern: ^0.0.1+1
 
 dev_dependencies:
   flutter_test:
@@ -28,9 +31,7 @@ flutter:
   fonts:
      - family: NunitoSans
        fonts:
-         - asset: assets/NunitoSans-Regular.ttf
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+        - asset: assets/NunitoSans-Regular.ttf
+     - family: Poppins
+       fonts:
+        - asset: assets/Poppins-Regular.ttf

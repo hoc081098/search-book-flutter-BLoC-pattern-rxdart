@@ -1,3 +1,4 @@
+import 'package:built_value/built_value.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -8,6 +9,8 @@ class Book {
   final List<String> authors;
   final String thumbnail;
   final String largeImage;
+  final String description;
+  final String publishedDate;
 
   Book({
     @required this.id,
@@ -16,6 +19,8 @@ class Book {
     @required this.authors,
     @required this.thumbnail,
     @required this.largeImage,
+    @required this.description,
+    @required this.publishedDate,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
@@ -24,15 +29,26 @@ class Book {
     final imageLinks = volumeInfo['imageLinks'] ?? {};
 
     return Book(
-        id: json['id'],
-        title: volumeInfo['title'] ?? '',
-        subtitle: volumeInfo['subtitle'] ?? '',
-        authors: authors?.cast<String>() ?? <String>[],
-        thumbnail: imageLinks['thumbnail'] ?? '',
-        largeImage: imageLinks['large'] ?? '');
+      id: json['id'],
+      title: volumeInfo['title'] ?? '',
+      subtitle: volumeInfo['subtitle'] ?? '',
+      authors: authors?.cast<String>() ?? <String>[],
+      thumbnail: imageLinks['thumbnail'] ?? '',
+      largeImage: imageLinks['small'] ?? '',
+      description: volumeInfo['description'],
+      publishedDate: volumeInfo['publishedDate'],
+    );
   }
 
   @override
-  String toString() => 'Book{id: $id, title: $title, subtitle: $subtitle, '
-      'authors: $authors, thumbnail: $thumbnail}';
+  String toString() => (newBuiltValueToStringHelper('Book')
+        ..add('id', id)
+        ..add('title', title)
+        ..add('subtitle', subtitle)
+        ..add('authors', authors)
+        ..add('thumbnail', thumbnail)
+        ..add('largeImage', largeImage)
+        ..add('description', description)
+        ..add('publishedDate', publishedDate))
+      .toString();
 }

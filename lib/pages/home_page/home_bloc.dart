@@ -50,6 +50,7 @@ class HomeBloc implements BaseBloc {
 
   factory HomeBloc(final BookApi bookApi, final SharedPref sharedPref) {
     assert(bookApi != null);
+    assert(sharedPref != null);
 
     ///
     /// Stream controllers, receive input intents
@@ -194,7 +195,12 @@ class HomeBloc implements BaseBloc {
 
     searchIntentToPartialChange$(SearchIntent intent) =>
         perform<List<Book>, PartialStateChange>(
-          () => Stream.fromFuture(bookApi.searchBook(query: intent.search)),
+          () {
+            if (intent.search.isEmpty) {
+              return Observable.just(<Book>[]);
+            }
+            return Stream.fromFuture(bookApi.searchBook(query: intent.search));
+          },
           (list) {
             final bookItems =
                 list.map((book) => BookItem.fromBookModel(book)).toList();

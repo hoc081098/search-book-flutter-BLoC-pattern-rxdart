@@ -34,12 +34,14 @@ abstract class BookItem implements Built<BookItem, BookItemBuilder> {
 
   Book toBookModel() {
     return Book(
-      authors: <String>[],
+      authors: null,
       id: id,
-      largeImage: '',
+      largeImage: null,
       subtitle: subtitle,
       thumbnail: thumbnail,
       title: title,
+      publishedDate: null,
+      description: null,
     );
   }
 }
@@ -161,8 +163,8 @@ class PartialStateChange extends Union6Impl<
   }
 
   @override
-  String toString() =>
-      join<String>(_toString, _toString, _toString, _toString, _toString, _toString);
+  String toString() => join<String>(
+      _toString, _toString, _toString, _toString, _toString, _toString);
 }
 
 class LoadingFirstPage {
@@ -189,7 +191,8 @@ class FirstPageLoaded {
   const FirstPageLoaded({@required this.books, @required this.textQuery});
 
   @override
-  String toString() => 'FirstPageLoaded(books.length=${books.length},textQuery=$textQuery)';
+  String toString() =>
+      'FirstPageLoaded(books.length=${books.length},textQuery=$textQuery)';
 }
 
 class LoadingNextPage {
@@ -206,7 +209,8 @@ class NextPageLoaded {
   const NextPageLoaded({@required this.books, @required this.textQuery});
 
   @override
-  String toString() => 'NextPageLoaded(books.length=${books.length},textQuery=$textQuery)';
+  String toString() =>
+      'NextPageLoaded(books.length=${books.length},textQuery=$textQuery)';
 }
 
 class LoadNextPageError {

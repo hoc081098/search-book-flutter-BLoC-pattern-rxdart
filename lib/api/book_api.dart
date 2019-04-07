@@ -23,7 +23,7 @@ class BookApi {
     );
 
     final response = await _client.get(uri);
-    final decoded = json.decode(response.body);
+    final decoded = json.decode(utf8.decode(response.bodyBytes));
 
     if (response.statusCode != HttpStatus.ok) {
       throw new HttpException(decoded['error']['message']);

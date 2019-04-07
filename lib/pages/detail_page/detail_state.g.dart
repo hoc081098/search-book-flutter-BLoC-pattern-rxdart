@@ -21,6 +21,10 @@ class _$BookDetailState extends BookDetailState {
   final String thumbnail;
   @override
   final bool isFavorited;
+  @override
+  final String description;
+  @override
+  final String publishedDate;
 
   factory _$BookDetailState([void updates(BookDetailStateBuilder b)]) =>
       (new BookDetailStateBuilder()..update(updates)).build();
@@ -32,30 +36,10 @@ class _$BookDetailState extends BookDetailState {
       this.authors,
       this.largeImage,
       this.thumbnail,
-      this.isFavorited})
-      : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'id');
-    }
-    if (title == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'title');
-    }
-    if (subtitle == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'subtitle');
-    }
-    if (authors == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'authors');
-    }
-    if (largeImage == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'largeImage');
-    }
-    if (thumbnail == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'thumbnail');
-    }
-    if (isFavorited == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'isFavorited');
-    }
-  }
+      this.isFavorited,
+      this.description,
+      this.publishedDate})
+      : super._();
 
   @override
   BookDetailState rebuild(void updates(BookDetailStateBuilder b)) =>
@@ -75,7 +59,9 @@ class _$BookDetailState extends BookDetailState {
         authors == other.authors &&
         largeImage == other.largeImage &&
         thumbnail == other.thumbnail &&
-        isFavorited == other.isFavorited;
+        isFavorited == other.isFavorited &&
+        description == other.description &&
+        publishedDate == other.publishedDate;
   }
 
   @override
@@ -84,12 +70,16 @@ class _$BookDetailState extends BookDetailState {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, id.hashCode), title.hashCode),
-                        subtitle.hashCode),
-                    authors.hashCode),
-                largeImage.hashCode),
-            thumbnail.hashCode),
-        isFavorited.hashCode));
+                    $jc(
+                        $jc(
+                            $jc($jc($jc(0, id.hashCode), title.hashCode),
+                                subtitle.hashCode),
+                            authors.hashCode),
+                        largeImage.hashCode),
+                    thumbnail.hashCode),
+                isFavorited.hashCode),
+            description.hashCode),
+        publishedDate.hashCode));
   }
 
   @override
@@ -101,7 +91,9 @@ class _$BookDetailState extends BookDetailState {
           ..add('authors', authors)
           ..add('largeImage', largeImage)
           ..add('thumbnail', thumbnail)
-          ..add('isFavorited', isFavorited))
+          ..add('isFavorited', isFavorited)
+          ..add('description', description)
+          ..add('publishedDate', publishedDate))
         .toString();
   }
 }
@@ -139,6 +131,15 @@ class BookDetailStateBuilder
   bool get isFavorited => _$this._isFavorited;
   set isFavorited(bool isFavorited) => _$this._isFavorited = isFavorited;
 
+  String _description;
+  String get description => _$this._description;
+  set description(String description) => _$this._description = description;
+
+  String _publishedDate;
+  String get publishedDate => _$this._publishedDate;
+  set publishedDate(String publishedDate) =>
+      _$this._publishedDate = publishedDate;
+
   BookDetailStateBuilder();
 
   BookDetailStateBuilder get _$this {
@@ -150,6 +151,8 @@ class BookDetailStateBuilder
       _largeImage = _$v.largeImage;
       _thumbnail = _$v.thumbnail;
       _isFavorited = _$v.isFavorited;
+      _description = _$v.description;
+      _publishedDate = _$v.publishedDate;
       _$v = null;
     }
     return this;
@@ -177,15 +180,17 @@ class BookDetailStateBuilder
               id: id,
               title: title,
               subtitle: subtitle,
-              authors: authors.build(),
+              authors: _authors?.build(),
               largeImage: largeImage,
               thumbnail: thumbnail,
-              isFavorited: isFavorited);
+              isFavorited: isFavorited,
+              description: description,
+              publishedDate: publishedDate);
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'authors';
-        authors.build();
+        _authors?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'BookDetailState', _$failedField, e.toString());

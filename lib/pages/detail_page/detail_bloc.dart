@@ -42,6 +42,10 @@ class DetailBloc implements BaseBloc {
     final SharedPref sharedPref,
     final Book initial,
   ) {
+    assert(api != null);
+    assert(sharedPref != null);
+    assert(initial != null);
+
     final refreshController = PublishSubject<Completer>();
     final errorController = PublishSubject<Object>();
     final toggleController = PublishSubject<void>();
@@ -58,14 +62,20 @@ class DetailBloc implements BaseBloc {
       }).startWith(initial),
       sharedPref.favoritedIds$,
       (Book book, BuiltSet<String> ids) {
-        return BookDetailState((b) => b
-          ..id = book.id
-          ..title = book.title
-          ..subtitle = book.subtitle
-          ..authors = ListBuilder<String>(book.authors)
-          ..largeImage = book.largeImage
-          ..isFavorited = ids.contains(book.id)
-          ..thumbnail = book.thumbnail);
+        return BookDetailState((b) {
+          final authors = book.authors;
+          return b
+            ..id = book.id
+            ..title = book.title
+            ..subtitle = book.subtitle
+            ..authors =
+                authors == null ? null : ListBuilder<String>(authors)
+            ..largeImage = book.largeImage
+            ..isFavorited = ids.contains(book.id)
+            ..thumbnail = book.thumbnail
+            ..description = book.description
+            ..publishedDate = book.publishedDate;
+        });
       },
     );
 
@@ -83,6 +93,8 @@ class DetailBloc implements BaseBloc {
       errorController,
     ];
 
+    print('[DETAIL] new id=${initial.id}');
+
     return DetailBloc._(
       bookDetail$,
       errorController,
@@ -95,6 +107,7 @@ class DetailBloc implements BaseBloc {
       () async {
         await Future.wait(subscriptions.map((s) => s.cancel()));
         await Future.wait(controllers.map((c) => c.close()));
+        print('[DETAIL] dispose id=${initial.id}');
       },
     );
   }

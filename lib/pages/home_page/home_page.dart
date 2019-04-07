@@ -4,6 +4,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:demo_bloc_pattern/api/book_api.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
+import 'package:demo_bloc_pattern/pages/fav_page/fav_books_page.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_state.dart';
 import 'package:demo_bloc_pattern/shared_pref.dart';
@@ -33,6 +34,15 @@ class MyHomePage extends StatelessWidget {
     );
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FavoritedBooksPage()),
+          );
+        },
+        child: Icon(Icons.favorite),
+      ),
       body: Container(
         padding: EdgeInsets.only(
           left: 8.0,
@@ -107,6 +117,19 @@ class HomeListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (state.books.isEmpty) {
+      return Container(
+        constraints: BoxConstraints.expand(),
+        child: Center(
+          child: Text(
+            'Empty search result. Try other?',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.body1.copyWith(fontSize: 15),
+          ),
+        ),
+      );
+    }
+
     final bloc = BlocProvider.of<HomeBloc>(context);
 
     if (state.loadFirstPageError != null) {
@@ -256,13 +279,14 @@ class HomeBookItemWidget extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return Consumer<SharedPref>(
-                    builder: (context, sharedPref) {
-                      return Consumer<BookApi>(
-                        builder: (context, bookApi) {
-                          return DetailPage(
-                            initBloc: () => DetailBloc(
-                                bookApi, sharedPref, book.toBookModel()),
+                  return Consumer2<SharedPref, BookApi>(
+                    builder: (context, sharedPref, bookApi) {
+                      return DetailPage(
+                        initBloc: () {
+                          return DetailBloc(
+                            bookApi,
+                            sharedPref,
+                            book.toBookModel(),
                           );
                         },
                       );

@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomBuiltValueToStringHelper implements BuiltValueToStringHelper {
-  StringBuffer _result = new StringBuffer();
+  StringBuffer _result = StringBuffer();
   bool _previousField = false;
 
   CustomBuiltValueToStringHelper(String className) {
@@ -49,12 +49,12 @@ void main() async {
   final sharedPref = SharedPref(SharedPreferences.getInstance());
 
   runApp(
-    Provider<BookApi>(
-      value: bookApi,
-      child: Provider<SharedPref>(
-        value: sharedPref,
-        child: const MyApp(),
-      ),
+    Providers(
+      providers: <Provider>[
+        Provider<BookApi>(value: bookApi),
+        Provider<SharedPref>(value: sharedPref)
+      ],
+      child: const MyApp(),
     ),
   );
 }
@@ -65,19 +65,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Search book bloc pattern',
+      title: 'Search book BLoC pattern RxDart',
       theme: ThemeData(
         fontFamily: 'NunitoSans',
         brightness: Brightness.dark,
       ),
-      home: Consumer<SharedPref>(builder: (context, sharedPref) {
-        return Consumer<BookApi>(builder: (context, bookApi) {
+      home: Consumer2<SharedPref, BookApi>(
+        builder: (context, sharedPref, bookApi) {
           return BlocProvider<HomeBloc>(
             child: MyHomePage(),
             initBloc: () => HomeBloc(bookApi, sharedPref),
           );
-        });
-      }),
+        },
+      ),
     );
   }
 }
