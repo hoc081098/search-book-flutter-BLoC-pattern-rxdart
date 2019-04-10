@@ -4,6 +4,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:demo_bloc_pattern/api/book_api.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
+import 'package:demo_bloc_pattern/pages/fav_page/fav_books_bloc.dart';
 import 'package:demo_bloc_pattern/pages/fav_page/fav_books_page.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
 import 'package:demo_bloc_pattern/pages/home_page/home_state.dart';
@@ -38,7 +39,18 @@ class MyHomePage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FavoritedBooksPage()),
+            MaterialPageRoute(
+              builder: (context) {
+                return Consumer2<SharedPref, BookApi>(
+                  builder: (context, sharedPref, api) {
+                    return FavoritedBooksPage(
+                      initBloc: () =>
+                          FavBooksBloc(FavBooksInteractor(api, sharedPref)),
+                    );
+                  },
+                );
+              },
+            ),
           );
         },
         child: Icon(Icons.favorite),
@@ -117,18 +129,6 @@ class HomeListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (state.books.isEmpty) {
-      return Container(
-        constraints: BoxConstraints.expand(),
-        child: Center(
-          child: Text(
-            'Empty search result. Try other?',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.body1.copyWith(fontSize: 15),
-          ),
-        ),
-      );
-    }
 
     final bloc = BlocProvider.of<HomeBloc>(context);
 
@@ -165,6 +165,19 @@ class HomeListViewWidget extends StatelessWidget {
     }
 
     final BuiltList<BookItem> items = state.books;
+
+    if (items.isEmpty) {
+      return Container(
+        constraints: BoxConstraints.expand(),
+        child: Center(
+          child: Text(
+            'Empty search result. Try other?',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.body1.copyWith(fontSize: 15),
+          ),
+        ),
+      );
+    }
 
     return ListView.builder(
       itemCount: items.length + 1,

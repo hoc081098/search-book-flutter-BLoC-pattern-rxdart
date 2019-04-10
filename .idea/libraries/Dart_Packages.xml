@@ -184,6 +184,20 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_html">
+          <value>
+            <list>
+              <option value="C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_html-0.9.6/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_provider">
+          <value>
+            <list>
+              <option value="C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_provider-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_test">
           <value>
             <list>
@@ -534,6 +548,8 @@
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/fixnum-0.10.9/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc_pattern-0.0.1+1/lib" />
+      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_html-0.9.6/lib" />
+      <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_provider-1.1.0/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/front_end-0.1.14/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/glob-1.1.7/lib" />
       <root url="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/graphs-0.2.0/lib" />
