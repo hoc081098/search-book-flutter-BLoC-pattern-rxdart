@@ -56,7 +56,7 @@ class FavBooksInteractor {
                     cachedBook.item1 >= // in cached but timeout
                 _timeoutInMilliseconds);
 
-    print('[FAV_BOOKS] id=$id, forceUpdate=$forceUpdate, shouldFetch=$shouldFetch ... cachedBook=$cachedBook ... _cached=$_cached');
+    print('@[FAV_BOOKS] id=$id, forceUpdate=$forceUpdate, shouldFetch=$shouldFetch');
     if (shouldFetch) {
       final book = await _api.getBookById(id);
       _cached[book.id] = Tuple2(DateTime.now().millisecondsSinceEpoch, book);

@@ -5,14 +5,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9739c978-f217-461a-a6d2-fccc765ccbbb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="9739c978-f217-461a-a6d2-fccc765ccbbb" name="Default" comment="[REFACTOR]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_bloc_pattern_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo_bloc_pattern_android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared_pref.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -24,51 +20,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1047499378">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="dart" value="6" />
-          <entry key="iml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Dart" value="6" />
-          <entry key="IDEA_MODULE" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="dart" value="18" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Dart" value="18" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/shared_pref.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -118,9 +71,9 @@
         <option value="$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" />
+        <option value="$PROJECT_DIR$/lib/shared_pref.dart" />
         <option value="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" />
         <option value="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" />
-        <option value="$PROJECT_DIR$/lib/shared_pref.dart" />
       </list>
     </option>
   </component>
@@ -308,6 +261,35 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="fav_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -346,35 +328,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="fav_page" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -433,8 +386,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Flutter Test.tests in widget_test.dart" />
       <item itemvalue="Flutter.main.dart" />
+      <item itemvalue="Flutter Test.tests in widget_test.dart" />
     </list>
     <recent_temporary>
       <list>
@@ -467,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530949221445</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[REFACTOR]">
+      <created>1555041895036</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1555041895036</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -478,18 +438,19 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15658094" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Build Variants" order="3" side_tool="true" />
-      <window_info id="Image Layers" order="4" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info id="Captures" order="6" side_tool="true" />
-      <window_info id="Capture Tool" order="7" />
-      <window_info id="UI Designer" order="8" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14220877" />
+      <window_info id="Resources Explorer" order="1" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Captures" order="7" side_tool="true" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info id="UI Designer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32991454" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.30484116" weight="0.26393443" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.30408472" weight="0.6202946" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.63366336" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -498,10 +459,10 @@
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.84177214" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.5458861" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.36923078" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.5450082" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.44026187" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.33934426" />
-      <window_info anchor="bottom" id="Flutter Performance" order="14" sideWeight="0.69515884" side_tool="true" weight="0.431962" />
+      <window_info anchor="bottom" id="Flutter Performance" order="14" sideWeight="0.6959153" side_tool="true" weight="0.6202946" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -541,9 +502,20 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -551,26 +523,13 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Changes..." />
     <MESSAGE value="Some change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some change" />
+    <MESSAGE value="[REFACTOR]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[REFACTOR]" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/example/demoblocpattern/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/core/null.dart" />
     <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/hash_map.dart" />
     <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/collection_sources.gni" />
@@ -599,16 +558,6 @@
     <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/raised_button.dart" />
     <entry file="file://$PROJECT_DIR$/lib/bloc/book_bloc.dart" />
     <entry file="file://$PROJECT_DIR$/lib/home_page.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1554">
-          <caret line="74" column="29" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/distinct_value_connectable_observable.dart" />
     <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/set/built_set.dart" />
     <entry file="file://$PROJECT_DIR$/lib/model/book_model.dart">
@@ -691,16 +640,6 @@
       </provider>
     </entry>
     <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/list_tile.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1407">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/api/book_api.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -710,16 +649,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demo_bloc_pattern.iml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/src/distinct_value_connectable_observable_base.dart">
       <provider selected="true" editor-type-id="text-editor">
@@ -737,8 +666,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/shared_pref.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
+        <state relative-caret-position="260">
           <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="62" column="36" lean-forward="true" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/f/f/packages/flutter/lib/src/material/refresh_indicator.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="63" column="50" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/flutter_provider-1.1.0/lib/src/flutter_provider.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="73" column="30" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="111" column="44" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
+          <folding>
+            <element signature="e#289#508#0" />
+            <element signature="e#575#1444#0" />
+            <element signature="e#862#911#0" />
+            <element signature="e#883#902#0" />
+            <element signature="e#1165#1297#0" />
+            <element signature="e#1246#1282#0" />
+            <element signature="e#1466#1515#0" />
+            <element signature="e#1489#2939#0" />
+            <element signature="e#1718#2937#0" />
+            <element signature="e#1763#2173#0" />
+            <element signature="e#1864#2236#0" />
+            <element signature="e#1923#2227#0" />
+            <element signature="e#2006#2216#0" />
+            <element signature="e#2183#2203#0" />
+            <element signature="e#2403#2681#0" />
+            <element signature="e#2434#2448#0" />
+            <element signature="e#2481#2662#0" />
+            <element signature="e#2570#2586#0" />
+            <element signature="e#2831#2935#0" />
+            <element signature="e#2854#2866#0" />
+            <element signature="e#2892#2924#0" />
+            <element signature="e#3064#3073#0" />
+          </folding>
         </state>
       </provider>
     </entry>
