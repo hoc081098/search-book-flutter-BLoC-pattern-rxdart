@@ -23,7 +23,7 @@ class SharedPref {
           List.of(sharedPref.getStringList(_favoritedIdsKey) ?? <String>[]);
 
       if (bookId == null) {
-        yield SetBuilder<String>(ids).build();
+        yield BuiltSet<String>(ids);
         return;
       }
 
@@ -34,7 +34,7 @@ class SharedPref {
       }
 
       if (await sharedPref.setStringList(_favoritedIdsKey, ids)) {
-        yield SetBuilder<String>(ids).build();
+        yield BuiltSet<String>(ids);
       }
     });
 

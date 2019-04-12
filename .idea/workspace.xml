@@ -6,8 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9739c978-f217-461a-a6d2-fccc765ccbbb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_bloc_pattern_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo_bloc_pattern_android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared_pref.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -19,16 +24,46 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1047499378">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="dart" value="6" />
+          <entry key="iml" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Dart" value="6" />
+          <entry key="IDEA_MODULE" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dart" value="18" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Dart" value="18" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
+        <entry file="file://$PROJECT_DIR$/lib/shared_pref.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#56#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="460">
+              <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -85,6 +120,7 @@
         <option value="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" />
         <option value="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" />
         <option value="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" />
+        <option value="$PROJECT_DIR$/lib/shared_pref.dart" />
       </list>
     </option>
   </component>
@@ -268,73 +304,89 @@
     <option name="STATE" value="1" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
+      <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
+              <item name="Search-book" type="1abcf292:AndroidViewProjectNode" />
+              <item name="demo_bloc_pattern_android" type="e9137016:NonAndroidModuleNode" />
             </path>
             <path>
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="Search-book" type="1abcf292:AndroidViewProjectNode" />
+              <item name="demo_bloc_pattern_android" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
             </path>
             <path>
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="Search-book" type="1abcf292:AndroidViewProjectNode" />
+              <item name="demo_bloc_pattern_android" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="Search-book" type="1abcf292:AndroidViewProjectNode" />
+              <item name="demo_bloc_pattern_android" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="detail_page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="fav_page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="home_page" type="462c0819:PsiDirectoryNode" />
+              <item name="Search-book" type="1abcf292:AndroidViewProjectNode" />
+              <item name="demo_bloc_pattern_android" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="demoblocpattern" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="fav_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545588047683" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="C:/flutter/flutter/bin/cache/dart-sdk" />
+    <property name="last_opened_file_path" value="C:/f/f/bin/cache/dart-sdk" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -355,6 +407,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Flutter.main.dart">
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -365,13 +424,6 @@
       <option name="testFile" value="$PROJECT_DIR$/test/widget_test.dart" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestNG">
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <properties />
@@ -381,8 +433,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Flutter.main.dart" />
       <item itemvalue="Flutter Test.tests in widget_test.dart" />
+      <item itemvalue="Flutter.main.dart" />
     </list>
     <recent_temporary>
       <list>
@@ -426,18 +478,18 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20877458" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15658094" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info id="Captures" order="6" />
+      <window_info id="Captures" order="6" side_tool="true" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="UI Designer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32991454" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.30484116" weight="0.6649573" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.30484116" weight="0.26393443" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.63366336" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -448,7 +500,7 @@
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.84177214" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.5458861" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.36923078" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.28164557" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.33934426" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" sideWeight="0.69515884" side_tool="true" weight="0.431962" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -489,20 +541,9 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -516,14 +557,6 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/set" />
     <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/example/demoblocpattern/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -538,58 +571,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/core/null.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/hash_map.dart">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/collection_sources.gni">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/collection.dart">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/core/null.dart" />
+    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/hash_map.dart" />
+    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/collection_sources.gni" />
+    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/collection.dart" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.metadata">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.packages">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo_bloc_pattern.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.packages" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/foundation/change_notifier.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="101" column="6" selection-start-line="101" selection-start-column="6" selection-end-line="101" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/text_field.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="145" column="30" selection-start-line="145" selection-start-column="30" selection-end-line="145" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/editable_text.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="73" column="28" lean-forward="true" selection-start-line="73" selection-start-column="28" selection-end-line="73" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/foundation/change_notifier.dart" />
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/text_field.dart" />
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/editable_text.dart" />
     <entry file="file://$PROJECT_DIR$/pubspec.lock">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -597,20 +595,8 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/bloc/book_bloc_provider.dart" />
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/material_button.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="210" column="27" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/raised_button.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="86" column="12" lean-forward="true" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/material_button.dart" />
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/raised_button.dart" />
     <entry file="file://$PROJECT_DIR$/lib/bloc/book_bloc.dart" />
     <entry file="file://$PROJECT_DIR$/lib/home_page.dart" />
     <entry file="file://$PROJECT_DIR$/lib/main.dart">
@@ -623,20 +609,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/distinct_value_connectable_observable.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/set/built_set.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="163" column="14" selection-start-line="163" selection-start-column="14" selection-end-line="163" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/distinct_value_connectable_observable.dart" />
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/set/built_set.dart" />
     <entry file="file://$PROJECT_DIR$/lib/model/book_model.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -644,289 +618,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/kernel-0.3.14/lib/text/serializer_combinators.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="407" lean-forward="true" selection-start-line="407" selection-end-line="407" />
-          <folding>
-            <element signature="e#257#289#0" expanded="true" />
-            <element signature="e#468#1111#0" />
-            <element signature="e#745#753#0" />
-            <element signature="e#859#1038#0" />
-            <element signature="e#919#969#0" />
-            <element signature="e#1055#1109#0" />
-            <element signature="e#1160#2238#0" />
-            <element signature="e#1246#1257#0" />
-            <element signature="e#1311#1322#0" />
-            <element signature="e#1539#2165#0" />
-            <element signature="e#2182#2236#0" />
-            <element signature="e#2267#2408#0" />
-            <element signature="e#2435#2525#0" />
-            <element signature="e#2560#2917#0" />
-            <element signature="e#2732#2808#0" />
-            <element signature="e#2962#3158#0" />
-            <element signature="e#3208#3618#0" />
-            <element signature="e#3300#3497#0" />
-            <element signature="e#3361#3395#0" />
-            <element signature="e#3572#3616#0" />
-            <element signature="e#3662#4045#0" />
-            <element signature="e#3748#3940#0" />
-            <element signature="e#3809#3843#0" />
-            <element signature="e#4012#4043#0" />
-            <element signature="e#4095#4493#0" />
-            <element signature="e#4187#4385#0" />
-            <element signature="e#4248#4282#0" />
-            <element signature="e#4460#4491#0" />
-            <element signature="e#4539#5140#0" />
-            <element signature="e#4627#5015#0" />
-            <element signature="e#4688#4722#0" />
-            <element signature="e#4905#4962#0" />
-            <element signature="e#5088#5138#0" />
-            <element signature="e#5142#5189#0" />
-            <element signature="e#5403#6835#0" />
-            <element signature="e#5701#6372#0" />
-            <element signature="e#5764#5793#0" />
-            <element signature="e#5921#5950#0" />
-            <element signature="e#6208#6242#0" />
-            <element signature="e#6338#6367#0" />
-            <element signature="e#6446#6833#0" />
-            <element signature="e#6800#6828#0" />
-            <element signature="e#6837#6915#0" />
-            <element signature="e#6988#7433#0" />
-            <element signature="e#7202#7258#0" />
-            <element signature="e#7332#7390#0" />
-            <element signature="e#7493#7884#0" />
-            <element signature="e#7642#7725#0" />
-            <element signature="e#7799#7882#0" />
-            <element signature="e#7996#8521#0" />
-            <element signature="e#8199#8299#0" />
-            <element signature="e#8222#8294#0" />
-            <element signature="e#8393#8519#0" />
-            <element signature="e#8706#9392#0" />
-            <element signature="e#8966#9096#0" />
-            <element signature="e#8989#9091#0" />
-            <element signature="e#9193#9390#0" />
-            <element signature="e#9419#9531#0" />
-            <element signature="e#9623#10495#0" />
-            <element signature="e#9935#10122#0" />
-            <element signature="e#9958#10117#0" />
-            <element signature="e#10223#10493#0" />
-            <element signature="e#10526#10670#0" />
-            <element signature="e#10768#11522#0" />
-            <element signature="e#10919#11250#0" />
-            <element signature="e#10982#11016#0" />
-            <element signature="e#11330#11520#0" />
-            <element signature="e#11707#11840#0" />
-            <element signature="e#11914#12036#0" />
-            <element signature="e#12040#12083#0" />
-            <element signature="e#12364#13053#0" />
-            <element signature="e#12619#12753#0" />
-            <element signature="e#12827#13051#0" />
-            <element signature="e#13055#13100#0" />
-            <element signature="e#13326#14198#0" />
-            <element signature="e#13513#13825#0" />
-            <element signature="e#13562#13638#0" />
-            <element signature="e#13602#13621#0" />
-            <element signature="e#13805#13820#0" />
-            <element signature="e#13916#14196#0" />
-            <element signature="e#13971#14020#0" />
-            <element signature="e#14000#14019#0" />
-            <element signature="e#14200#14278#0" />
-            <element signature="e#14503#15439#0" />
-            <element signature="e#14692#15039#0" />
-            <element signature="e#14787#14945#0" />
-            <element signature="e#14827#14846#0" />
-            <element signature="e#15019#15034#0" />
-            <element signature="e#15130#15437#0" />
-            <element signature="e#15233#15356#0" />
-            <element signature="e#15262#15281#0" />
-            <element signature="e#15494#16483#0" />
-            <element signature="e#15749#16067#0" />
-            <element signature="e#15922#15925#0" />
-            <element signature="e#15925#15945#0" />
-            <element signature="e#16147#16481#0" />
-            <element signature="e#16179#16183#0" />
-            <element signature="e#16183#16198#0" />
-            <element signature="e#16231#16235#0" />
-            <element signature="e#16235#16250#0" />
-            <element signature="e#16451#16468#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/core/date_time.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2645">
-          <caret line="220" column="11" selection-start-line="220" selection-start-column="11" selection-end-line="220" selection-end-column="11" />
-          <folding>
-            <element signature="e#237#4115#0" />
-            <element signature="e#4970#5193#0" />
-            <element signature="e#5217#5374#0" />
-            <element signature="e#5398#5678#0" />
-            <element signature="e#5972#6327#0" />
-            <element signature="e#6624#6793#0" />
-            <element signature="e#6829#9016#0" />
-            <element signature="e#9019#9085#0" />
-            <element signature="e#9178#11322#0" />
-            <element signature="e#9323#9406#0" />
-            <element signature="e#9414#9482#0" />
-            <element signature="e#9558#9921#0" />
-            <element signature="e#11120#11158#0" />
-            <element signature="e#11204#11225#0" />
-            <element signature="e#11271#11311#0" />
-            <element signature="e#11326#11527#0" />
-            <element signature="e#11579#11724#0" />
-            <element signature="e#11795#12111#0" />
-            <element signature="e#12218#12534#0" />
-            <element signature="e#12641#12785#0" />
-            <element signature="e#12835#13217#0" />
-            <element signature="e#13039#13110#0" />
-            <element signature="e#13172#13206#0" />
-            <element signature="e#13221#13684#0" />
-            <element signature="e#13732#14330#0" />
-            <element signature="e#14376#14957#0" />
-            <element signature="e#15002#15650#0" />
-            <element signature="e#15704#16004#0" />
-            <element signature="e#16113#16441#0" />
-            <element signature="e#16463#16568#0" />
-            <element signature="e#16518#16540#0" />
-            <element signature="e#16572#16881#0" />
-            <element signature="e#16901#16991#0" />
-            <element signature="e#16965#16986#0" />
-            <element signature="e#17028#17248#0" />
-            <element signature="e#17284#17458#0" />
-            <element signature="e#17496#17588#0" />
-            <element signature="e#17624#17681#0" />
-            <element signature="e#17685#18119#0" />
-            <element signature="e#18140#18591#0" />
-            <element signature="e#18595#19543#0" />
-            <element signature="e#19571#20087#0" />
-            <element signature="e#20091#20649#0" />
-            <element signature="e#20697#21280#0" />
-            <element signature="e#22748#22822#0" />
-            <element signature="e#23080#23405#0" />
-            <element signature="e#23452#23927#0" />
-            <element signature="e#23974#24300#0" />
-            <element signature="e#24340#24668#0" />
-            <element signature="e#24712#24861#0" />
-            <element signature="e#24890#25095#0" />
-            <element signature="e#25125#25291#0" />
-            <element signature="e#25319#25518#0" />
-            <element signature="e#25547#25707#0" />
-            <element signature="e#25738#25897#0" />
-            <element signature="e#25928#26098#0" />
-            <element signature="e#26134#26304#0" />
-            <element signature="e#26340#26665#0" />
-            <element signature="e#26697#27405#0" />
-            <element signature="e#27453#27640#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/list/built_list.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
-          <caret line="162" column="11" lean-forward="true" selection-start-line="162" selection-start-column="11" selection-end-line="162" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/list/list_builder.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="3666" column="8" selection-start-line="3666" selection-start-column="8" selection-end-line="3666" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/scroll_view.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="920" column="26" lean-forward="true" selection-start-line="920" selection-start-column="26" selection-end-line="920" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/scroll_physics.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="259" column="8" selection-start-line="259" selection-start-column="8" selection-end-line="259" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/kernel-0.3.14/lib/text/serializer_combinators.dart" />
+    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/core/date_time.dart" />
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/list/built_list.dart" />
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/list/list_builder.dart" />
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart" />
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/scroll_view.dart" />
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/scroll_physics.dart" />
     <entry file="file://$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/transformers/do.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="147" column="39" selection-start-line="147" selection-start-column="27" selection-end-line="147" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/observables/observable.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="1933" column="16" selection-start-line="1933" selection-start-column="16" selection-end-line="1933" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/async/future.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="678" column="12" selection-start-line="678" selection-start-column="12" selection-end-line="678" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/dismissible.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="33" column="21" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_provider-1.1.0/lib/src/flutter_provider.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="181" column="8" selection-start-line="181" selection-start-column="8" selection-end-line="181" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/src/functions.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/shared_pref.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_value-6.3.2/lib/built_value.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="292" column="2" selection-start-line="292" selection-start-column="2" selection-end-line="292" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/transformers/do.dart" />
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/observables/observable.dart" />
+    <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/async/future.dart" />
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/dismissible.dart" />
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_provider-1.1.0/lib/src/flutter_provider.dart" />
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/src/functions.dart" />
+    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_value-6.3.2/lib/built_value.dart" />
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
@@ -978,13 +690,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/list_tile.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="257" column="22" selection-start-line="257" selection-start-column="9" selection-end-line="257" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/list_tile.dart" />
     <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1407">
@@ -1002,13 +708,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/demo_bloc_pattern.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+        <state relative-caret-position="320">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/src/distinct_value_connectable_observable_base.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/observables/connectable_observable.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/shared_pref.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
         </state>
       </provider>
     </entry>
