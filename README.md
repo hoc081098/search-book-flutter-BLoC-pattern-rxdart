@@ -6,11 +6,11 @@ Star :star: :) if it is helpful :thumbsup:
 
 ## Trying
 
-Download ![APK](build/app/outputs/apk/release/app-release.apk)
+Download and install ![👍 File apk 👍](./build/app/outputs/apk/release/app-release.apk)
 
 ## Demo :camera: :art:
 
-:video_camera: [Video demo](https://www.youtube.com/watch?v=YPlFaYw3CCE) :tv:
+:video_camera: [Video demo](https://youtu.be/FH7LPKVSYyg) :tv:
 <br>
 <br>
 <p align="center">
