@@ -2,42 +2,20 @@ import 'package:built_collection/built_collection.dart';
 import 'package:demo_bloc_pattern/pages/fav_page/fav_books_bloc.dart';
 import 'package:demo_bloc_pattern/pages/fav_page/fav_books_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_provider/flutter_provider.dart';
+import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 
-class FavoritedBooksPage extends StatefulWidget {
-  final FavBooksBloc Function() initBloc;
-
-  const FavoritedBooksPage({Key key, @required this.initBloc})
-      : super(key: key);
-
-  @override
-  _FavoritedBooksPageState createState() => _FavoritedBooksPageState();
-}
-
-class _FavoritedBooksPageState extends State<FavoritedBooksPage> {
-  FavBooksBloc _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = widget.initBloc();
-  }
-
-  @override
-  void dispose() {
-    _bloc.dispose();
-    super.dispose();
-  }
-
+class FavoritedBooksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<FavBooksBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Favorited books'),
       ),
       body: StreamBuilder<FavBooksState>(
-        stream: _bloc.state$,
-        initialData: _bloc.state$.value,
+        stream: bloc.state$,
+        initialData: bloc.state$.value,
         builder: (context, snapshot) {
           final state = snapshot.data;
           if (state.isLoading) {
@@ -46,10 +24,7 @@ class _FavoritedBooksPageState extends State<FavoritedBooksPage> {
               child: Center(child: CircularProgressIndicator()),
             );
           }
-          return Provider<FavBooksBloc>(
-            value: _bloc,
-            child: FavBooksList(items: state.books),
-          );
+          return FavBooksList(items: state.books);
         },
       ),
     );
@@ -63,21 +38,19 @@ class FavBooksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FavBooksBloc>(
-      builder: (context, bloc) {
-        return RefreshIndicator(
-          onRefresh: bloc.refresh,
-          child: Container(
-            constraints: BoxConstraints.expand(),
-            child: ListView.builder(
-              itemCount: items.length,
-              physics: const AlwaysScrollableScrollPhysics(),
-              itemBuilder: (context, index) =>
-                  FavBookItemWidget(item: items[index]),
-            ),
-          ),
-        );
-      },
+    final bloc = BlocProvider.of<FavBooksBloc>(context);
+
+    return RefreshIndicator(
+      onRefresh: bloc.refresh,
+      child: Container(
+        constraints: BoxConstraints.expand(),
+        child: ListView.builder(
+          itemCount: items.length,
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemBuilder: (context, index) =>
+              FavBookItemWidget(item: items[index]),
+        ),
+      ),
     );
   }
 }
@@ -89,30 +62,78 @@ class FavBookItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (item.isLoading) {
-      return ListTile(
-        title: Text('Loading...'),
-        subtitle: Row(
+    final bloc = BlocProvider.of<FavBooksBloc>(context);
+    return Dismissible(
+      child: Container(
+        constraints: BoxConstraints.expand(height: 250),
+        margin: EdgeInsets.fromLTRB(16, 12, 16, 12),
+        child: Stack(
           children: <Widget>[
-            CircularProgressIndicator(strokeWidth: 2),
-            Spacer(),
+            Align(
+              alignment: Alignment.centerRight,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                child: FadeInImage.assetNetwork(
+                  image: item.thumbnail ?? '',
+                  width: 64.0 * 1.8,
+                  height: 96.0 * 1.8,
+                  fit: BoxFit.cover,
+                  placeholder: 'assets/no_image.png',
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                width: 220,
+                height: double.infinity,
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 15,
+                    )
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      item.isLoading ? 'Loading...' : item.title,
+                      maxLines: 2,
+                      textAlign: TextAlign.start,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      item.isLoading
+                          ? 'Loading...'
+                          : (item.subtitle == null || item.subtitle.isEmpty
+                              ? 'No subtitle...'
+                              : item.subtitle),
+                      maxLines: 2,
+                      textAlign: TextAlign.start,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
-      );
-    }
-
-    return Consumer<FavBooksBloc>(
-      builder: (context, bloc) {
-        return Dismissible(
-          child: ListTile(
-            title: Text(item.title),
-            subtitle: Text(item.subtitle ?? 'No subtitle'),
-          ),
-          direction: DismissDirection.horizontal,
-          onDismissed: (_) => bloc.removeFavorite(item.id),
-          key: ValueKey(item.id),
-        );
-      },
+      ),
+      direction: DismissDirection.horizontal,
+      onDismissed: (_) => bloc.removeFavorite(item.id),
+      key: ValueKey(item.id),
     );
   }
 }

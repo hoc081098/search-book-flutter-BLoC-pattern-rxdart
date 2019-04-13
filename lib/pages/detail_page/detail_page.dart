@@ -126,36 +126,6 @@ class BookDetailContent extends StatelessWidget {
       fontWeight: FontWeight.w400,
     );
 
-    // final card = Container(
-    //   margin: EdgeInsets.only(bottom: 0.0),
-    //   decoration: BoxDecoration(
-    //     color: Colors.teal.withOpacity(0.3),
-    //     shape: BoxShape.rectangle,
-    //     borderRadius: BorderRadius.circular(8.0),
-    //     boxShadow: <BoxShadow>[
-    //       BoxShadow(
-    //         color: Colors.black12,
-    //         blurRadius: 10.0,
-    //         offset: Offset(0.0, 0.0),
-    //       )
-    //     ],
-    //   ),
-    //   child: Container(
-    //     margin: EdgeInsets.only(top: 200.0),
-    //     constraints: BoxConstraints.expand(),
-    //     child: Column(
-    //       mainAxisSize: MainAxisSize.max,
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: <Widget>[
-
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
-
     return RefreshIndicator(
       key: refreshIndicatorKey,
       child: ListView(
@@ -244,7 +214,7 @@ class BookDetailContent extends StatelessWidget {
                             child: Text(
                               'Authors: ${detail?.authors?.join(', ') ?? 'Loading...'}',
                               style: regularStyle,
-                              maxLines: 4,
+                              maxLines: 5,
                               overflow: TextOverflow.fade,
                               textAlign: TextAlign.center,
                             ),
@@ -266,7 +236,7 @@ class BookDetailContent extends StatelessWidget {
                             child: Text(
                               'Published date: ${detail?.publishedDate ?? 'Loading...'}',
                               style: regularStyle,
-                              maxLines: 4,
+                              maxLines: 5,
                               overflow: TextOverflow.fade,
                               textAlign: TextAlign.center,
                             ),

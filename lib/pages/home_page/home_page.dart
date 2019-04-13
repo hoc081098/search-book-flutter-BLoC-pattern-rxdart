@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
@@ -13,7 +14,53 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _scaffoleKey = GlobalKey<ScaffoldState>();
+  StreamSubscription<HomePageMessage> _subscription;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _subscription ??=
+        BlocProvider.of<HomeBloc>(context).message$.listen((message) {
+      if (message is AddToFavoriteSuccess) {
+        _showSnackbar('Add `${message.item?.title}` to fav success');
+      }
+      if (message is AddToFavoriteFailure) {
+        _showSnackbar(
+            'Add `${message.item?.title}` to fav failure: ${message.error ?? 'Unknown error'}');
+      }
+      if (message is RemoveFromFavoriteSuccess) {
+        _showSnackbar('Remove `${message.item?.title}` from fav success');
+      }
+      if (message is RemoveFromFavoriteFailure) {
+        _showSnackbar(
+            'Remove `${message.item?.title}` from fav failure: ${message.error ?? 'Unknown error'}');
+      }
+    });
+  }
+
+  Future<void> _showSnackbar(String msg) => _scaffoleKey.currentState
+      ?.showSnackBar(
+        SnackBar(
+          content: Text(msg),
+          duration: const Duration(seconds: 2),
+        ),
+      )
+      ?.closed;
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<HomeBloc>(context);
@@ -35,6 +82,7 @@ class MyHomePage extends StatelessWidget {
     );
 
     return Scaffold(
+      key: _scaffoleKey,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -43,9 +91,16 @@ class MyHomePage extends StatelessWidget {
               builder: (context) {
                 return Consumer2<SharedPref, BookApi>(
                   builder: (context, sharedPref, api) {
-                    return FavoritedBooksPage(
-                      initBloc: () =>
-                          FavBooksBloc(FavBooksInteractor(api, sharedPref)),
+                    return BlocProvider<FavBooksBloc>(
+                      initBloc: () {
+                        return FavBooksBloc(
+                          FavBooksInteractor(
+                            api,
+                            sharedPref,
+                          ),
+                        );
+                      },
+                      child: FavoritedBooksPage(),
                     );
                   },
                 );
@@ -129,7 +184,6 @@ class HomeListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final bloc = BlocProvider.of<HomeBloc>(context);
 
     if (state.loadFirstPageError != null) {

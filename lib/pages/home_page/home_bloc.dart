@@ -31,6 +31,11 @@ class HomeBloc implements BaseBloc {
   final ValueObservable<HomePageState> state$;
 
   ///
+  /// Subscribe to this stream to show message like snackbar, toast, ...
+  ///
+  final Stream<HomePageMessage> message$;
+
+  ///
   /// Clean up resouce
   ///
   final void Function() _dispose;
@@ -43,6 +48,7 @@ class HomeBloc implements BaseBloc {
     this.retryNextPage,
     this.retryFirstPage,
     this.toggleFavorited,
+    this.message$,
   );
 
   @override
@@ -145,6 +151,23 @@ class HomeBloc implements BaseBloc {
     stateDistinctConnectable$ =
         publishValueSeededDistinct(state$, seedValue: HomePageState.initial());
 
+    final message$ = toggleFavoritedController
+        .groupBy((id) => id)
+        .map((group$) => group$.throttle(Duration(milliseconds: 600)))
+        .flatMap((group$) => group$)
+        .concatMap((id) => Stream.fromFuture(sharedPref.toggleFavorite(id)))
+        .withLatestFrom(
+          stateDistinctConnectable$,
+          (result, HomePageState item) => HomePageMessage.fromResult(
+                result,
+                item.books.firstWhere(
+                  (book) => book.id == result.id,
+                  orElse: () => null,
+                ),
+              ),
+        )
+        .publish();
+
     ///
     /// Controllers and subscriptions
     ///
@@ -153,11 +176,10 @@ class HomeBloc implements BaseBloc {
       loadNextPageController,
     ];
     final subscriptions = <StreamSubscription>[
-      toggleFavoritedController
-          .throttle(Duration(milliseconds: 600))
-          .listen(sharedPref.toggleFavorite),
+      message$.listen((message) => print('[MESSAGE] $message')),
       stateDistinctConnectable$.listen((state) => print('[STATE] $state')),
       stateDistinctConnectable$.connect(),
+      message$.connect(),
     ];
 
     return HomeBloc._(
@@ -171,6 +193,7 @@ class HomeBloc implements BaseBloc {
       () => retryNextPageController.add(null),
       () => retryFirstPageController.add(null),
       toggleFavoritedController.add,
+      message$,
     );
   }
 

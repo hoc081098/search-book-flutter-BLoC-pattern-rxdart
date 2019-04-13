@@ -1,6 +1,7 @@
 import 'package:demo_bloc_pattern/model/book_model.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:demo_bloc_pattern/shared_pref.dart';
 import 'package:meta/meta.dart';
 import 'package:sealed_unions/sealed_unions.dart';
 
@@ -11,9 +12,13 @@ part 'home_state.g.dart';
 ///
 abstract class BookItem implements Built<BookItem, BookItemBuilder> {
   String get id;
+
   String get title;
+
   String get subtitle;
+
   String get thumbnail;
+
   @nullable
   bool get isFavorited;
 
@@ -272,4 +277,61 @@ class LoadNextPageIntent {
   @override
   String toString() =>
       'LoadNextPageIntent(search=$search,startIndex=$startIndex)';
+}
+
+@immutable
+abstract class HomePageMessage {
+  factory HomePageMessage.fromResult(ToggleFavResult result, BookItem book) {
+    if (result.added) {
+      if (result.result) {
+        return AddToFavoriteSuccess(book);
+      } else {
+        return AddToFavoriteFailure(book, result.error);
+      }
+    } else {
+      if (result.result) {
+        return RemoveFromFavoriteSuccess(book);
+      } else {
+        return RemoveFromFavoriteFailure(book, result.error);
+      }
+    }
+  }
+}
+
+class AddToFavoriteSuccess implements HomePageMessage {
+  final BookItem item;
+
+  const AddToFavoriteSuccess(this.item);
+
+  @override
+  String toString() => 'AddToFavoriteSuccess{item=$item}';
+}
+
+class AddToFavoriteFailure implements HomePageMessage {
+  final BookItem item;
+  final error;
+
+  const AddToFavoriteFailure(this.item, this.error);
+
+  @override
+  String toString() => 'AddToFavoriteFailure{item=$item, error=$error}';
+}
+
+class RemoveFromFavoriteSuccess implements HomePageMessage {
+  final BookItem item;
+
+  const RemoveFromFavoriteSuccess(this.item);
+
+  @override
+  String toString() => 'RemoveFromFavoriteSuccess{item=$item}';
+}
+
+class RemoveFromFavoriteFailure implements HomePageMessage {
+  final BookItem item;
+  final error;
+
+  const RemoveFromFavoriteFailure(this.item, this.error);
+
+  @override
+  String toString() => 'RemoveFromFavoriteFailure{item=$item, error=$error}';
 }
