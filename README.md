@@ -14,7 +14,8 @@ Download ![APK](build/app/outputs/apk/release/app-release.apk)
 <br>
 <br>
 <p align="center">
-  <img src="demo.gif" height="480px">
+  <img src="screenshots/home.gif" height="480px">
+  <img src="screenshots/detail_and_fav.gif" height="480px">
   </p>
 
 ## Develop 👏
