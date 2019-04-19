@@ -7,8 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9739c978-f217-461a-a6d2-fccc765ccbbb" name="Default" comment="[REFACTOR]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -21,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -257,39 +255,10 @@
     <option name="STATE" value="1" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Search-book" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Search-book" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="fav_page" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -327,6 +296,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
@@ -360,13 +330,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Flutter.main.dart">
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -376,6 +339,13 @@
     <configuration name="tests in widget_test.dart" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
       <option name="testFile" value="$PROJECT_DIR$/test/widget_test.dart" />
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="TestNG">
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -650,20 +620,8 @@
     <entry file="file://$PROJECT_DIR$/demo_bloc_pattern.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/src/distinct_value_connectable_observable_base.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/observables/connectable_observable.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/distinct_value_connectable_observable-2.0.0/lib/src/distinct_value_connectable_observable_base.dart" />
+    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/observables/connectable_observable.dart" />
     <entry file="file://$PROJECT_DIR$/lib/shared_pref.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -671,30 +629,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="943">
-          <caret line="62" column="36" lean-forward="true" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/f/f/packages/flutter/lib/src/material/refresh_indicator.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="63" column="50" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/flutter_provider-1.1.0/lib/src/flutter_provider.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/f/f/packages/flutter/lib/src/material/refresh_indicator.dart" />
+    <entry file="file://C:/f/f/.pub-cache/hosted/pub.dartlang.org/flutter_provider-1.1.0/lib/src/flutter_provider.dart" />
     <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -732,6 +668,16 @@
             <element signature="e#2854#2866#0" />
             <element signature="e#2892#2924#0" />
             <element signature="e#3064#3073#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="62" column="36" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
