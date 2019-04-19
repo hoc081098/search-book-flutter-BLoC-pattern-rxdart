@@ -71,15 +71,18 @@ class FavBookItemWidget extends StatelessWidget {
           children: <Widget>[
             Align(
               alignment: Alignment.centerRight,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                child: FadeInImage.assetNetwork(
-                  image: item.thumbnail ?? '',
-                  width: 64.0 * 1.8,
-                  height: 96.0 * 1.8,
-                  fit: BoxFit.cover,
-                  placeholder: 'assets/no_image.png',
+              child: Hero(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  child: FadeInImage.assetNetwork(
+                    image: item.thumbnail ?? '',
+                    width: 64.0 * 1.8,
+                    height: 96.0 * 1.8,
+                    fit: BoxFit.cover,
+                    placeholder: 'assets/no_image.png',
+                  ),
                 ),
+                tag: item.id,
               ),
             ),
             Align(

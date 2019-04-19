@@ -6,7 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9739c978-f217-461a-a6d2-fccc765ccbbb" name="Default" comment="[REFACTOR]">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -19,7 +23,41 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/pages/home_page/home_state.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="48" column="17" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -296,16 +334,58 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="detail_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="fav_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Search-book-api-demo_BLoC_pattern_RxDart" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="home_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545588047683" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="C:/f/f/bin/cache/dart-sdk" />
+    <property name="last_opened_file_path" value="C:/flutter/flutter/bin/cache/dart-sdk" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -408,7 +488,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14220877" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20801815" />
       <window_info id="Resources Explorer" order="1" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -430,7 +510,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.84177214" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.5450082" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.44026187" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.52649575" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.33934426" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" sideWeight="0.6959153" side_tool="true" weight="0.6202946" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -500,8 +580,6 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/core/null.dart" />
-    <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/hash_map.dart" />
     <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/collection_sources.gni" />
     <entry file="file://C:/flutter/flutter/bin/cache/dart-sdk/lib/collection/collection.dart" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -544,13 +622,6 @@
     <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart" />
     <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/scroll_view.dart" />
     <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/widgets/scroll_physics.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/transformers/do.dart" />
     <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/observables/observable.dart" />
     <entry file="file://C:/flutter/flutter/bin/cache/pkg/sky_engine/lib/async/future.dart" />
@@ -588,16 +659,6 @@
             <element signature="e#2577#2621#0" />
             <element signature="e#2801#2860#0" />
             <element signature="e#3568#3589#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="15" column="64" lean-forward="true" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -641,41 +702,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="111" column="44" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
+        <state relative-caret-position="500">
+          <caret line="62" column="36" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
           <folding>
-            <element signature="e#289#508#0" />
-            <element signature="e#575#1444#0" />
-            <element signature="e#862#911#0" />
-            <element signature="e#883#902#0" />
-            <element signature="e#1165#1297#0" />
-            <element signature="e#1246#1282#0" />
-            <element signature="e#1466#1515#0" />
-            <element signature="e#1489#2939#0" />
-            <element signature="e#1718#2937#0" />
-            <element signature="e#1763#2173#0" />
-            <element signature="e#1864#2236#0" />
-            <element signature="e#1923#2227#0" />
-            <element signature="e#2006#2216#0" />
-            <element signature="e#2183#2203#0" />
-            <element signature="e#2403#2681#0" />
-            <element signature="e#2434#2448#0" />
-            <element signature="e#2481#2662#0" />
-            <element signature="e#2570#2586#0" />
-            <element signature="e#2831#2935#0" />
-            <element signature="e#2854#2866#0" />
-            <element signature="e#2892#2924#0" />
-            <element signature="e#3064#3073#0" />
+            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="62" column="36" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
+        <state relative-caret-position="442">
+          <caret line="84" column="27" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pages/detail_page/detail_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="172" column="31" selection-start-line="172" selection-start-column="25" selection-end-line="172" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pages/home_page/home_state.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="48" column="17" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
