@@ -205,7 +205,9 @@ class HomeListViewWidget extends StatelessWidget {
             ),
             SizedBox(height: 16),
             RaisedButton(
-              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
               child: Text(
                 'Retry',
                 style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
@@ -262,6 +264,9 @@ class HomeListViewWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                   onPressed: bloc.retryNextPage,
                   padding: EdgeInsets.all(16.0),
                   child: Text(
@@ -280,7 +285,7 @@ class HomeListViewWidget extends StatelessWidget {
 
         if (state.isNextPageLoading) {
           return Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(16.0),
             child: Center(
               child: CircularProgressIndicator(
                 strokeWidth: 2.0,
@@ -293,6 +298,9 @@ class HomeListViewWidget extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
               onPressed: bloc.loadNextPage,
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -330,13 +338,13 @@ class HomeBookItemWidget extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.teal,
-            offset: Offset(5.0, 5.0),
-            blurRadius: 10.0,
+            color: Colors.grey,
+            offset: Offset(2, 2),
+            blurRadius: 8,
           )
         ],
       ),
-      margin: const EdgeInsets.all(4.0),
+      margin: const EdgeInsets.all(8.0),
       child: Material(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(8.0),
@@ -368,26 +376,27 @@ class HomeBookItemWidget extends StatelessWidget {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(8),
-                    topLeft: Radius.circular(8),
-                  ),
+                  borderRadius: BorderRadius.circular(8),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey,
                       offset: Offset(5.0, 5.0),
-                      blurRadius: 10.0,
+                      blurRadius: 12,
                     )
                   ],
                 ),
                 child: Hero(
                   tag: book.id,
-                  child: FadeInImage.assetNetwork(
-                    image: book.thumbnail,
-                    width: 64.0 * 1.5,
-                    height: 96.0 * 1.5,
-                    fit: BoxFit.cover,
-                    placeholder: 'assets/no_image.png',
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    clipBehavior: Clip.antiAlias,
+                    child: FadeInImage.assetNetwork(
+                      image: book.thumbnail,
+                      width: 64.0 * 1.5,
+                      height: 96.0 * 1.5,
+                      fit: BoxFit.cover,
+                      placeholder: 'assets/no_image.png',
+                    ),
                   ),
                 ),
               ),

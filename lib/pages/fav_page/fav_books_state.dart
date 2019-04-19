@@ -1,5 +1,5 @@
-import 'package:built_value/built_value.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
 import 'package:demo_bloc_pattern/model/book_model.dart';
 import 'package:meta/meta.dart';
 
@@ -39,6 +39,19 @@ abstract class FavBookItem implements Built<FavBookItem, FavBookItemBuilder> {
   FavBookItem._();
 
   factory FavBookItem([updates(FavBookItemBuilder b)]) = _$FavBookItem;
+
+  Book toBookModel() {
+    return Book(
+      publishedDate: null,
+      largeImage: null,
+      authors: null,
+      description: null,
+      thumbnail: thumbnail,
+      id: id,
+      subtitle: subtitle,
+      title: title,
+    );
+  }
 }
 
 @immutable
