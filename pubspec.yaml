@@ -14,7 +14,7 @@ dependencies:
   shared_preferences: ^0.4.3
   flutter_html: ^0.9.6
   
-  flutter_provider: ^1.1.0
+  flutter_provider: ^1.1.0+3
   distinct_value_connectable_observable: ^2.0.0
   flutter_bloc_pattern: ^0.0.1+1
 

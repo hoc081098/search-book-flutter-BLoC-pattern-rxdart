@@ -23,12 +23,27 @@ class ToggleFavResult {
         assert(id != null);
 
   @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ToggleFavResult &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          added == other.added &&
+          result == other.result &&
+          error == other.error;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^ added.hashCode ^ result.hashCode ^ error.hashCode;
+
+  @override
   String toString() =>
       'ToggleFavResult{id=$id, added=$added, result=$result, error=$error}';
 }
 
 class SharedPref {
-  static const _favoritedIdsKey =
+  @visibleForTesting
+  static const favoritedIdsKey =
       'com.hoc.search_book_api_demo_bloc_pattern_rxdart.favorited_ids';
 
   final Future<ToggleFavResult> Function(String) toggleFavorite;
@@ -69,7 +84,7 @@ class SharedPref {
   ) async* {
     final sharedPref = await sharedPrefFuture;
     final ids =
-        List.of(sharedPref.getStringList(_favoritedIdsKey) ?? <String>[]);
+        List.of(sharedPref.getStringList(favoritedIdsKey) ?? <String>[]);
 
     if (tuple2 == null) {
       yield BuiltSet<String>(ids);
@@ -89,7 +104,7 @@ class SharedPref {
     }
 
     try {
-      final bool result = await sharedPref.setStringList(_favoritedIdsKey, ids);
+      final bool result = await sharedPref.setStringList(favoritedIdsKey, ids);
       if (result) {
         yield BuiltSet<String>(ids);
       }

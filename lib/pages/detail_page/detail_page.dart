@@ -133,7 +133,7 @@ class BookDetailContent extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 0.0),
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Color(0x8c333366),
               shape: BoxShape.rectangle,
@@ -261,7 +261,7 @@ class BookDetailContent extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 8.0),
                   height: 2.0,
                   width: 32.0,
-                  color: Colors.teal.withOpacity(0.5),
+                  color: Color(0xff00c6ff),
                 ),
                 Html(
                   data: detail?.description ?? 'Loading...',
