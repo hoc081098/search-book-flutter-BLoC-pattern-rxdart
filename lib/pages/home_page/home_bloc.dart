@@ -29,6 +29,7 @@ class HomeBloc implements BaseBloc {
   /// Ouput [Stream]s
   ///
   final ValueObservable<HomePageState> state$;
+  final ValueObservable<int> favoriteCount$;
 
   ///
   /// Subscribe to this stream to show message like snackbar, toast, ...
@@ -49,6 +50,7 @@ class HomeBloc implements BaseBloc {
     this.retryFirstPage,
     this.toggleFavorited,
     this.message$,
+    this.favoriteCount$,
   );
 
   @override
@@ -168,6 +170,11 @@ class HomeBloc implements BaseBloc {
         )
         .publish();
 
+    final favoriteCount$ = publishValueSeededDistinct(
+      sharedPref.favoritedIds$.map((ids) => ids.length),
+      seedValue: 0,
+    );
+
     ///
     /// Controllers and subscriptions
     ///
@@ -177,9 +184,11 @@ class HomeBloc implements BaseBloc {
     ];
     final subscriptions = <StreamSubscription>[
       message$.listen((message) => print('[MESSAGE] $message')),
+      favoriteCount$.listen((count) => print('[FAV_COUNT] $count')),
       stateDistinctConnectable$.listen((state) => print('[STATE] $state')),
       stateDistinctConnectable$.connect(),
       message$.connect(),
+      favoriteCount$.connect(),
     ];
 
     return HomeBloc._(
@@ -194,6 +203,7 @@ class HomeBloc implements BaseBloc {
       () => retryFirstPageController.add(null),
       toggleFavoritedController.add,
       message$,
+      favoriteCount$,
     );
   }
 

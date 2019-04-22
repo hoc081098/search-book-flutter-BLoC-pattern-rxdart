@@ -40,7 +40,7 @@ class _DetailPageState extends State<DetailPage> {
             child: Stack(
               children: <Widget>[
                 Container(
-                  child: detail?.largeImage != null
+                  child: detail.largeImage != null
                       ? Image.network(
                           detail.largeImage,
                           fit: BoxFit.cover,
@@ -78,7 +78,7 @@ class _DetailPageState extends State<DetailPage> {
               ],
             ),
           ),
-          floatingActionButton: detail == null
+          floatingActionButton: detail.isFavorited == null
               ? Container(width: 0, height: 0)
               : FloatingActionButton(
                   onPressed: _bloc.toggleFavorited,
@@ -114,6 +114,7 @@ class BookDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(detail.id);
     final headerStyle = TextStyle(
       color: Colors.white,
       fontFamily: 'Poppins',
@@ -129,7 +130,7 @@ class BookDetailContent extends StatelessWidget {
     return RefreshIndicator(
       key: refreshIndicatorKey,
       child: ListView(
-        physics: const AlwaysScrollableScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 0.0),
@@ -164,25 +165,25 @@ class BookDetailContent extends StatelessWidget {
                   ),
                   child: Hero(
                     child: FadeInImage.assetNetwork(
-                      image: detail?.thumbnail ?? '',
+                      image: detail.thumbnail ?? '',
                       width: 64.0 * 1.75,
                       height: 96.0 * 1.75,
                       fit: BoxFit.cover,
                       placeholder: 'assets/no_image.png',
                     ),
-                    tag: detail?.id ?? 'NO_ID',
+                    tag: detail.id,
                   ),
                 ),
                 SizedBox(height: 12.0),
                 Text(
-                  detail?.title ?? 'Loading...',
+                  detail.title ?? 'Loading...',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: headerStyle,
                 ),
                 SizedBox(height: 4.0),
                 Text(
-                  detail?.subtitle == null
+                  detail.subtitle == null
                       ? 'Loading...'
                       : detail.subtitle.isEmpty
                           ? 'No subtitle...'
@@ -212,7 +213,7 @@ class BookDetailContent extends StatelessWidget {
                           SizedBox(width: 8.0),
                           Expanded(
                             child: Text(
-                              'Authors: ${detail?.authors?.join(', ') ?? 'Loading...'}',
+                              'Authors: ${detail.authors?.join(', ') ?? 'Loading...'}',
                               style: regularStyle,
                               maxLines: 5,
                               overflow: TextOverflow.fade,
@@ -234,7 +235,7 @@ class BookDetailContent extends StatelessWidget {
                           SizedBox(width: 8.0),
                           Expanded(
                             child: Text(
-                              'Published date: ${detail?.publishedDate ?? 'Loading...'}',
+                              'Published date: ${detail.publishedDate ?? 'Loading...'}',
                               style: regularStyle,
                               maxLines: 5,
                               overflow: TextOverflow.fade,
@@ -264,7 +265,7 @@ class BookDetailContent extends StatelessWidget {
                   color: Color(0xff00c6ff),
                 ),
                 Html(
-                  data: detail?.description ?? 'Loading...',
+                  data: detail.description ?? 'Loading...',
                   defaultTextStyle: regularStyle,
                 ),
               ],

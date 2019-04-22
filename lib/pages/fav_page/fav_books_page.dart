@@ -14,24 +14,27 @@ class FavoritedBooksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<FavBooksBloc>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Favorited books'),
-      ),
-      body: StreamBuilder<FavBooksState>(
-        stream: bloc.state$,
-        initialData: bloc.state$.value,
-        builder: (context, snapshot) {
-          final state = snapshot.data;
-          if (state.isLoading) {
-            return Container(
-              constraints: BoxConstraints.expand(),
-              child: Center(child: CircularProgressIndicator()),
-            );
-          }
-          return FavBooksList(items: state.books);
-        },
-      ),
+    return StreamBuilder<FavBooksState>(
+      stream: bloc.state$,
+      initialData: bloc.state$.value,
+      builder: (context, snapshot) {
+        final state = snapshot.data;
+        final body = state.isLoading
+            ? Container(
+                constraints: BoxConstraints.expand(),
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : FavBooksList(items: state.books);
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Favorited books (${state.books.length})'),
+          ),
+          body: body,
+        );
+      },
     );
   }
 }
@@ -93,7 +96,7 @@ class FavBookItemWidget extends StatelessWidget {
           );
         },
         child: Container(
-          constraints: BoxConstraints.expand(height: 250),
+          constraints: BoxConstraints.expand(height: 224),
           margin: EdgeInsets.fromLTRB(16, 12, 16, 12),
           child: Stack(
             children: <Widget>[
@@ -138,7 +141,7 @@ class FavBookItemWidget extends StatelessWidget {
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -153,6 +156,7 @@ class FavBookItemWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.grey,
+                          fontSize: 18,
                         ),
                       ),
                     ],

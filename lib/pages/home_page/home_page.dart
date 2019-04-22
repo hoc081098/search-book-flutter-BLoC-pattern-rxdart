@@ -20,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _scaffoleKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   StreamSubscription<HomePageMessage> _subscription;
 
   @override
@@ -30,23 +30,23 @@ class _MyHomePageState extends State<MyHomePage> {
     _subscription ??=
         BlocProvider.of<HomeBloc>(context).message$.listen((message) {
       if (message is AddToFavoriteSuccess) {
-        _showSnackbar('Add `${message.item?.title}` to fav success');
+        _showSnackBar('Add `${message.item?.title}` to fav success');
       }
       if (message is AddToFavoriteFailure) {
-        _showSnackbar(
+        _showSnackBar(
             'Add `${message.item?.title}` to fav failure: ${message.error ?? 'Unknown error'}');
       }
       if (message is RemoveFromFavoriteSuccess) {
-        _showSnackbar('Remove `${message.item?.title}` from fav success');
+        _showSnackBar('Remove `${message.item?.title}` from fav success');
       }
       if (message is RemoveFromFavoriteFailure) {
-        _showSnackbar(
+        _showSnackBar(
             'Remove `${message.item?.title}` from fav failure: ${message.error ?? 'Unknown error'}');
       }
     });
   }
 
-  Future<void> _showSnackbar(String msg) => _scaffoleKey.currentState
+  Future<void> _showSnackBar(String msg) => _scaffoldKey.currentState
       ?.showSnackBar(
         SnackBar(
           content: Text(msg),
@@ -82,8 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     return Scaffold(
-      key: _scaffoleKey,
+      key: _scaffoldKey,
       floatingActionButton: FloatingActionButton(
+        tooltip: 'Favorite page',
         onPressed: () {
           Navigator.push(
             context,
@@ -108,7 +109,38 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         },
-        child: Icon(Icons.favorite),
+        child: Stack(
+          children: <Widget>[
+            Align(
+              alignment: AlignmentDirectional.center,
+              child: Icon(
+                Icons.favorite,
+                color: Colors.white,
+              ),
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: CircleAvatar(
+                radius: 14,
+                backgroundColor: Colors.deepOrangeAccent,
+                child: StreamBuilder<int>(
+                  stream: bloc.favoriteCount$,
+                  initialData: bloc.favoriteCount$.value,
+                  builder: (context, snapshot) {
+                    return Text(
+                      snapshot.data.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .caption
+                          .copyWith(fontSize: 15),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       body: Container(
         padding: EdgeInsets.only(
@@ -120,8 +152,8 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: <Color>[
-              Colors.teal.withOpacity(0.8),
-              Colors.deepPurpleAccent.withOpacity(0.6),
+              Colors.teal.withOpacity(0.9),
+              Colors.deepPurpleAccent.withOpacity(0.9),
             ],
             begin: AlignmentDirectional.topStart,
             end: AlignmentDirectional.bottomEnd,
@@ -150,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: Theme.of(context)
                             .textTheme
                             .body1
-                            .copyWith(fontSize: 14),
+                            .copyWith(fontSize: 15),
                       ),
                       SizedBox(height: 8),
                       data.isFirstPageLoading
@@ -237,7 +269,8 @@ class HomeListViewWidget extends StatelessWidget {
 
     return ListView.builder(
       itemCount: items.length + 1,
-      padding: EdgeInsets.all(0.0),
+      padding: const EdgeInsets.all(0),
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         if (index < items.length) {
           return HomeBookItemWidget(book: items[index]);
@@ -268,7 +301,7 @@ class HomeListViewWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                   ),
                   onPressed: bloc.retryNextPage,
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Text(
                     'Retry',
                     style: Theme.of(context)
@@ -339,7 +372,6 @@ class HomeBookItemWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.grey,
-            offset: Offset(2, 2),
             blurRadius: 8,
           )
         ],
@@ -444,20 +476,23 @@ class HomeBookItemWidget extends StatelessWidget {
                                 ),
                               ),
                             )
-                          : InkWell(
-                              onTap: () => bloc.toggleFavorited(book.id),
-                              child: Padding(
-                                child: book.isFavorited
-                                    ? Icon(
-                                        Icons.favorite,
-                                        color: Theme.of(context).accentColor,
-                                      )
-                                    : Icon(
-                                        Icons.favorite_border,
-                                        color: Theme.of(context).accentColor,
-                                      ),
-                                padding: const EdgeInsets.all(16),
-                              ),
+                          : FloatingActionButton(
+                              heroTag: null,
+                              onPressed: () => bloc.toggleFavorited(book.id),
+                              child: book.isFavorited
+                                  ? Icon(
+                                      Icons.favorite,
+                                      color: Theme.of(context).accentColor,
+                                    )
+                                  : Icon(
+                                      Icons.favorite_border,
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                              elevation: 0,
+                              backgroundColor: Colors.transparent,
+                              tooltip: book.isFavorited
+                                  ? 'Remove from favorite'
+                                  : 'Add to favorite',
                             ),
                     ],
                   ),

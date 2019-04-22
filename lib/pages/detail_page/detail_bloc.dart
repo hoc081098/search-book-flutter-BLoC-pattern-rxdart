@@ -68,8 +68,7 @@ class DetailBloc implements BaseBloc {
             ..id = book.id
             ..title = book.title
             ..subtitle = book.subtitle
-            ..authors =
-                authors == null ? null : ListBuilder<String>(authors)
+            ..authors = authors == null ? null : ListBuilder<String>(authors)
             ..largeImage = book.largeImage
             ..isFavorited = ids.contains(book.id)
             ..thumbnail = book.thumbnail
@@ -79,7 +78,21 @@ class DetailBloc implements BaseBloc {
       },
     );
 
-    final bookDetail$ = publishValueDistinct(state$);
+    final bookDetail$ = publishValueSeededDistinct(
+      state$,
+      seedValue: BookDetailState((b) {
+        final authors = initial.authors;
+        return b
+          ..id = initial.id
+          ..title = initial.title
+          ..subtitle = initial.subtitle
+          ..authors = authors == null ? null : ListBuilder<String>(authors)
+          ..largeImage = initial.largeImage
+          ..thumbnail = initial.thumbnail
+          ..description = initial.description
+          ..publishedDate = initial.publishedDate;
+      }),
+    );
 
     final subscriptions = <StreamSubscription>[
       toggleController
