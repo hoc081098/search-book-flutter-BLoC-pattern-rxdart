@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:demo_bloc_pattern/api/book_api.dart';
+import 'package:demo_bloc_pattern/fav_count_badge.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
 import 'package:demo_bloc_pattern/pages/fav_page/fav_books_bloc.dart';
@@ -19,6 +20,8 @@ class FavoritedBooksPage extends StatelessWidget {
       initialData: bloc.state$.value,
       builder: (context, snapshot) {
         final state = snapshot.data;
+        final favCount = state.books.length;
+
         final body = state.isLoading
             ? Container(
                 constraints: BoxConstraints.expand(),
@@ -30,7 +33,19 @@ class FavoritedBooksPage extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Favorited books (${state.books.length})'),
+            title: Row(
+              children: <Widget>[
+                Text('Favorited books'),
+                SizedBox(width: 16),
+                Hero(
+                  tag: 'FAV_COUNT',
+                  child: FavCountBadge(
+                    key: ValueKey(favCount),
+                    count: favCount,
+                  ),
+                ),
+              ],
+            ),
           ),
           body: body,
         );

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:demo_bloc_pattern/api/book_api.dart';
+import 'package:demo_bloc_pattern/fav_count_badge.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
 import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
 import 'package:demo_bloc_pattern/pages/fav_page/fav_books_bloc.dart';
@@ -84,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       key: _scaffoldKey,
       floatingActionButton: FloatingActionButton(
+        heroTag: 'FAV_COUNT',
         tooltip: 'Favorite page',
         onPressed: () {
           Navigator.push(
@@ -118,27 +120,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.white,
               ),
             ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: CircleAvatar(
-                radius: 14,
-                backgroundColor: Colors.deepOrangeAccent,
-                child: StreamBuilder<int>(
-                  stream: bloc.favoriteCount$,
-                  initialData: bloc.favoriteCount$.value,
-                  builder: (context, snapshot) {
-                    return Text(
-                      snapshot.data.toString(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .caption
-                          .copyWith(fontSize: 15),
-                    );
-                  },
-                ),
-              ),
-            )
+            StreamBuilder<int>(
+              stream: bloc.favoriteCount$,
+              initialData: bloc.favoriteCount$.value,
+              builder: (context, snapshot) {
+                return Positioned(
+                  top: 0,
+                  right: 0,
+                  child: FavCountBadge(
+                    key: ValueKey(snapshot.data),
+                    count: snapshot.data,
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -273,7 +268,11 @@ class HomeListViewWidget extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         if (index < items.length) {
-          return HomeBookItemWidget(book: items[index]);
+          final item = items[index];
+          return HomeBookItemWidget(
+            book: item,
+            key: Key(item.id),
+          );
         }
 
         if (state.loadNextPageError != null) {
@@ -351,7 +350,7 @@ class HomeListViewWidget extends StatelessWidget {
   }
 }
 
-class HomeBookItemWidget extends StatelessWidget {
+class HomeBookItemWidget extends StatefulWidget {
   final BookItem book;
 
   const HomeBookItemWidget({Key key, @required this.book})
@@ -359,146 +358,211 @@ class HomeBookItemWidget extends StatelessWidget {
         super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    print('[HOME_PAGE] Book item build $book');
+  _HomeBookItemWidgetState createState() => _HomeBookItemWidgetState();
+}
 
+class _HomeBookItemWidgetState extends State<HomeBookItemWidget>
+    with SingleTickerProviderStateMixin<HomeBookItemWidget> {
+  AnimationController _animController;
+  Animation<Offset> _position;
+  Animation<double> _scale;
+  Animation<double> _opacity;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+
+    _position = Tween<Offset>(
+      begin: const Offset(1.5, 0),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _animController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+    _scale = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: _animController,
+        curve: Curves.easeIn,
+      ),
+    );
+    _opacity = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: _animController,
+        curve: Curves.easeInCubic,
+      ),
+    );
+
+    _animController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final _book = widget.book;
     final bloc = BlocProvider.of<HomeBloc>(context);
     final textTheme = Theme.of(context).textTheme;
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 8,
-          )
-        ],
-      ),
-      margin: const EdgeInsets.all(8.0),
-      child: Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(8.0),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return Consumer2<SharedPref, BookApi>(
-                    builder: (context, sharedPref, bookApi) {
-                      return DetailPage(
-                        initBloc: () {
-                          return DetailBloc(
-                            bookApi,
-                            sharedPref,
-                            book.toBookModel(),
-                          );
-                        },
-                      );
-                    },
+    return FadeTransition(
+      opacity: _opacity,
+      child: SlideTransition(
+        position: _position,
+        child: ScaleTransition(
+          scale: _scale,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 8,
+                )
+              ],
+            ),
+            margin: const EdgeInsets.all(8.0),
+            child: Material(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(8.0),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return Consumer2<SharedPref, BookApi>(
+                          builder: (context, sharedPref, bookApi) {
+                            return DetailPage(
+                              initBloc: () {
+                                return DetailBloc(
+                                  bookApi,
+                                  sharedPref,
+                                  _book.toBookModel(),
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
                   );
                 },
-              ),
-            );
-          },
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(5.0, 5.0),
-                      blurRadius: 12,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(5.0, 5.0),
+                            blurRadius: 12,
+                          )
+                        ],
+                      ),
+                      child: Hero(
+                        tag: _book.id,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          clipBehavior: Clip.antiAlias,
+                          child: FadeInImage.assetNetwork(
+                            image: _book.thumbnail,
+                            width: 64.0 * 1.5,
+                            height: 96.0 * 1.5,
+                            fit: BoxFit.cover,
+                            placeholder: 'assets/no_image.png',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              _book.title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.subhead.copyWith(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black87),
+                            ),
+                            SizedBox(height: 4.0),
+                            Text(
+                              _book.subtitle.isEmpty
+                                  ? 'No subtitle...'
+                                  : _book.subtitle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.caption.copyWith(
+                                color: Colors.black54,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            _book.isFavorited == null
+                                ? SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                      ),
+                                    ),
+                                  )
+                                : FloatingActionButton(
+                                    heroTag: null,
+                                    onPressed: () => bloc.toggleFavorited(_book.id),
+                                    child: _book.isFavorited
+                                        ? Icon(
+                                            Icons.favorite,
+                                            color: Theme.of(context).accentColor,
+                                          )
+                                        : Icon(
+                                            Icons.favorite_border,
+                                            color: Theme.of(context).accentColor,
+                                          ),
+                                    elevation: 0,
+                                    backgroundColor: Colors.transparent,
+                                    tooltip: _book.isFavorited
+                                        ? 'Remove from favorite'
+                                        : 'Add to favorite',
+                                  ),
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
-                child: Hero(
-                  tag: book.id,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    clipBehavior: Clip.antiAlias,
-                    child: FadeInImage.assetNetwork(
-                      image: book.thumbnail,
-                      width: 64.0 * 1.5,
-                      height: 96.0 * 1.5,
-                      fit: BoxFit.cover,
-                      placeholder: 'assets/no_image.png',
-                    ),
-                  ),
-                ),
               ),
-              SizedBox(width: 8),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        book.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: textTheme.subhead.copyWith(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black87),
-                      ),
-                      SizedBox(height: 4.0),
-                      Text(
-                        book.subtitle.isEmpty
-                            ? 'No subtitle...'
-                            : book.subtitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: textTheme.caption.copyWith(
-                          color: Colors.black54,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      book.isFavorited == null
-                          ? SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                ),
-                              ),
-                            )
-                          : FloatingActionButton(
-                              heroTag: null,
-                              onPressed: () => bloc.toggleFavorited(book.id),
-                              child: book.isFavorited
-                                  ? Icon(
-                                      Icons.favorite,
-                                      color: Theme.of(context).accentColor,
-                                    )
-                                  : Icon(
-                                      Icons.favorite_border,
-                                      color: Theme.of(context).accentColor,
-                                    ),
-                              elevation: 0,
-                              backgroundColor: Colors.transparent,
-                              tooltip: book.isFavorited
-                                  ? 'Remove from favorite'
-                                  : 'Add to favorite',
-                            ),
-                    ],
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),
