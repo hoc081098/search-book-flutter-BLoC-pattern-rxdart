@@ -120,7 +120,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561288479025" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561289028465" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -306,7 +306,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.59738135" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.84177214" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.35213676" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49848714" weight="0.74871796" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49848714" weight="0.6940171" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.33504274" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" sideWeight="0.6959153" side_tool="true" weight="0.6202946" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />

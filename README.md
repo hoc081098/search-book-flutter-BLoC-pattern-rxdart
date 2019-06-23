@@ -16,6 +16,7 @@ Download and install [👍 File apk 👍](./build/app/outputs/apk/release/app-re
 | Home page  | Detail page | Favorites page  |
 | ------------- | ------------- | -------------|
 | <img src="/screenshots/home.png" width="360">  | <img src="/screenshots/detail.png" width="360">  |     <img src="/screenshots/fav.png" width="360">       |
+| <img src="/screenshots/home.gif" width="360">  | <img src="/screenshots/detail.gif" width="360">  |     <img src="/screenshots/gif.png" width="360">       |
 
 ## Develop 👏
 
