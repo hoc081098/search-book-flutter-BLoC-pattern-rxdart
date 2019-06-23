@@ -6,12 +6,16 @@ Star :star: :) if it is helpful :thumbsup:
 
 ## Trying
 
-Download and install ![👍 File apk 👍](./build/app/outputs/apk/release/app-release.apk)
+Download and install [👍 File apk 👍](./build/app/outputs/apk/release/app-release.apk)
 
 ## Demo :camera: :art:
 
 :video_camera: [Video demo](https://youtu.be/FH7LPKVSYyg) :tv:
 <br>
+
+| Home page  | Detail page | Favorites page  |
+| ------------- | ------------- | -------------|
+| <img src="/screenshots/home.png" width="360">  | <img src="/screenshots/detail.png" width="360">  |     <img src="/screenshots/fav.png" width="360">       |
 
 ## Develop 👏
 
