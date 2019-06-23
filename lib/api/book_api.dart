@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:demo_bloc_pattern/model/book_model.dart';
+import 'package:search_book/model/book_model.dart';
 import 'package:http/http.dart' as http;
 
 class BookApi {

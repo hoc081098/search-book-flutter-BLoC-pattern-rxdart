@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:demo_bloc_pattern/api/book_api.dart';
-import 'package:demo_bloc_pattern/model/book_model.dart';
-import 'package:demo_bloc_pattern/pages/detail_page/detail_state.dart';
-import 'package:demo_bloc_pattern/shared_pref.dart';
+import 'package:search_book/api/book_api.dart';
+import 'package:search_book/model/book_model.dart';
+import 'package:search_book/pages/detail_page/detail_state.dart';
+import 'package:search_book/shared_pref.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';

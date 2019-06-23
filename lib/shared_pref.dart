@@ -44,7 +44,7 @@ class ToggleFavResult {
 class SharedPref {
   @visibleForTesting
   static const favoritedIdsKey =
-      'com.hoc.search_book_api_demo_bloc_pattern_rxdart.favorited_ids';
+      'com.hoc.search_book_api_search_book_rxdart.favorited_ids';
 
   final Future<ToggleFavResult> Function(String) toggleFavorite;
 

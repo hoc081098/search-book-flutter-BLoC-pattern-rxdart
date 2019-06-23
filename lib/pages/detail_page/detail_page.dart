@@ -1,5 +1,5 @@
-import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
-import 'package:demo_bloc_pattern/pages/detail_page/detail_state.dart';
+import 'package:search_book/pages/detail_page/detail_bloc.dart';
+import 'package:search_book/pages/detail_page/detail_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
@@ -70,8 +70,13 @@ class _DetailPageState extends State<DetailPage> {
                   refreshIndicatorKey: _refreshIndicatorKey,
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    shape: BoxShape.circle,
+                  ),
                   margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).padding.top,
+                    top: MediaQuery.of(context).padding.top + 8,
+                    left: 8,
                   ),
                   child: BackButton(color: Colors.white),
                 )
@@ -84,7 +89,6 @@ class _DetailPageState extends State<DetailPage> {
                   onPressed: _bloc.toggleFavorited,
                   child: Icon(
                     detail.isFavorited ? Icons.star : Icons.star_border,
-                    color: Colors.white,
                   ),
                 ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

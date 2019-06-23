@@ -1,6 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
-import 'package:demo_bloc_pattern/model/book_model.dart';
+import 'package:search_book/model/book_model.dart';
 import 'package:meta/meta.dart';
 
 part 'fav_books_state.g.dart';

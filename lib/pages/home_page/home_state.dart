@@ -1,7 +1,7 @@
-import 'package:demo_bloc_pattern/model/book_model.dart';
+import 'package:search_book/model/book_model.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:demo_bloc_pattern/shared_pref.dart';
+import 'package:search_book/shared_pref.dart';
 import 'package:meta/meta.dart';
 import 'package:sealed_unions/sealed_unions.dart';
 

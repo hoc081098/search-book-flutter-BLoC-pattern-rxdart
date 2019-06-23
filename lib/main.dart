@@ -1,8 +1,8 @@
 import 'package:built_value/built_value.dart';
-import 'package:demo_bloc_pattern/api/book_api.dart';
-import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
-import 'package:demo_bloc_pattern/pages/home_page/home_page.dart';
-import 'package:demo_bloc_pattern/shared_pref.dart';
+import 'package:search_book/api/book_api.dart';
+import 'package:search_book/pages/home_page/home_bloc.dart';
+import 'package:search_book/pages/home_page/home_page.dart';
+import 'package:search_book/shared_pref.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

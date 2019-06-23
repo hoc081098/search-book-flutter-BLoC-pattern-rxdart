@@ -2,15 +2,15 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:demo_bloc_pattern/api/book_api.dart';
-import 'package:demo_bloc_pattern/fav_count_badge.dart';
-import 'package:demo_bloc_pattern/pages/detail_page/detail_bloc.dart';
-import 'package:demo_bloc_pattern/pages/detail_page/detail_page.dart';
-import 'package:demo_bloc_pattern/pages/fav_page/fav_books_bloc.dart';
-import 'package:demo_bloc_pattern/pages/fav_page/fav_books_page.dart';
-import 'package:demo_bloc_pattern/pages/home_page/home_bloc.dart';
-import 'package:demo_bloc_pattern/pages/home_page/home_state.dart';
-import 'package:demo_bloc_pattern/shared_pref.dart';
+import 'package:search_book/api/book_api.dart';
+import 'package:search_book/fav_count_badge.dart';
+import 'package:search_book/pages/detail_page/detail_bloc.dart';
+import 'package:search_book/pages/detail_page/detail_page.dart';
+import 'package:search_book/pages/fav_page/fav_books_bloc.dart';
+import 'package:search_book/pages/fav_page/fav_books_page.dart';
+import 'package:search_book/pages/home_page/home_bloc.dart';
+import 'package:search_book/pages/home_page/home_state.dart';
+import 'package:search_book/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
@@ -117,7 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: AlignmentDirectional.center,
               child: Icon(
                 Icons.favorite,
-                color: Colors.white,
               ),
             ),
             StreamBuilder<int>(

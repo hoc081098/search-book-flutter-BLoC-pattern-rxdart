@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:demo_bloc_pattern/shared_pref.dart';
+import 'package:search_book/shared_pref.dart';
 
 main() {
   group('Test $SharedPref', () {
