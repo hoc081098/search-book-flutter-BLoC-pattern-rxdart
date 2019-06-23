@@ -12,11 +12,6 @@ Download and install ![👍 File apk 👍](./build/app/outputs/apk/release/app-r
 
 :video_camera: [Video demo](https://youtu.be/FH7LPKVSYyg) :tv:
 <br>
-<br>
-<p align="center">
-  <img src="screenshots/home.gif" height="480px">
-  <img src="screenshots/detail_and_fav.gif" height="480px">
-  </p>
 
 ## Develop 👏
 

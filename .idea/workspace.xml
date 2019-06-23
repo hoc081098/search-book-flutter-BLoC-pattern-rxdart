@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/lib/pages/home_page/home_page.dart" line="128" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac4dfd0e-6c27-4c5c-bebb-0d50a02a3700" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
-    </list>
+    <list default="true" id="ac4dfd0e-6c27-4c5c-bebb-0d50a02a3700" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -19,32 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/pages/home_page/home_page.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="156" column="9" selection-start-line="146" selection-start-column="8" selection-end-line="156" selection-end-column="9" />
-              <folding>
-                <element signature="n#!!block;n#MyHomePage#0" />
-                <element signature="n#!!block;n#HomeListViewWidget#0" />
-                <element signature="n#!!block;n#HomeBookItemWidget#0" />
-                <element signature="n#!!block;n#_HomeBookItemWidgetState#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -215,14 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556463240955</updated>
     </task>
-    <task id="LOCAL-00003" summary="[REFACTOR]">
-      <created>1555041895036</created>
+    <task id="LOCAL-00003" summary="[UPDATE] fav page">
+      <created>1561277598482</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1555041895036</updated>
+      <updated>1561277598483</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -269,7 +241,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16414523" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16414523" />
       <window_info id="Resources Explorer" order="1" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -281,7 +253,7 @@
       <window_info id="UI Designer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32991454" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.30408472" visible="true" weight="0.34529915" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.30408472" weight="0.52136755" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.63366336" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -298,7 +270,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Flutter Inspector" order="4" visible="true" weight="0.24432677" />
+      <window_info anchor="right" id="Flutter Inspector" order="4" weight="0.24432677" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Device File Explorer" order="6" side_tool="true" />
       <window_info anchor="right" id="Flutter Outline" order="7" weight="0.32980332" />
@@ -332,7 +304,8 @@
     <MESSAGE value="[REFACTOR]" />
     <MESSAGE value="Merge branch 'master' of https://github.com/hoc081098/Search-book-api-demo_BLoC_pattern_RxDart&#10;and update" />
     <MESSAGE value="[UPDATE]" />
-    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE]" />
+    <MESSAGE value="[UPDATE] fav page" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] fav page" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/built_collection-4.1.0/lib/src/list/list_builder.dart" />
@@ -830,23 +803,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1344">
+          <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/pages/home_page/home_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="156" column="9" selection-start-line="146" selection-start-column="8" selection-end-line="156" selection-end-column="9" />
+        <state relative-caret-position="63">
+          <caret line="141" column="20" lean-forward="true" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
           <folding>
             <element signature="n#!!block;n#MyHomePage#0" />
             <element signature="n#!!block;n#HomeListViewWidget#0" />
             <element signature="n#!!block;n#HomeBookItemWidget#0" />
             <element signature="n#!!block;n#_HomeBookItemWidgetState#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
         </state>
       </provider>
     </entry>
