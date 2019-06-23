@@ -5,32 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac4dfd0e-6c27-4c5c-bebb-0d50a02a3700" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/example/demoblocpattern/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/hoc/searchbook/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_bloc_pattern.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo_bloc_pattern_android.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/api/book_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api/book_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/detail_page/detail_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/detail_page/detail_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared_pref.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/detail.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/detail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/fav.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/fav.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/shared_pref_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/shared_pref_test.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -138,6 +113,11 @@
               <item name="search-book" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="screenshots" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -145,7 +125,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561288008230" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561288354286" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -157,6 +137,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Admin\Documents\Android\search-book\screenshots" />
       <recent name="C:\Users\Admin\Desktop\Search-book-api-demo_BLoC_pattern_RxDart\screenshots" />
     </key>
   </component>
@@ -240,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561277781982</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[UPDATE]">
+      <created>1561288102838</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1561288102838</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -287,7 +275,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2624811" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2624811" />
       <window_info id="Resources Explorer" order="1" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -309,7 +297,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.59738135" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.84177214" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.35213676" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49848714" weight="0.34529915" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49848714" weight="0.74871796" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.33504274" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" sideWeight="0.6959153" side_tool="true" weight="0.6202946" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -349,19 +337,12 @@
     <MESSAGE value="Some change" />
     <MESSAGE value="[REFACTOR]" />
     <MESSAGE value="Merge branch 'master' of https://github.com/hoc081098/Search-book-api-demo_BLoC_pattern_RxDart&#10;and update" />
-    <MESSAGE value="[UPDATE]" />
     <MESSAGE value="[UPDATE] fav page" />
     <MESSAGE value="[UPDATE] screenshots" />
-    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] screenshots" />
+    <MESSAGE value="[UPDATE]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE]" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.21.0/lib/src/observables/value_observable.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/circle_avatar.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -540,13 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/app.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -637,13 +611,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/detail.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/screenshots/home.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/screenshots/fav.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screenshots/detail.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
