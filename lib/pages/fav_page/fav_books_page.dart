@@ -25,6 +25,17 @@ class FavoritedBooksPage extends StatelessWidget {
         final body = state.isLoading
             ? Container(
                 constraints: BoxConstraints.expand(),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[
+                      Colors.teal.withOpacity(0.9),
+                      Colors.deepPurpleAccent.withOpacity(0.9),
+                    ],
+                    begin: AlignmentDirectional.topStart,
+                    end: AlignmentDirectional.bottomEnd,
+                    stops: <double>[0.3, 0.7],
+                  ),
+                ),
                 child: Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -46,6 +57,7 @@ class FavoritedBooksPage extends StatelessWidget {
                 ),
               ],
             ),
+            backgroundColor: Colors.teal,
           ),
           body: body,
         );
@@ -66,6 +78,17 @@ class FavBooksList extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: bloc.refresh,
       child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: <Color>[
+              Colors.teal.withOpacity(0.9),
+              Colors.deepPurpleAccent.withOpacity(0.9),
+            ],
+            begin: AlignmentDirectional.topStart,
+            end: AlignmentDirectional.bottomEnd,
+            stops: <double>[0.3, 0.7],
+          ),
+        ),
         constraints: BoxConstraints.expand(),
         child: ListView.builder(
           itemCount: items.length,
