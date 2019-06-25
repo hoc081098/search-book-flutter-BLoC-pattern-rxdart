@@ -1,8 +1,8 @@
 # search_book_bloc_pattern_rxdart :iphone:
 
 Search book using goole book api :clap: :clap: :clap:
-Using `BLoC` pattern with `rxdart` library  :muscle: <br/>
-Star :star: :) if it is helpful :thumbsup:
+Using **`BLoC pattern`** with **[`rxdart`](https://github.com/ReactiveX/rxdart)** library  :muscle: <br/>
+Give it a star :star: :) if it is helpful :thumbsup:. Thanks
 
 ## Trying
 
