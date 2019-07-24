@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:disposebag/disposebag.dart';
 import 'package:search_book/api/book_api.dart';
 import 'package:search_book/model/book_model.dart';
 import 'package:search_book/pages/home_page/home_state.dart';
@@ -123,9 +124,9 @@ class HomeBloc implements BaseBloc {
         )
         .map(
           (tuple2) => HomeIntent.loadNextPageIntent(
-                search: tuple2.item2,
-                startIndex: tuple2.item1,
-              ),
+            search: tuple2.item2,
+            startIndex: tuple2.item1,
+          ),
         );
 
     ///
@@ -140,11 +141,10 @@ class HomeBloc implements BaseBloc {
           .scan(_reduce, HomePageState.initial()),
       sharedPref.favoritedIds$,
       (HomePageState state, BuiltSet<String> ids) => state.rebuild(
-            (b) => b.books.map(
-                  (book) =>
-                      book.rebuild((b) => b.isFavorited = ids.contains(b.id)),
-                ),
-          ),
+        (b) => b.books.map(
+          (book) => book.rebuild((b) => b.isFavorited = ids.contains(b.id)),
+        ),
+      ),
     );
 
     ///
@@ -161,12 +161,12 @@ class HomeBloc implements BaseBloc {
         .withLatestFrom(
           stateDistinctConnectable$,
           (result, HomePageState item) => HomePageMessage.fromResult(
-                result,
-                item.books.firstWhere(
-                  (book) => book.id == result.id,
-                  orElse: () => null,
-                ),
-              ),
+            result,
+            item.books.firstWhere(
+              (book) => book.id == result.id,
+              orElse: () => null,
+            ),
+          ),
         )
         .publish();
 
@@ -176,29 +176,31 @@ class HomeBloc implements BaseBloc {
     );
 
     ///
-    /// Controllers and subscriptions
     ///
-    final controllers = <StreamController>[
-      queryController,
-      loadNextPageController,
-    ];
-    final subscriptions = <StreamSubscription>[
-      message$.listen((message) => print('[MESSAGE] $message')),
-      favoriteCount$.listen((count) => print('[FAV_COUNT] $count')),
-      stateDistinctConnectable$.listen((state) => print('[STATE] $state')),
-      stateDistinctConnectable$.connect(),
-      message$.connect(),
-      favoriteCount$.connect(),
-    ];
+    ///
+    final bag = DisposeBag(
+      [
+        queryController,
+        loadNextPageController,
+        retryNextPageController,
+        retryFirstPageController,
+        toggleFavoritedController,
+        //
+        message$.listen((message) => print('[MESSAGE] $message')),
+        favoriteCount$.listen((count) => print('[FAV_COUNT] $count')),
+        stateDistinctConnectable$.listen((state) => print('[STATE] $state')),
+        //
+        stateDistinctConnectable$.connect(),
+        message$.connect(),
+        favoriteCount$.connect(),
+      ],
+    );
 
     return HomeBloc._(
       queryController.add,
       () => loadNextPageController.add(null),
       stateDistinctConnectable$,
-      () async {
-        await Future.wait(subscriptions.map((s) => s.cancel()));
-        await Future.wait(controllers.map((c) => c.close()));
-      },
+      bag.dispose,
       () => retryNextPageController.add(null),
       () => retryFirstPageController.add(null),
       toggleFavoritedController.add,

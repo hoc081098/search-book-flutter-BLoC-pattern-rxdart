@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:disposebag/disposebag.dart';
 import 'package:search_book/api/book_api.dart';
 import 'package:search_book/model/book_model.dart';
 import 'package:search_book/pages/detail_page/detail_state.dart';
@@ -94,17 +95,24 @@ class DetailBloc implements BaseBloc {
       }),
     );
 
-    final subscriptions = <StreamSubscription>[
-      toggleController
-          .throttle(Duration(milliseconds: 600))
-          .listen((_) => sharedPref.toggleFavorite(initial.id)),
-      bookDetail$.listen((book) => print('[DETAIL] book=$book')),
-      bookDetail$.connect(),
-    ];
-    final controllers = <StreamController>[
-      refreshController,
-      errorController,
-    ];
+    ///
+    ///
+    ///
+
+    final bag = DisposeBag(
+      [
+        toggleController
+            .throttle(Duration(milliseconds: 600))
+            .listen((_) => sharedPref.toggleFavorite(initial.id)),
+        bookDetail$.listen((book) => print('[DETAIL] book=$book')),
+        //
+        bookDetail$.connect(),
+        //
+        refreshController,
+        errorController,
+        toggleController,
+      ],
+    );
 
     print('[DETAIL] new id=${initial.id}');
 
@@ -117,11 +125,8 @@ class DetailBloc implements BaseBloc {
         return completer.future;
       },
       () => toggleController.add(null),
-      () async {
-        await Future.wait(subscriptions.map((s) => s.cancel()));
-        await Future.wait(controllers.map((c) => c.close()));
-        print('[DETAIL] dispose id=${initial.id}');
-      },
+      () =>
+          bag.dispose().then((_) => print('[DETAIL] dispose id=${initial.id}')),
     );
   }
 

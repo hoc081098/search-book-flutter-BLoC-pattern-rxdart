@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:disposebag/disposebag.dart';
 import 'package:search_book/api/book_api.dart';
 import 'package:search_book/model/book_model.dart';
 import 'package:search_book/pages/fav_page/fav_books_state.dart';
@@ -56,7 +57,8 @@ class FavBooksInteractor {
                     cachedBook.item1 >= // in cached but timeout
                 _timeoutInMilliseconds);
 
-    print('@[FAV_BOOKS] id=$id, forceUpdate=$forceUpdate, shouldFetch=$shouldFetch');
+    print(
+        '@[FAV_BOOKS] id=$id, forceUpdate=$forceUpdate, shouldFetch=$shouldFetch');
     if (shouldFetch) {
       final book = await _api.getBookById(id);
       _cached[book.id] = Tuple2(DateTime.now().millisecondsSinceEpoch, book);
@@ -119,13 +121,23 @@ class FavBooksBloc implements BaseBloc {
       seedValue: FavBooksState.initial(),
     );
 
-    final subscriptions = <StreamSubscription>[
-      state$.listen((state) => print('[FAV_BOOKS] state=$state')),
-      state$.connect(),
-      removeFavoriteController
-          .throttle(Duration(milliseconds: 600))
-          .listen(interactor.toggleFavorite),
-    ];
+    ///
+    ///
+    ///
+
+    final bag = DisposeBag(
+      [
+        refreshController,
+        removeFavoriteController,
+        //
+        state$.listen((state) => print('[FAV_BOOKS] state=$state')),
+        removeFavoriteController
+            .throttle(Duration(milliseconds: 600))
+            .listen(interactor.toggleFavorite),
+        //
+        state$.connect(),
+      ],
+    );
 
     return FavBooksBloc._(
       removeFavoriteController.add,
@@ -136,11 +148,7 @@ class FavBooksBloc implements BaseBloc {
             .whenComplete(() => print('[FAV_BOOKS] refresh done'));
       },
       state$,
-      () async {
-        await Future.wait(subscriptions.map((s) => s.cancel()));
-        await removeFavoriteController.close();
-        print('[FAV_BOOKS] dispose');
-      },
+      () => bag.dispose().then((_) => print('[FAV_BOOKS] dispose')),
     );
   }
 

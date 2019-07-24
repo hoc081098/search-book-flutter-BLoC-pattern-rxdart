@@ -66,7 +66,6 @@
         <option value="$PROJECT_DIR$/lib/shared_pref.dart" />
         <option value="$PROJECT_DIR$/lib/pages/detail_page/detail_state.dart" />
         <option value="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/api/book_api.dart" />
@@ -79,6 +78,7 @@
         <option value="$PROJECT_DIR$/lib/fav_count_badge.dart" />
         <option value="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" />
         <option value="$PROJECT_DIR$/lib/pages/detail_page/detail_page.dart" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -100,7 +100,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -113,14 +112,20 @@
               <item name="search-book" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="search-book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="search-book" type="462c0819:PsiDirectoryNode" />
+              <item name="screenshots" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561289028465" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561289199915" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -284,7 +289,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2624811" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22844176" />
       <window_info id="Resources Explorer" order="1" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -306,7 +311,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.59738135" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.84177214" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.35213676" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49848714" weight="0.6940171" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49848714" weight="0.6683761" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.33504274" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" sideWeight="0.6959153" side_tool="true" weight="0.6202946" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -354,30 +359,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] add" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/circle_avatar.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="58" column="25" lean-forward="true" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/flutter/flutter/packages/flutter/lib/src/material/floating_action_button.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="229" column="41" selection-start-line="229" selection-start-column="41" selection-end-line="229" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.dart_tool/pub/bin/sdk-version" />
     <entry file="file://$PROJECT_DIR$/.dart_tool/build/generated/demo_bloc_pattern/lib/pages/detail_page/detail_state.built_value.g.part" />
     <entry file="file://$PROJECT_DIR$/.dart_tool/build/entrypoint/build.dart" />
@@ -407,19 +388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="222" column="42" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/home.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/detail.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -553,16 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -640,6 +598,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/screenshots/detail.png">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screenshots/detail.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screenshots/home.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screenshots/fav.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="132" selection-start-line="18" selection-start-column="132" selection-end-line="18" selection-end-column="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

@@ -17,6 +17,7 @@ dependencies:
   flutter_provider: ^1.1.0+3
   distinct_value_connectable_observable: ^2.0.0
   flutter_bloc_pattern: ^0.0.1+1
+  disposebag: ^0.0.9
 
 dev_dependencies:
   flutter_test:
