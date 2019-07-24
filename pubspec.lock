@@ -168,7 +168,7 @@ packages:
       name: distinct_value_connectable_observable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   fixnum:
     dependency: transitive
     description:
@@ -374,7 +374,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.21.0"
+    version: "0.22.1"
   sealed_unions:
     dependency: "direct main"
     description:

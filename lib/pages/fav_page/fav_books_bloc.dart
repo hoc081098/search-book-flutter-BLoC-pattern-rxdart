@@ -132,7 +132,7 @@ class FavBooksBloc implements BaseBloc {
         //
         state$.listen((state) => print('[FAV_BOOKS] state=$state')),
         removeFavoriteController
-            .throttle(Duration(milliseconds: 600))
+            .throttleTime(const Duration(milliseconds: 600))
             .listen(interactor.toggleFavorite),
         //
         state$.connect(),

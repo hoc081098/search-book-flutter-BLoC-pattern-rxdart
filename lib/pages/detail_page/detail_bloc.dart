@@ -102,7 +102,7 @@ class DetailBloc implements BaseBloc {
     final bag = DisposeBag(
       [
         toggleController
-            .throttle(Duration(milliseconds: 600))
+            .throttleTime(const Duration(milliseconds: 600))
             .listen((_) => sharedPref.toggleFavorite(initial.id)),
         bookDetail$.listen((book) => print('[DETAIL] book=$book')),
         //

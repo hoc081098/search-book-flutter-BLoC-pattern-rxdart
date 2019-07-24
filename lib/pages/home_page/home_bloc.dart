@@ -74,7 +74,7 @@ class HomeBloc implements BaseBloc {
     /// Debounce query stream
     ///
     final searchString$ = queryController
-        .debounce(Duration(milliseconds: 500))
+        .debounceTime(const Duration(milliseconds: 500))
         .distinct()
         .map((s) => s.trim());
 
@@ -155,7 +155,7 @@ class HomeBloc implements BaseBloc {
 
     final message$ = toggleFavoritedController
         .groupBy((id) => id)
-        .map((group$) => group$.throttle(Duration(milliseconds: 600)))
+        .map((group$) => group$.throttleTime(Duration(milliseconds: 600)))
         .flatMap((group$) => group$)
         .concatMap((id) => Stream.fromFuture(sharedPref.toggleFavorite(id)))
         .withLatestFrom(
