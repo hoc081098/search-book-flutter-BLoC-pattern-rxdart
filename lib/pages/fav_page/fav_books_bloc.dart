@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:disposebag/disposebag.dart';
-import 'package:search_book/api/book_api.dart';
-import 'package:search_book/model/book_model.dart';
+import 'package:search_book/domain/book_repo.dart';
+import 'package:search_book/domain/cache_policy.dart';
 import 'package:search_book/pages/fav_page/fav_books_state.dart';
 import 'package:search_book/shared_pref.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
@@ -12,15 +12,12 @@ import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
 
 class FavBooksInteractor {
-  final BookApi _api;
+  final BookRepo _bookRepo;
   final ValueObservable<BuiltSet<String>> favoritedIds$;
   final void Function(String) toggleFavorite;
 
-  final _cached = <String, Tuple2<int, Book>>{};
-  static const _timeoutInMilliseconds = 120000; // 2 minutes
-
-  FavBooksInteractor(this._api, SharedPref _sharedPref)
-      : assert(_api != null),
+  FavBooksInteractor(this._bookRepo, SharedPref _sharedPref)
+      : assert(_bookRepo != null),
         assert(_sharedPref != null),
         favoritedIds$ = _sharedPref.favoritedIds$,
         toggleFavorite = _sharedPref.toggleFavorite;
@@ -32,38 +29,17 @@ class FavBooksInteractor {
   ]) {
     return Observable.fromIterable(ids)
         .flatMap((id) {
-          return Observable(_getBookByIdWithCached$(id, forceUpdate))
+          final stream = _bookRepo.getBookBy(
+            id: id,
+            cachePolicy:
+                forceUpdate ? CachePolicy.networkOnly : CachePolicy.localFirst,
+          );
+          return Observable(stream)
               .map<FavBookPartialChange>((book) => LoadedFavBookChange(book))
               .onErrorReturnWith((e) => ErrorFavBookChange(e));
         })
         .startWith(FavIdsListChange(ids.toList(growable: false)))
         .doOnDone(() => completer?.complete());
-  }
-
-  ///
-  /// Should be belong to data layer
-  /// Put here because it is just simple demo
-  ///
-  Stream<Book> _getBookByIdWithCached$(String id, bool forceUpdate) async* {
-    final cachedBook = _cached[id];
-
-    if (cachedBook?.item2 != null) {
-      yield cachedBook.item2;
-    }
-
-    final shouldFetch = forceUpdate || // force update
-        (cachedBook?.item2 == null || // not in cached
-            DateTime.now().millisecondsSinceEpoch -
-                    cachedBook.item1 >= // in cached but timeout
-                _timeoutInMilliseconds);
-
-    print(
-        '@[FAV_BOOKS] id=$id, forceUpdate=$forceUpdate, shouldFetch=$shouldFetch');
-    if (shouldFetch) {
-      final book = await _api.getBookById(id);
-      _cached[book.id] = Tuple2(DateTime.now().millisecondsSinceEpoch, book);
-      yield book;
-    }
   }
 }
 

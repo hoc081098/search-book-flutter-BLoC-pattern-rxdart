@@ -27,15 +27,6 @@ class _$BookItem extends BookItem {
     if (id == null) {
       throw new BuiltValueNullFieldError('BookItem', 'id');
     }
-    if (title == null) {
-      throw new BuiltValueNullFieldError('BookItem', 'title');
-    }
-    if (subtitle == null) {
-      throw new BuiltValueNullFieldError('BookItem', 'subtitle');
-    }
-    if (thumbnail == null) {
-      throw new BuiltValueNullFieldError('BookItem', 'thumbnail');
-    }
   }
 
   @override

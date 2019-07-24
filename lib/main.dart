@@ -1,5 +1,8 @@
 import 'package:built_value/built_value.dart';
-import 'package:search_book/api/book_api.dart';
+import 'package:search_book/data/api/book_api.dart';
+import 'package:search_book/data/book_repo_impl.dart';
+import 'package:search_book/data/mappers.dart';
+import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/pages/home_page/home_bloc.dart';
 import 'package:search_book/pages/home_page/home_page.dart';
 import 'package:search_book/shared_pref.dart';
@@ -47,11 +50,13 @@ void main() async {
 
   final bookApi = BookApi(http.Client());
   final sharedPref = SharedPref(SharedPreferences.getInstance());
+  final mappers = Mappers();
+  final BookRepo bookRepo = BookRepoImpl(bookApi, mappers);
 
   runApp(
     Providers(
       providers: <Provider>[
-        Provider<BookApi>(value: bookApi),
+        Provider<BookRepo>(value: bookRepo),
         Provider<SharedPref>(value: sharedPref)
       ],
       child: const MyApp(),
@@ -70,11 +75,11 @@ class MyApp extends StatelessWidget {
         fontFamily: 'NunitoSans',
         brightness: Brightness.dark,
       ),
-      home: Consumer2<SharedPref, BookApi>(
-        builder: (context, sharedPref, bookApi) {
+      home: Consumer2<SharedPref, BookRepo>(
+        builder: (context, sharedPref, bookRepo) {
           return BlocProvider<HomeBloc>(
             child: MyHomePage(),
-            initBloc: () => HomeBloc(bookApi, sharedPref),
+            initBloc: () => HomeBloc(bookRepo, sharedPref),
           );
         },
       ),

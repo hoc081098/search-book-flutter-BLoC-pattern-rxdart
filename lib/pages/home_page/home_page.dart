@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:search_book/api/book_api.dart';
+import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/fav_count_badge.dart';
 import 'package:search_book/pages/detail_page/detail_bloc.dart';
 import 'package:search_book/pages/detail_page/detail_page.dart';
@@ -92,13 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return Consumer2<SharedPref, BookApi>(
-                  builder: (context, sharedPref, api) {
+                return Consumer2<SharedPref, BookRepo>(
+                  builder: (context, sharedPref, bookRepo) {
                     return BlocProvider<FavBooksBloc>(
                       initBloc: () {
                         return FavBooksBloc(
                           FavBooksInteractor(
-                            api,
+                            bookRepo,
                             sharedPref,
                           ),
                         );
@@ -427,33 +427,32 @@ class _HomeBookItemWidgetState extends State<HomeBookItemWidget>
           scale: _scale,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 8,
+                  color: Colors.black26,
+                  offset: Offset(4, 4),
+                  blurRadius: 4,
                 )
               ],
             ),
-            margin: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8),
             child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(8.0),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
               child: InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return Consumer2<SharedPref, BookApi>(
+                        return Consumer2<SharedPref, BookRepo>(
                           builder: (context, sharedPref, bookApi) {
                             return DetailPage(
                               initBloc: () {
                                 return DetailBloc(
                                   bookApi,
                                   sharedPref,
-                                  _book.toBookModel(),
+                                  _book.toDomain(),
                                 );
                               },
                             );
@@ -472,8 +471,8 @@ class _HomeBookItemWidgetState extends State<HomeBookItemWidget>
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey,
-                            offset: Offset(5.0, 5.0),
-                            blurRadius: 12,
+                            offset: Offset(4, 4),
+                            blurRadius: 4,
                           )
                         ],
                       ),
@@ -483,7 +482,7 @@ class _HomeBookItemWidgetState extends State<HomeBookItemWidget>
                           borderRadius: BorderRadius.circular(8),
                           clipBehavior: Clip.antiAlias,
                           child: FadeInImage.assetNetwork(
-                            image: _book.thumbnail,
+                            image: _book.thumbnail ?? '',
                             width: 64.0 * 1.5,
                             height: 96.0 * 1.5,
                             fit: BoxFit.cover,
@@ -492,7 +491,7 @@ class _HomeBookItemWidgetState extends State<HomeBookItemWidget>
                         ),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: 16),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
@@ -505,24 +504,23 @@ class _HomeBookItemWidgetState extends State<HomeBookItemWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              _book.title,
+                              _book.title ?? 'No title',
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: textTheme.subhead.copyWith(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black87),
+                              style: textTheme.title.copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black87,
+                              ),
                             ),
                             SizedBox(height: 4.0),
                             Text(
-                              _book.subtitle.isEmpty
-                                  ? 'No subtitle...'
-                                  : _book.subtitle,
+                              _book.subtitle ?? 'No subtitle',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: textTheme.caption.copyWith(
+                              style: textTheme.subtitle.copyWith(
                                 color: Colors.black54,
-                                fontSize: 16.0,
+                                fontSize: 16,
                               ),
                             ),
                             SizedBox(height: 8),
@@ -538,15 +536,18 @@ class _HomeBookItemWidgetState extends State<HomeBookItemWidget>
                                   )
                                 : FloatingActionButton(
                                     heroTag: null,
-                                    onPressed: () => bloc.toggleFavorited(_book.id),
+                                    onPressed: () =>
+                                        bloc.toggleFavorited(_book.id),
                                     child: _book.isFavorited
                                         ? Icon(
                                             Icons.favorite,
-                                            color: Theme.of(context).accentColor,
+                                            color:
+                                                Theme.of(context).accentColor,
                                           )
                                         : Icon(
                                             Icons.favorite_border,
-                                            color: Theme.of(context).accentColor,
+                                            color:
+                                                Theme.of(context).accentColor,
                                           ),
                                     elevation: 0,
                                     backgroundColor: Colors.transparent,

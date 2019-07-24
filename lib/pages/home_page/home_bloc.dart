@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:disposebag/disposebag.dart';
-import 'package:search_book/api/book_api.dart';
-import 'package:search_book/model/book_model.dart';
+import 'package:search_book/domain/book.dart';
+import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/pages/home_page/home_state.dart';
 import 'package:search_book/shared_pref.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
@@ -57,8 +57,11 @@ class HomeBloc implements BaseBloc {
   @override
   void dispose() => _dispose();
 
-  factory HomeBloc(final BookApi bookApi, final SharedPref sharedPref) {
-    assert(bookApi != null);
+  factory HomeBloc(
+    final BookRepo bookRepo,
+    final SharedPref sharedPref,
+  ) {
+    assert(bookRepo != null);
     assert(sharedPref != null);
 
     ///
@@ -136,7 +139,7 @@ class HomeBloc implements BaseBloc {
       Observable.merge(
               [searchIntent$, loadAndRetryNextPageIntent$]) // All intent
           .doOnData((intent) => print('[INTENT] $intent'))
-          .switchMap((intent) => _processIntent$(intent, bookApi))
+          .switchMap((intent) => _processIntent$(intent, bookRepo))
           .doOnData((change) => print('[CHANGE] $change'))
           .scan(_reduce, HomePageState.initial()),
       sharedPref.favoritedIds$,
@@ -214,7 +217,7 @@ class HomeBloc implements BaseBloc {
   ///
   static Stream<PartialStateChange> _processIntent$(
     HomeIntent intent,
-    BookApi bookApi,
+    BookRepo bookRepo,
   ) {
     perform<RESULT, PARTIAL_CHANGE>(
       Stream<RESULT> streamFactory(),
@@ -225,20 +228,21 @@ class HomeBloc implements BaseBloc {
       return Observable.defer(streamFactory)
           .map(map)
           .startWith(loading)
+          .doOnError((e, s) => print(s))
           .onErrorReturnWith(onError);
     }
 
     searchIntentToPartialChange$(SearchIntent intent) =>
-        perform<List<Book>, PartialStateChange>(
+        perform<BuiltList<Book>, PartialStateChange>(
           () {
             if (intent.search.isEmpty) {
-              return Observable.just(<Book>[]);
+              return Observable.just(BuiltList<Book>.of([]));
             }
-            return Stream.fromFuture(bookApi.searchBook(query: intent.search));
+            return Stream.fromFuture(bookRepo.searchBook(query: intent.search));
           },
           (list) {
             final bookItems =
-                list.map((book) => BookItem.fromBookModel(book)).toList();
+                list.map((book) => BookItem.fromDomain(book)).toList();
             return PartialStateChange.firstPageLoaded(
               books: bookItems,
               textQuery: intent.search,
@@ -254,10 +258,10 @@ class HomeBloc implements BaseBloc {
         );
 
     loadNextPageIntentToPartialChange$(LoadNextPageIntent intent) =>
-        perform<List<Book>, PartialStateChange>(
+        perform<BuiltList<Book>, PartialStateChange>(
           () {
             return Stream.fromFuture(
-              bookApi.searchBook(
+              bookRepo.searchBook(
                 query: intent.search,
                 startIndex: intent.startIndex,
               ),
@@ -265,7 +269,7 @@ class HomeBloc implements BaseBloc {
           },
           (list) {
             final bookItems =
-                list.map((book) => BookItem.fromBookModel(book)).toList();
+                list.map((book) => BookItem.fromDomain(book)).toList();
             return PartialStateChange.nextPageLoaded(
               books: bookItems,
               textQuery: intent.search,

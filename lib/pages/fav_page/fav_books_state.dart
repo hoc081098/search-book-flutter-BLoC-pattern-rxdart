@@ -1,7 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
-import 'package:search_book/model/book_model.dart';
 import 'package:meta/meta.dart';
+import 'package:search_book/domain/book.dart';
 
 part 'fav_books_state.g.dart';
 
@@ -42,14 +42,11 @@ abstract class FavBookItem implements Built<FavBookItem, FavBookItemBuilder> {
 
   Book toBookModel() {
     return Book(
-      publishedDate: null,
-      largeImage: null,
-      authors: null,
-      description: null,
-      thumbnail: thumbnail,
-      id: id,
-      subtitle: subtitle,
-      title: title,
+      (b) => b
+        ..id = id
+        ..title = title
+        ..subtitle = subtitle
+        ..thumbnail = thumbnail,
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:search_book/api/book_api.dart';
+import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/fav_count_badge.dart';
 import 'package:search_book/pages/detail_page/detail_bloc.dart';
 import 'package:search_book/pages/detail_page/detail_page.dart';
@@ -116,12 +116,12 @@ class FavBookItemWidget extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return Consumer2<SharedPref, BookApi>(
-                  builder: (context, sharedPref, bookApi) {
+                return Consumer2<SharedPref, BookRepo>(
+                  builder: (context, sharedPref, bookRepo) {
                     return DetailPage(
                       initBloc: () {
                         return DetailBloc(
-                          bookApi,
+                          bookRepo,
                           sharedPref,
                           item.toBookModel(),
                         );
@@ -165,7 +165,7 @@ class FavBookItemWidget extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black26,
-                        blurRadius: 16,
+                        blurRadius: 14,
                       )
                     ],
                   ),

@@ -1,6 +1,7 @@
-import 'package:search_book/model/book_model.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:search_book/data/api/book_response.dart';
+import 'package:search_book/domain/book.dart';
 import 'package:search_book/shared_pref.dart';
 import 'package:meta/meta.dart';
 import 'package:sealed_unions/sealed_unions.dart';
@@ -13,10 +14,13 @@ part 'home_state.g.dart';
 abstract class BookItem implements Built<BookItem, BookItemBuilder> {
   String get id;
 
+  @nullable
   String get title;
 
+  @nullable
   String get subtitle;
 
+  @nullable
   String get thumbnail;
 
   @nullable
@@ -27,26 +31,25 @@ abstract class BookItem implements Built<BookItem, BookItemBuilder> {
   factory BookItem([updates(BookItemBuilder b)]) = _$BookItem;
 
   ///
-  /// Create [BookItem] from [Book]
+  /// Create [BookItem] from [BookResponse]
   ///
-  factory BookItem.fromBookModel(Book book) {
-    return BookItem((b) => b
-      ..id = book.id
-      ..title = book.title
-      ..subtitle = book.subtitle
-      ..thumbnail = book.thumbnail);
+  factory BookItem.fromDomain(Book book) {
+    return BookItem(
+      (b) => b
+        ..id = book.id
+        ..title = book.title
+        ..subtitle = book.subtitle
+        ..thumbnail = book.thumbnail,
+    );
   }
 
-  Book toBookModel() {
+  Book toDomain() {
     return Book(
-      authors: null,
-      id: id,
-      largeImage: null,
-      subtitle: subtitle,
-      thumbnail: thumbnail,
-      title: title,
-      publishedDate: null,
-      description: null,
+      (b) => b
+        ..id = id
+        ..title = title
+        ..subtitle = subtitle
+        ..thumbnail = thumbnail,
     );
   }
 }

@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'detail_state.dart';
+part of 'book.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$BookDetailState extends BookDetailState {
+class _$Book extends Book {
   @override
   final String id;
   @override
@@ -16,54 +16,49 @@ class _$BookDetailState extends BookDetailState {
   @override
   final BuiltList<String> authors;
   @override
-  final String largeImage;
-  @override
   final String thumbnail;
   @override
-  final bool isFavorited;
+  final String largeImage;
   @override
   final String description;
   @override
   final String publishedDate;
 
-  factory _$BookDetailState([void updates(BookDetailStateBuilder b)]) =>
-      (new BookDetailStateBuilder()..update(updates)).build();
+  factory _$Book([void updates(BookBuilder b)]) =>
+      (new BookBuilder()..update(updates)).build();
 
-  _$BookDetailState._(
+  _$Book._(
       {this.id,
       this.title,
       this.subtitle,
       this.authors,
-      this.largeImage,
       this.thumbnail,
-      this.isFavorited,
+      this.largeImage,
       this.description,
       this.publishedDate})
       : super._() {
     if (id == null) {
-      throw new BuiltValueNullFieldError('BookDetailState', 'id');
+      throw new BuiltValueNullFieldError('Book', 'id');
     }
   }
 
   @override
-  BookDetailState rebuild(void updates(BookDetailStateBuilder b)) =>
+  Book rebuild(void updates(BookBuilder b)) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  BookDetailStateBuilder toBuilder() =>
-      new BookDetailStateBuilder()..replace(this);
+  BookBuilder toBuilder() => new BookBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is BookDetailState &&
+    return other is Book &&
         id == other.id &&
         title == other.title &&
         subtitle == other.subtitle &&
         authors == other.authors &&
-        largeImage == other.largeImage &&
         thumbnail == other.thumbnail &&
-        isFavorited == other.isFavorited &&
+        largeImage == other.largeImage &&
         description == other.description &&
         publishedDate == other.publishedDate;
   }
@@ -75,36 +70,32 @@ class _$BookDetailState extends BookDetailState {
             $jc(
                 $jc(
                     $jc(
-                        $jc(
-                            $jc($jc($jc(0, id.hashCode), title.hashCode),
-                                subtitle.hashCode),
-                            authors.hashCode),
-                        largeImage.hashCode),
+                        $jc($jc($jc(0, id.hashCode), title.hashCode),
+                            subtitle.hashCode),
+                        authors.hashCode),
                     thumbnail.hashCode),
-                isFavorited.hashCode),
+                largeImage.hashCode),
             description.hashCode),
         publishedDate.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('BookDetailState')
+    return (newBuiltValueToStringHelper('Book')
           ..add('id', id)
           ..add('title', title)
           ..add('subtitle', subtitle)
           ..add('authors', authors)
-          ..add('largeImage', largeImage)
           ..add('thumbnail', thumbnail)
-          ..add('isFavorited', isFavorited)
+          ..add('largeImage', largeImage)
           ..add('description', description)
           ..add('publishedDate', publishedDate))
         .toString();
   }
 }
 
-class BookDetailStateBuilder
-    implements Builder<BookDetailState, BookDetailStateBuilder> {
-  _$BookDetailState _$v;
+class BookBuilder implements Builder<Book, BookBuilder> {
+  _$Book _$v;
 
   String _id;
   String get id => _$this._id;
@@ -123,17 +114,13 @@ class BookDetailStateBuilder
       _$this._authors ??= new ListBuilder<String>();
   set authors(ListBuilder<String> authors) => _$this._authors = authors;
 
-  String _largeImage;
-  String get largeImage => _$this._largeImage;
-  set largeImage(String largeImage) => _$this._largeImage = largeImage;
-
   String _thumbnail;
   String get thumbnail => _$this._thumbnail;
   set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
 
-  bool _isFavorited;
-  bool get isFavorited => _$this._isFavorited;
-  set isFavorited(bool isFavorited) => _$this._isFavorited = isFavorited;
+  String _largeImage;
+  String get largeImage => _$this._largeImage;
+  set largeImage(String largeImage) => _$this._largeImage = largeImage;
 
   String _description;
   String get description => _$this._description;
@@ -144,17 +131,16 @@ class BookDetailStateBuilder
   set publishedDate(String publishedDate) =>
       _$this._publishedDate = publishedDate;
 
-  BookDetailStateBuilder();
+  BookBuilder();
 
-  BookDetailStateBuilder get _$this {
+  BookBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
       _title = _$v.title;
       _subtitle = _$v.subtitle;
       _authors = _$v.authors?.toBuilder();
-      _largeImage = _$v.largeImage;
       _thumbnail = _$v.thumbnail;
-      _isFavorited = _$v.isFavorited;
+      _largeImage = _$v.largeImage;
       _description = _$v.description;
       _publishedDate = _$v.publishedDate;
       _$v = null;
@@ -163,31 +149,30 @@ class BookDetailStateBuilder
   }
 
   @override
-  void replace(BookDetailState other) {
+  void replace(Book other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$BookDetailState;
+    _$v = other as _$Book;
   }
 
   @override
-  void update(void updates(BookDetailStateBuilder b)) {
+  void update(void updates(BookBuilder b)) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$BookDetailState build() {
-    _$BookDetailState _$result;
+  _$Book build() {
+    _$Book _$result;
     try {
       _$result = _$v ??
-          new _$BookDetailState._(
+          new _$Book._(
               id: id,
               title: title,
               subtitle: subtitle,
               authors: _authors?.build(),
-              largeImage: largeImage,
               thumbnail: thumbnail,
-              isFavorited: isFavorited,
+              largeImage: largeImage,
               description: description,
               publishedDate: publishedDate);
     } catch (_) {
@@ -197,7 +182,7 @@ class BookDetailStateBuilder
         _authors?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'BookDetailState', _$failedField, e.toString());
+            'Book', _$failedField, e.toString());
       }
       rethrow;
     }

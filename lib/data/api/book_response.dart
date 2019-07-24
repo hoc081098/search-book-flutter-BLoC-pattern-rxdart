@@ -2,7 +2,7 @@ import 'package:built_value/built_value.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class Book {
+class BookResponse {
   final String id;
   final String title;
   final String subtitle;
@@ -12,7 +12,7 @@ class Book {
   final String description;
   final String publishedDate;
 
-  Book({
+  BookResponse({
     @required this.id,
     @required this.title,
     @required this.subtitle,
@@ -23,18 +23,18 @@ class Book {
     @required this.publishedDate,
   });
 
-  factory Book.fromJson(Map<String, dynamic> json) {
+  factory BookResponse.fromJson(Map<String, dynamic> json) {
     final volumeInfo = json['volumeInfo'];
     final authors = volumeInfo['authors'];
     final imageLinks = volumeInfo['imageLinks'] ?? {};
 
-    return Book(
+    return BookResponse(
       id: json['id'],
-      title: volumeInfo['title'] ?? '',
-      subtitle: volumeInfo['subtitle'] ?? '',
-      authors: authors?.cast<String>() ?? <String>[],
-      thumbnail: imageLinks['thumbnail'] ?? '',
-      largeImage: imageLinks['small'] ?? '',
+      title: volumeInfo['title'],
+      subtitle: volumeInfo['subtitle'],
+      authors: authors?.cast<String>(),
+      thumbnail: imageLinks['thumbnail'],
+      largeImage: imageLinks['small'],
       description: volumeInfo['description'],
       publishedDate: volumeInfo['publishedDate'],
     );

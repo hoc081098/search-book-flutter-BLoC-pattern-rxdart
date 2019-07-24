@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:disposebag/disposebag.dart';
-import 'package:search_book/api/book_api.dart';
-import 'package:search_book/model/book_model.dart';
+import 'package:search_book/domain/book.dart';
+import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/pages/detail_page/detail_state.dart';
 import 'package:search_book/shared_pref.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
@@ -39,11 +39,11 @@ class DetailBloc implements BaseBloc {
   );
 
   factory DetailBloc(
-    final BookApi api,
+    final BookRepo bookRepo,
     final SharedPref sharedPref,
     final Book initial,
   ) {
-    assert(api != null);
+    assert(bookRepo != null);
     assert(sharedPref != null);
     assert(initial != null);
 
@@ -51,48 +51,32 @@ class DetailBloc implements BaseBloc {
     final errorController = PublishSubject<Object>();
     final toggleController = PublishSubject<void>();
 
-    final state$ = Observable.combineLatest2(
-      refreshController.exhaustMap((completer) async* {
+    final book$ = refreshController.exhaustMap(
+      (completer) async* {
         try {
-          yield await api.getBookById(initial.id);
+          yield* bookRepo.getBookBy(id: initial.id);
         } catch (e) {
           errorController.add(e);
         } finally {
           completer.complete();
         }
-      }).startWith(initial),
+      },
+    ).startWith(initial);
+
+    final state$ = Observable.combineLatest2(
+      book$,
       sharedPref.favoritedIds$,
       (Book book, BuiltSet<String> ids) {
-        return BookDetailState((b) {
-          final authors = book.authors;
-          return b
-            ..id = book.id
-            ..title = book.title
-            ..subtitle = book.subtitle
-            ..authors = authors == null ? null : ListBuilder<String>(authors)
-            ..largeImage = book.largeImage
-            ..isFavorited = ids.contains(book.id)
-            ..thumbnail = book.thumbnail
-            ..description = book.description
-            ..publishedDate = book.publishedDate;
-        });
+        return BookDetailState.fromDomain(
+          book,
+          ids.contains(book.id),
+        );
       },
     );
 
     final bookDetail$ = publishValueSeededDistinct(
       state$,
-      seedValue: BookDetailState((b) {
-        final authors = initial.authors;
-        return b
-          ..id = initial.id
-          ..title = initial.title
-          ..subtitle = initial.subtitle
-          ..authors = authors == null ? null : ListBuilder<String>(authors)
-          ..largeImage = initial.largeImage
-          ..thumbnail = initial.thumbnail
-          ..description = initial.description
-          ..publishedDate = initial.publishedDate;
-      }),
+      seedValue: BookDetailState.fromDomain(initial),
     );
 
     ///

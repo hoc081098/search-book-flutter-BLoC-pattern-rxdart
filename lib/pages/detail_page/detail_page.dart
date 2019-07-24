@@ -137,7 +137,7 @@ class BookDetailContent extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 0.0),
+            margin: EdgeInsets.only(left: 16, right: 16, top: 0.0),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Color(0x8c333366),
@@ -161,49 +161,50 @@ class BookDetailContent extends StatelessWidget {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 10,
-                        offset: Offset(5, 5),
-                      )
+                        color: Colors.grey.shade300,
+                        blurRadius: 8,
+                        offset: Offset(4, 4),
+                      ),
                     ],
                   ),
                   child: Hero(
-                    child: FadeInImage.assetNetwork(
-                      image: detail.thumbnail ?? '',
-                      width: 64.0 * 1.75,
-                      height: 96.0 * 1.75,
-                      fit: BoxFit.cover,
-                      placeholder: 'assets/no_image.png',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      clipBehavior: Clip.antiAlias,
+                      child: FadeInImage.assetNetwork(
+                        image: detail.thumbnail ?? '',
+                        width: 64.0 * 2,
+                        height: 96.0 * 2,
+                        fit: BoxFit.cover,
+                        placeholder: 'assets/no_image.png',
+                      ),
                     ),
                     tag: detail.id,
                   ),
                 ),
-                SizedBox(height: 12.0),
+                SizedBox(height: 16),
                 Text(
-                  detail.title ?? 'Loading...',
+                  detail.title ?? 'No title',
                   maxLines: 2,
+                  textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: headerStyle,
                 ),
-                SizedBox(height: 4.0),
+                SizedBox(height: 8),
                 Text(
-                  detail.subtitle == null
-                      ? 'Loading...'
-                      : detail.subtitle.isEmpty
-                          ? 'No subtitle...'
-                          : detail.subtitle,
+                  detail.subtitle ?? 'No subtitle',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: regularStyle,
                 ),
-                SizedBox(height: 8.0),
+                SizedBox(height: 12),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 8.0),
                   height: 2.0,
                   width: 128.0,
                   color: Color(0xff00c6ff),
                 ),
-                SizedBox(height: 8.0),
+                SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -217,7 +218,7 @@ class BookDetailContent extends StatelessWidget {
                           SizedBox(width: 8.0),
                           Expanded(
                             child: Text(
-                              'Authors: ${detail.authors?.join(', ') ?? 'Loading...'}',
+                              'Authors: ${detail.authors?.join(', ') ?? 'No authors'}',
                               style: regularStyle,
                               maxLines: 5,
                               overflow: TextOverflow.fade,
@@ -239,7 +240,7 @@ class BookDetailContent extends StatelessWidget {
                           SizedBox(width: 8.0),
                           Expanded(
                             child: Text(
-                              'Published date: ${detail.publishedDate ?? 'Loading...'}',
+                              'Published date: ${detail.publishedDate ?? 'No published date'}',
                               style: regularStyle,
                               maxLines: 5,
                               overflow: TextOverflow.fade,
@@ -260,7 +261,7 @@ class BookDetailContent extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 16.0),
+                SizedBox(height: 32.0),
                 Text('DESCRIPTION', style: headerStyle),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -269,12 +270,13 @@ class BookDetailContent extends StatelessWidget {
                   color: Color(0xff00c6ff),
                 ),
                 Html(
-                  data: detail.description ?? 'Loading...',
+                  data: detail.description ?? 'No description',
                   defaultTextStyle: regularStyle,
                 ),
               ],
             ),
           ),
+          Container(height: MediaQuery.of(context).size.height / 6),
         ],
         padding: EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
       ),
