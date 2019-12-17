@@ -2,32 +2,26 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:disposebag/disposebag.dart';
+import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
+import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:search_book/domain/book.dart';
 import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/pages/detail_page/detail_state.dart';
 import 'package:search_book/shared_pref.dart';
-import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
 
 // ignore_for_file: close_sinks
 
 class DetailBloc implements BaseBloc {
-  ///
-  ///
-  ///
-  final ValueObservable<BookDetailState> bookDetail$;
+  /// Outputs
+  final ValueStream<BookDetailState> bookDetail$;
   final Stream<Object> error$;
 
-  ///
-  ///
-  ///
+  /// Inputs
   final Future<void> Function() refresh;
   final void Function() toggleFavorited;
 
-  ///
   /// Clean up resource
-  ///
   final void Function() _dispose;
 
   DetailBloc._(
@@ -47,6 +41,7 @@ class DetailBloc implements BaseBloc {
     assert(sharedPref != null);
     assert(initial != null);
 
+    /// Controllers
     final refreshController = PublishSubject<Completer>();
     final errorController = PublishSubject<Object>();
     final toggleController = PublishSubject<void>();
@@ -63,7 +58,7 @@ class DetailBloc implements BaseBloc {
       },
     ).startWith(initial);
 
-    final state$ = Observable.combineLatest2(
+    final state$ = Rx.combineLatest2(
       book$,
       sharedPref.favoritedIds$,
       (Book book, BuiltSet<String> ids) {
@@ -72,25 +67,18 @@ class DetailBloc implements BaseBloc {
           ids.contains(book.id),
         );
       },
-    );
+    ).publishValueSeededDistinct(
+        seedValue: BookDetailState.fromDomain(initial));
 
-    final bookDetail$ = publishValueSeededDistinct(
-      state$,
-      seedValue: BookDetailState.fromDomain(initial),
-    );
-
-    ///
-    ///
-    ///
-
+    /// DisposeBag
     final bag = DisposeBag(
       [
         toggleController
             .throttleTime(const Duration(milliseconds: 600))
             .listen((_) => sharedPref.toggleFavorite(initial.id)),
-        bookDetail$.listen((book) => print('[DETAIL] book=$book')),
+        state$.listen((book) => print('[DETAIL] book=$book')),
         //
-        bookDetail$.connect(),
+        state$.connect(),
         //
         refreshController,
         errorController,
@@ -101,7 +89,7 @@ class DetailBloc implements BaseBloc {
     print('[DETAIL] new id=${initial.id}');
 
     return DetailBloc._(
-      bookDetail$,
+      state$,
       errorController,
       () {
         final completer = Completer<void>();

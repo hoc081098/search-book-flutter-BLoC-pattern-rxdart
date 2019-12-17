@@ -2,44 +2,34 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:disposebag/disposebag.dart';
+import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
+import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:search_book/domain/book.dart';
 import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/pages/home_page/home_state.dart';
 import 'package:search_book/shared_pref.dart';
-import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
-import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
 
 // ignore_for_file: close_sinks
 
-///
 /// Home Bloc
-///
 class HomeBloc implements BaseBloc {
-  ///
   /// Input [Function]s
-  ///
   final void Function(String) changeQuery;
   final void Function() loadNextPage;
   final void Function() retryNextPage;
   final void Function() retryFirstPage;
   final void Function(String) toggleFavorited;
 
-  ///
   /// Ouput [Stream]s
-  ///
-  final ValueObservable<HomePageState> state$;
-  final ValueObservable<int> favoriteCount$;
+  final ValueStream<HomePageState> state$;
+  final ValueStream<int> favoriteCount$;
 
-  ///
   /// Subscribe to this stream to show message like snackbar, toast, ...
-  ///
   final Stream<HomePageMessage> message$;
 
-  ///
   /// Clean up resouce
-  ///
   final void Function() _dispose;
 
   HomeBloc._(
@@ -64,26 +54,20 @@ class HomeBloc implements BaseBloc {
     assert(bookRepo != null);
     assert(sharedPref != null);
 
-    ///
     /// Stream controllers, receive input intents
-    ///
     final queryController = PublishSubject<String>();
     final loadNextPageController = PublishSubject<void>();
     final retryNextPageController = PublishSubject<void>();
     final retryFirstPageController = PublishSubject<void>();
     final toggleFavoritedController = PublishSubject<String>();
 
-    ///
     /// Debounce query stream
-    ///
     final searchString$ = queryController
         .debounceTime(const Duration(milliseconds: 500))
         .distinct()
         .map((s) => s.trim());
 
-    ///
     /// Search intent
-    ///
     final searchIntent$ = searchString$.mergeWith([
       retryFirstPageController.withLatestFrom(
         searchString$,
@@ -91,35 +75,25 @@ class HomeBloc implements BaseBloc {
       )
     ]).map((s) => HomeIntent.searchIntent(search: s));
 
-    ///
-    /// Forward declare to [loadNextPageIntent] can access latest state via [DistinctValueConnectableObservable.value] getter
-    ///
-    DistinctValueConnectableObservable<HomePageState> stateDistinctConnectable$;
+    /// Forward declare to [loadNextPageIntent] can access latest state via [DistinctValueConnectableStream.value] getter
+    DistinctValueConnectableStream<HomePageState> state$;
 
-    ///
     /// Load next page intent
-    ///
-    final loadAndRetryNextPageIntent$ = Observable.merge([
-      loadNextPageController
-          .map((_) => stateDistinctConnectable$.value)
-          .where((currentState) {
-        ///
-        /// Can load next page?
-        ///
-        return currentState.books.isNotEmpty &&
-            currentState.loadFirstPageError == null &&
-            currentState.loadNextPageError == null;
-      }),
-      retryNextPageController
-          .map((_) => stateDistinctConnectable$.value)
-          .where((currentState) {
-        ///
-        /// Can retry?
-        ///
-        return currentState.loadFirstPageError != null ||
-            currentState.loadNextPageError != null;
-      })
-    ])
+    final loadAndRetryNextPageIntent$ = Rx.merge(
+      [
+        loadNextPageController.map((_) => state$.value).where((currentState) {
+          /// Can load next page?
+          return currentState.books.isNotEmpty &&
+              currentState.loadFirstPageError == null &&
+              currentState.loadNextPageError == null;
+        }),
+        retryNextPageController.map((_) => state$.value).where((currentState) {
+          /// Can retry?
+          return currentState.loadFirstPageError != null ||
+              currentState.loadNextPageError != null;
+        })
+      ],
+    )
         .withLatestFrom(
           searchString$,
           (currentState, String query) =>
@@ -132,37 +106,31 @@ class HomeBloc implements BaseBloc {
           ),
         );
 
-    ///
     /// State stream
-    ///
-    final state$ = Observable.combineLatest2(
-      Observable.merge(
-              [searchIntent$, loadAndRetryNextPageIntent$]) // All intent
+    state$ = Rx.combineLatest2(
+      Rx.merge([searchIntent$, loadAndRetryNextPageIntent$]) // All intent
           .doOnData((intent) => print('[INTENT] $intent'))
           .switchMap((intent) => _processIntent$(intent, bookRepo))
           .doOnData((change) => print('[CHANGE] $change'))
-          .scan(_reduce, HomePageState.initial()),
+          .scan(
+            (state, action, _) => action.reduce(state),
+            HomePageState.initial(),
+          ),
       sharedPref.favoritedIds$,
       (HomePageState state, BuiltSet<String> ids) => state.rebuild(
         (b) => b.books.map(
           (book) => book.rebuild((b) => b.isFavorited = ids.contains(b.id)),
         ),
       ),
-    );
-
-    ///
-    /// Final state stream
-    ///
-    stateDistinctConnectable$ =
-        publishValueSeededDistinct(state$, seedValue: HomePageState.initial());
+    ).publishValueSeededDistinct(seedValue: HomePageState.initial());
 
     final message$ = toggleFavoritedController
         .groupBy((id) => id)
         .map((group$) => group$.throttleTime(Duration(milliseconds: 600)))
         .flatMap((group$) => group$)
-        .concatMap((id) => Stream.fromFuture(sharedPref.toggleFavorite(id)))
+        .asyncExpand((id) => Stream.fromFuture(sharedPref.toggleFavorite(id)))
         .withLatestFrom(
-          stateDistinctConnectable$,
+          state$,
           (result, HomePageState item) => HomePageMessage.fromResult(
             result,
             item.books.firstWhere(
@@ -173,14 +141,11 @@ class HomeBloc implements BaseBloc {
         )
         .publish();
 
-    final favoriteCount$ = publishValueSeededDistinct(
-      sharedPref.favoritedIds$.map((ids) => ids.length),
-      seedValue: 0,
-    );
+    final favoriteCount$ = sharedPref.favoritedIds$
+        .map((ids) => ids.length)
+        .publishValueSeededDistinct(seedValue: 0);
 
-    ///
-    ///
-    ///
+    /// DisposeBag
     final bag = DisposeBag(
       [
         queryController,
@@ -191,9 +156,9 @@ class HomeBloc implements BaseBloc {
         //
         message$.listen((message) => print('[MESSAGE] $message')),
         favoriteCount$.listen((count) => print('[FAV_COUNT] $count')),
-        stateDistinctConnectable$.listen((state) => print('[STATE] $state')),
+        state$.listen((state) => print('[STATE] $state')),
         //
-        stateDistinctConnectable$.connect(),
+        state$.connect(),
         message$.connect(),
         favoriteCount$.connect(),
       ],
@@ -202,7 +167,7 @@ class HomeBloc implements BaseBloc {
     return HomeBloc._(
       queryController.add,
       () => loadNextPageController.add(null),
-      stateDistinctConnectable$,
+      state$,
       bag.dispose,
       () => retryNextPageController.add(null),
       () => retryFirstPageController.add(null),
@@ -211,137 +176,80 @@ class HomeBloc implements BaseBloc {
       favoriteCount$,
     );
   }
+}
 
-  ///
-  /// Process [intent], convert [intent] to [Stream] of [PartialStateChange]s
-  ///
-  static Stream<PartialStateChange> _processIntent$(
-    HomeIntent intent,
-    BookRepo bookRepo,
+/// Process [intent], convert [intent] to [Stream] of [PartialStateChange]s
+Stream<PartialStateChange> _processIntent$(
+  HomeIntent intent,
+  BookRepo bookRepo,
+) {
+  perform<RESULT, PARTIAL_CHANGE>(
+    Stream<RESULT> streamFactory(),
+    PARTIAL_CHANGE map(RESULT a),
+    PARTIAL_CHANGE loading,
+    PARTIAL_CHANGE onError(dynamic e),
   ) {
-    perform<RESULT, PARTIAL_CHANGE>(
-      Stream<RESULT> streamFactory(),
-      PARTIAL_CHANGE map(RESULT a),
-      PARTIAL_CHANGE loading,
-      PARTIAL_CHANGE onError(dynamic e),
-    ) {
-      return Observable.defer(streamFactory)
-          .map(map)
-          .startWith(loading)
-          .doOnError((e, s) => print(s))
-          .onErrorReturnWith(onError);
-    }
-
-    searchIntentToPartialChange$(SearchIntent intent) =>
-        perform<BuiltList<Book>, PartialStateChange>(
-          () {
-            if (intent.search.isEmpty) {
-              return Observable.just(BuiltList<Book>.of([]));
-            }
-            return Stream.fromFuture(bookRepo.searchBook(query: intent.search));
-          },
-          (list) {
-            final bookItems =
-                list.map((book) => BookItem.fromDomain(book)).toList();
-            return PartialStateChange.firstPageLoaded(
-              books: bookItems,
-              textQuery: intent.search,
-            );
-          },
-          PartialStateChange.firstPageLoading(),
-          (e) {
-            return PartialStateChange.firstPageError(
-              error: e,
-              textQuery: intent.search,
-            );
-          },
-        );
-
-    loadNextPageIntentToPartialChange$(LoadNextPageIntent intent) =>
-        perform<BuiltList<Book>, PartialStateChange>(
-          () {
-            return Stream.fromFuture(
-              bookRepo.searchBook(
-                query: intent.search,
-                startIndex: intent.startIndex,
-              ),
-            );
-          },
-          (list) {
-            final bookItems =
-                list.map((book) => BookItem.fromDomain(book)).toList();
-            return PartialStateChange.nextPageLoaded(
-              books: bookItems,
-              textQuery: intent.search,
-            );
-          },
-          PartialStateChange.nextPageLoading(),
-          (e) {
-            return PartialStateChange.nextPageError(
-              error: e,
-              textQuery: intent.search,
-            );
-          },
-        );
-
-    return intent.join(
-      searchIntentToPartialChange$,
-      loadNextPageIntentToPartialChange$,
-    );
+    return Rx.defer(streamFactory)
+        .map(map)
+        .startWith(loading)
+        .doOnError((e, s) => print(s))
+        .onErrorReturnWith(onError);
   }
 
-  ///
-  /// Pure function, produce new state from previous state [state] and partial state change [partialChange]
-  ///
-  static HomePageState _reduce(
-    HomePageState state,
-    PartialStateChange partialChange,
-    int _,
-  ) {
-    return partialChange.join<HomePageState>(
-      (LoadingFirstPage change) {
-        return state.rebuild((b) => b..isFirstPageLoading = true);
-      },
-      (LoadFirstPageError change) {
-        return state.rebuild((b) => b
-          ..resultText = "Search for '${change.textQuery}', error occurred"
-          ..isFirstPageLoading = false
-          ..loadFirstPageError = change.error
-          ..isNextPageLoading = false
-          ..loadNextPageError = null
-          ..books = ListBuilder<BookItem>());
-      },
-      (FirstPageLoaded change) {
-        return state.rebuild((b) => b
-          ..resultText =
-              "Search for '${change.textQuery}', have ${change.books.length} books"
-          ..books = ListBuilder<BookItem>(change.books)
-          ..isFirstPageLoading = false
-          ..isNextPageLoading = false
-          ..loadFirstPageError = null
-          ..loadNextPageError = null);
-      },
-      (LoadingNextPage change) {
-        return state.rebuild((b) => b..isNextPageLoading = true);
-      },
-      (NextPageLoaded change) {
-        return state.rebuild((b) {
-          var newListBuilder = b.books..addAll(change.books);
-          return b
-            ..books = newListBuilder
-            ..resultText =
-                "Search for '${change.textQuery}', have ${newListBuilder.length} books"
-            ..isNextPageLoading = false
-            ..loadNextPageError = null;
-        });
-      },
-      (LoadNextPageError change) {
-        return state.rebuild((b) => b
-          ..resultText =
-              "Search for '${change.textQuery}', have ${state.books.length} books"
-          ..isNextPageLoading = false
-          ..loadNextPageError = change.error);
-      },
-    );
-  }
+  searchIntentToPartialChange$(SearchIntent intent) =>
+      perform<BuiltList<Book>, PartialStateChange>(
+        () {
+          if (intent.search.isEmpty) {
+            return Stream.value(BuiltList<Book>.of([]));
+          }
+          return Stream.fromFuture(bookRepo.searchBook(query: intent.search));
+        },
+        (list) {
+          final bookItems =
+              list.map((book) => BookItem.fromDomain(book)).toList();
+          return PartialStateChange.firstPageLoaded(
+            books: bookItems,
+            textQuery: intent.search,
+          );
+        },
+        PartialStateChange.firstPageLoading(),
+        (e) {
+          return PartialStateChange.firstPageError(
+            error: e,
+            textQuery: intent.search,
+          );
+        },
+      );
+
+  loadNextPageIntentToPartialChange$(LoadNextPageIntent intent) =>
+      perform<BuiltList<Book>, PartialStateChange>(
+        () {
+          return Stream.fromFuture(
+            bookRepo.searchBook(
+              query: intent.search,
+              startIndex: intent.startIndex,
+            ),
+          );
+        },
+        (list) {
+          final bookItems =
+              list.map((book) => BookItem.fromDomain(book)).toList();
+          return PartialStateChange.nextPageLoaded(
+            books: bookItems,
+            textQuery: intent.search,
+          );
+        },
+        PartialStateChange.nextPageLoading(),
+        (e) {
+          return PartialStateChange.nextPageError(
+            error: e,
+            textQuery: intent.search,
+          );
+        },
+      );
+
+  return intent.join(
+    searchIntentToPartialChange$,
+    loadNextPageIntentToPartialChange$,
+  );
 }

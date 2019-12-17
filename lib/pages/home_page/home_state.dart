@@ -1,10 +1,10 @@
-import 'package:built_value/built_value.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:meta/meta.dart';
+import 'package:sealed_unions/sealed_unions.dart';
 import 'package:search_book/data/api/book_response.dart';
 import 'package:search_book/domain/book.dart';
 import 'package:search_book/shared_pref.dart';
-import 'package:meta/meta.dart';
-import 'package:sealed_unions/sealed_unions.dart';
 
 part 'home_state.g.dart';
 
@@ -62,13 +62,16 @@ String _toString(o) => o.toString();
 abstract class HomePageState
     implements Built<HomePageState, HomePageStateBuilder> {
   String get resultText;
+
   BuiltList<BookItem> get books;
 
   bool get isFirstPageLoading;
+
   @nullable
   Object get loadFirstPageError;
 
   bool get isNextPageLoading;
+
   @nullable
   Object get loadNextPageError;
 
@@ -167,6 +170,55 @@ class PartialStateChange extends Union6Impl<
           error: error,
         ),
       ),
+    );
+  }
+
+  /// Pure function, produce new state from previous state [state] and partial state change [partialChange]
+  HomePageState reduce(HomePageState state) {
+    return join<HomePageState>(
+      (LoadingFirstPage change) {
+        return state.rebuild((b) => b..isFirstPageLoading = true);
+      },
+      (LoadFirstPageError change) {
+        return state.rebuild((b) => b
+          ..resultText = "Search for '${change.textQuery}', error occurred"
+          ..isFirstPageLoading = false
+          ..loadFirstPageError = change.error
+          ..isNextPageLoading = false
+          ..loadNextPageError = null
+          ..books = ListBuilder<BookItem>());
+      },
+      (FirstPageLoaded change) {
+        return state.rebuild((b) => b
+          ..resultText =
+              "Search for '${change.textQuery}', have ${change.books.length} books"
+          ..books = ListBuilder<BookItem>(change.books)
+          ..isFirstPageLoading = false
+          ..isNextPageLoading = false
+          ..loadFirstPageError = null
+          ..loadNextPageError = null);
+      },
+      (LoadingNextPage change) {
+        return state.rebuild((b) => b..isNextPageLoading = true);
+      },
+      (NextPageLoaded change) {
+        return state.rebuild((b) {
+          var newListBuilder = b.books..addAll(change.books);
+          return b
+            ..books = newListBuilder
+            ..resultText =
+                "Search for '${change.textQuery}', have ${newListBuilder.length} books"
+            ..isNextPageLoading = false
+            ..loadNextPageError = null;
+        });
+      },
+      (LoadNextPageError change) {
+        return state.rebuild((b) => b
+          ..resultText =
+              "Search for '${change.textQuery}', have ${state.books.length} books"
+          ..isNextPageLoading = false
+          ..loadNextPageError = change.error);
+      },
     );
   }
 

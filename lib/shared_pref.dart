@@ -5,7 +5,7 @@ import 'package:kernel/text/serializer_combinators.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
+import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 
 class ToggleFavResult {
   final String id;
@@ -48,7 +48,7 @@ class SharedPref {
 
   final Future<ToggleFavResult> Function(String) toggleFavorite;
 
-  final ValueObservable<BuiltSet<String>> favoritedIds$;
+  final ValueStream<BuiltSet<String>> favoritedIds$;
 
   SharedPref._(
     this.toggleFavorite,
@@ -60,13 +60,12 @@ class SharedPref {
     final addOrRemoveFavoriteController =
         PublishSubject<Tuple2<String, Completer<ToggleFavResult>>>();
 
-    final favoritedIds$ = publishValueDistinct(
-      addOrRemoveFavoriteController
-          .startWith(null)
-          .concatMap((tuple2) => _addOrRemoveId(tuple2, sharedPrefFuture)),
-    )
-      ..listen((ids) => print('[FAV_IDS] ids=$ids'))
-      ..connect();
+    final favoritedIds$ = addOrRemoveFavoriteController
+        .startWith(null)
+        .asyncExpand((tuple2) => _addOrRemoveId(tuple2, sharedPrefFuture))
+        .publishValueDistinct()
+          ..listen((ids) => print('[FAV_IDS] ids=$ids'))
+          ..connect();
 
     return SharedPref._(
       (id) {

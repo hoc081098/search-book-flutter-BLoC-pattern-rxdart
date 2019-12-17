@@ -2,18 +2,20 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:disposebag/disposebag.dart';
+import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
+import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/domain/cache_policy.dart';
 import 'package:search_book/pages/fav_page/fav_books_state.dart';
 import 'package:search_book/shared_pref.dart';
-import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
-import 'package:distinct_value_connectable_observable/distinct_value_connectable_observable.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
+
+// ignore_for_file: close_sinks
 
 class FavBooksInteractor {
   final BookRepo _bookRepo;
-  final ValueObservable<BuiltSet<String>> favoritedIds$;
+  final ValueStream<BuiltSet<String>> favoritedIds$;
   final void Function(String) toggleFavorite;
 
   FavBooksInteractor(this._bookRepo, SharedPref _sharedPref)
@@ -27,14 +29,14 @@ class FavBooksInteractor {
     bool forceUpdate = false,
     Completer<void> completer,
   ]) {
-    return Observable.fromIterable(ids)
+    return Stream.fromIterable(ids)
         .flatMap((id) {
           final stream = _bookRepo.getBookBy(
             id: id,
             cachePolicy:
                 forceUpdate ? CachePolicy.networkOnly : CachePolicy.localFirst,
           );
-          return Observable(stream)
+          return stream
               .map<FavBookPartialChange>((book) => LoadedFavBookChange(book))
               .onErrorReturnWith((e) => ErrorFavBookChange(e));
         })
@@ -43,23 +45,15 @@ class FavBooksInteractor {
   }
 }
 
-// ignore_for_file: close_sinks
-
 class FavBooksBloc implements BaseBloc {
-  ///
-  ///
-  ///
+  /// Inputs
   final void Function(String) removeFavorite;
   final Future<void> Function() refresh;
 
-  ///
-  ///
-  ///
-  final ValueObservable<FavBooksState> state$;
+  /// Outputs
+  final ValueStream<FavBooksState> state$;
 
-  ///
-  ///
-  ///
+  /// Clean up resources
   final void Function() _dispose;
 
   FavBooksBloc._(
@@ -75,32 +69,29 @@ class FavBooksBloc implements BaseBloc {
   factory FavBooksBloc(final FavBooksInteractor interactor) {
     assert(interactor != null, 'interactor cannot be null');
 
+    /// Controllers
     final removeFavoriteController = PublishSubject<String>();
     final refreshController = PublishSubject<Completer<void>>();
 
-    final state$ = publishValueSeededDistinct(
-      Observable.merge(
-        [
-          interactor.favoritedIds$.switchMap(interactor.partialChanges),
-          refreshController
-              .withLatestFrom(
-                interactor.favoritedIds$,
-                (Completer<void> completer, BuiltSet<String> ids) =>
-                    Tuple2(completer, ids),
-              )
-              .exhaustMap((tuple2) =>
-                  interactor.partialChanges(tuple2.item2, true, tuple2.item1)),
-        ],
-      )
-          .doOnData((change) => print('[FAV_BOOKS] change=$change'))
-          .scan(_reducer, FavBooksState.initial()),
-      seedValue: FavBooksState.initial(),
-    );
+    /// State stream
+    final state$ = Rx.merge(
+      [
+        interactor.favoritedIds$.switchMap(interactor.partialChanges),
+        refreshController
+            .withLatestFrom(
+              interactor.favoritedIds$,
+              (Completer<void> completer, BuiltSet<String> ids) =>
+                  Tuple2(completer, ids),
+            )
+            .exhaustMap((tuple2) =>
+                interactor.partialChanges(tuple2.item2, true, tuple2.item1)),
+      ],
+    )
+        .doOnData((change) => print('[FAV_BOOKS] change=$change'))
+        .scan(_reducer, FavBooksState.initial())
+        .publishValueSeededDistinct(seedValue: FavBooksState.initial());
 
-    ///
-    ///
-    ///
-
+    /// DisposeBag
     final bag = DisposeBag(
       [
         refreshController,

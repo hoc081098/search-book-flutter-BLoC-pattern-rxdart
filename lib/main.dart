@@ -43,6 +43,8 @@ class CustomBuiltValueToStringHelper implements BuiltValueToStringHelper {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   newBuiltValueToStringHelper =
       (className) => CustomBuiltValueToStringHelper(className);
 
