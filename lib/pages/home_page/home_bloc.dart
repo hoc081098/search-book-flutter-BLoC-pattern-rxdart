@@ -60,6 +60,13 @@ class HomeBloc implements BaseBloc {
     final retryNextPageController = PublishSubject<void>();
     final retryFirstPageController = PublishSubject<void>();
     final toggleFavoritedController = PublishSubject<String>();
+    final controllers = [
+      queryController,
+      loadNextPageController,
+      retryNextPageController,
+      retryFirstPageController,
+      toggleFavoritedController,
+    ];
 
     /// Debounce query stream
     final searchString$ = queryController
@@ -124,51 +131,26 @@ class HomeBloc implements BaseBloc {
       ),
     ).publishValueSeededDistinct(seedValue: HomePageState.initial());
 
-    final message$ = toggleFavoritedController
-        .groupBy((id) => id)
-        .map((group$) => group$.throttleTime(Duration(milliseconds: 600)))
-        .flatMap((group$) => group$)
-        .asyncExpand((id) => Stream.fromFuture(sharedPref.toggleFavorite(id)))
-        .withLatestFrom(
-          state$,
-          (result, HomePageState item) => HomePageMessage.fromResult(
-            result,
-            item.books.firstWhere(
-              (book) => book.id == result.id,
-              orElse: () => null,
-            ),
-          ),
-        )
-        .publish();
+    final message$ =
+        _getMessage$(toggleFavoritedController, sharedPref, state$);
 
     final favoriteCount$ = sharedPref.favoritedIds$
         .map((ids) => ids.length)
         .publishValueSeededDistinct(seedValue: 0);
 
-    /// DisposeBag
-    final bag = DisposeBag(
-      [
-        queryController,
-        loadNextPageController,
-        retryNextPageController,
-        retryFirstPageController,
-        toggleFavoritedController,
-        //
-        message$.listen((message) => print('[MESSAGE] $message')),
-        favoriteCount$.listen((count) => print('[FAV_COUNT] $count')),
-        state$.listen((state) => print('[STATE] $state')),
-        //
-        state$.connect(),
-        message$.connect(),
-        favoriteCount$.connect(),
-      ],
-    );
-
     return HomeBloc._(
       queryController.add,
       () => loadNextPageController.add(null),
       state$,
-      bag.dispose,
+      DisposeBag([
+        ...controllers,
+        message$.listen((message) => print('[MESSAGE] $message')),
+        favoriteCount$.listen((count) => print('[FAV_COUNT] $count')),
+        state$.listen((state) => print('[STATE] $state')),
+        state$.connect(),
+        message$.connect(),
+        favoriteCount$.connect(),
+      ]).dispose,
       () => retryNextPageController.add(null),
       () => retryFirstPageController.add(null),
       toggleFavoritedController.add,
@@ -176,6 +158,29 @@ class HomeBloc implements BaseBloc {
       favoriteCount$,
     );
   }
+}
+
+ConnectableStream<HomePageMessage> _getMessage$(
+  PublishSubject<String> toggleFavoritedController,
+  SharedPref sharedPref,
+  DistinctValueConnectableStream<HomePageState> state$,
+) {
+  return toggleFavoritedController
+      .groupBy((id) => id)
+      .map((group$) => group$.throttleTime(Duration(milliseconds: 600)))
+      .flatMap((group$) => group$)
+      .asyncExpand((id) => Stream.fromFuture(sharedPref.toggleFavorite(id)))
+      .withLatestFrom(
+        state$,
+        (result, HomePageState item) => HomePageMessage.fromResult(
+          result,
+          item.books.firstWhere(
+            (book) => book.id == result.id,
+            orElse: () => null,
+          ),
+        ),
+      )
+      .publish();
 }
 
 /// Process [intent], convert [intent] to [Stream] of [PartialStateChange]s
