@@ -2,28 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c473bd5-e887-45af-9877-0dbb4641a972" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared_pref.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Admin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_for_Android.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/utils/custome_built_value_to_string_helper.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/release/app-release.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/book.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/book.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/detail_page/detail_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/detail_page/detail_state.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_state.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared_pref.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/local/shared_pref.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared_pref.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/local/shared_pref.g.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/shared_pref_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/shared_pref_test.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,6 +23,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_One_API_23" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -41,6 +38,14 @@
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/widgets" />
+      <recent name="$PROJECT_DIR$/lib/utils" />
+      <recent name="$PROJECT_DIR$/lib/data/local" />
+      <recent name="$PROJECT_DIR$/lib/data" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -54,8 +59,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Flutter Test.tests in shared_pref_test.dart">
-    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+  <component name="RunManager" selected="Flutter.main.dart">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" singleton="false">
       <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
       <method v="2" />
     </configuration>
@@ -80,6 +85,14 @@
       <option name="presentableId" value="Default" />
       <updated>1577086221987</updated>
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1577092859689</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1577092859689</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -94,5 +107,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>

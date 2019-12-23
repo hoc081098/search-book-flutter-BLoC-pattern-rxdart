@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search_book/shared_pref.dart';
+import 'package:search_book/data/local/shared_pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 main() {
@@ -48,8 +48,7 @@ main() {
     test('Add or remove id', () async {
       const id = 'hoc081098';
       final result1 = ToggleFavResult(
-            (b) =>
-        b
+        (b) => b
           ..id = id
           ..added = true
           ..error = null
@@ -58,8 +57,7 @@ main() {
       expect(await sharedPref.toggleFavorite(id), result1);
 
       final result2 = ToggleFavResult(
-            (b) =>
-        b
+        (b) => b
           ..id = id
           ..added = false
           ..error = null

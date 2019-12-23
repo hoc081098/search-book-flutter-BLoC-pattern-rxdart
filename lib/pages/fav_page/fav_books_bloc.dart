@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/domain/cache_policy.dart';
 import 'package:search_book/pages/fav_page/fav_books_state.dart';
-import 'package:search_book/shared_pref.dart';
+import 'package:search_book/data/local/shared_pref.dart';
 import 'package:tuple/tuple.dart';
 
 // ignore_for_file: close_sinks

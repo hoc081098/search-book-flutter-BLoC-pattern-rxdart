@@ -1,11 +1,11 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:search_book/domain/book_repo.dart';
-import 'package:search_book/fav_count_badge.dart';
+import 'package:search_book/widgets/fav_count_badge.dart';
 import 'package:search_book/pages/detail_page/detail_bloc.dart';
 import 'package:search_book/pages/detail_page/detail_page.dart';
 import 'package:search_book/pages/fav_page/fav_books_bloc.dart';
 import 'package:search_book/pages/fav_page/fav_books_state.dart';
-import 'package:search_book/shared_pref.dart';
+import 'package:search_book/data/local/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
