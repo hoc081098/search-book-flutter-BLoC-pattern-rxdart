@@ -12,7 +12,7 @@ class _$FavBooksState extends FavBooksState {
   @override
   final BuiltList<FavBookItem> books;
 
-  factory _$FavBooksState([void updates(FavBooksStateBuilder b)]) =>
+  factory _$FavBooksState([void Function(FavBooksStateBuilder) updates]) =>
       (new FavBooksStateBuilder()..update(updates)).build();
 
   _$FavBooksState._({this.isLoading, this.books}) : super._() {
@@ -25,7 +25,7 @@ class _$FavBooksState extends FavBooksState {
   }
 
   @override
-  FavBooksState rebuild(void updates(FavBooksStateBuilder b)) =>
+  FavBooksState rebuild(void Function(FavBooksStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -86,7 +86,7 @@ class FavBooksStateBuilder
   }
 
   @override
-  void update(void updates(FavBooksStateBuilder b)) {
+  void update(void Function(FavBooksStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -124,7 +124,7 @@ class _$FavBookItem extends FavBookItem {
   @override
   final String thumbnail;
 
-  factory _$FavBookItem([void updates(FavBookItemBuilder b)]) =>
+  factory _$FavBookItem([void Function(FavBookItemBuilder) updates]) =>
       (new FavBookItemBuilder()..update(updates)).build();
 
   _$FavBookItem._(
@@ -139,7 +139,7 @@ class _$FavBookItem extends FavBookItem {
   }
 
   @override
-  FavBookItem rebuild(void updates(FavBookItemBuilder b)) =>
+  FavBookItem rebuild(void Function(FavBookItemBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -222,7 +222,7 @@ class FavBookItemBuilder implements Builder<FavBookItem, FavBookItemBuilder> {
   }
 
   @override
-  void update(void updates(FavBookItemBuilder b)) {
+  void update(void Function(FavBookItemBuilder) updates) {
     if (updates != null) updates(this);
   }
 

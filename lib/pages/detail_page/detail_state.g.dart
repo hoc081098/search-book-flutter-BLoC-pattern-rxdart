@@ -26,7 +26,7 @@ class _$BookDetailState extends BookDetailState {
   @override
   final String publishedDate;
 
-  factory _$BookDetailState([void updates(BookDetailStateBuilder b)]) =>
+  factory _$BookDetailState([void Function(BookDetailStateBuilder) updates]) =>
       (new BookDetailStateBuilder()..update(updates)).build();
 
   _$BookDetailState._(
@@ -46,7 +46,7 @@ class _$BookDetailState extends BookDetailState {
   }
 
   @override
-  BookDetailState rebuild(void updates(BookDetailStateBuilder b)) =>
+  BookDetailState rebuild(void Function(BookDetailStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -171,7 +171,7 @@ class BookDetailStateBuilder
   }
 
   @override
-  void update(void updates(BookDetailStateBuilder b)) {
+  void update(void Function(BookDetailStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 

@@ -1,44 +1,31 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 import 'package:kernel/text/serializer_combinators.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:distinct_value_connectable_stream/distinct_value_connectable_stream.dart';
 
-class ToggleFavResult {
-  final String id;
-  final bool added;
-  final bool result;
-  final error;
+part 'shared_pref.g.dart';
 
-  const ToggleFavResult({
-    @required this.id,
-    @required this.added,
-    @required this.result,
-    @required this.error,
-  })  : assert(added != null),
-        assert(result != null),
-        assert(id != null);
+abstract class ToggleFavResult
+    implements Built<ToggleFavResult, ToggleFavResultBuilder> {
+  String get id;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ToggleFavResult &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          added == other.added &&
-          result == other.result &&
-          error == other.error;
+  bool get added;
 
-  @override
-  int get hashCode =>
-      id.hashCode ^ added.hashCode ^ result.hashCode ^ error.hashCode;
+  @nullable
+  bool get result;
 
-  @override
-  String toString() =>
-      'ToggleFavResult{id=$id, added=$added, result=$result, error=$error}';
+  @nullable
+  Object get error;
+
+  ToggleFavResult._();
+
+  factory ToggleFavResult([void Function(ToggleFavResultBuilder) updates]) =
+      _$ToggleFavResult;
 }
 
 class SharedPref {
@@ -57,10 +44,10 @@ class SharedPref {
 
   factory SharedPref(final Future<SharedPreferences> sharedPrefFuture) {
     //ignore: close_sinks
-    final addOrRemoveFavoriteController =
+    final addOrRemoveFavoriteS =
         PublishSubject<Tuple2<String, Completer<ToggleFavResult>>>();
 
-    final favoritedIds$ = addOrRemoveFavoriteController
+    final favoritedIds$ = addOrRemoveFavoriteS
         .startWith(null)
         .asyncExpand((tuple2) => _addOrRemoveId(tuple2, sharedPrefFuture))
         .publishValueDistinct()
@@ -70,7 +57,7 @@ class SharedPref {
     return SharedPref._(
       (id) {
         final completer = Completer<ToggleFavResult>();
-        addOrRemoveFavoriteController.add(Tuple2(id, completer));
+        addOrRemoveFavoriteS.add(Tuple2(id, completer));
         return completer.future;
       },
       favoritedIds$,
@@ -109,19 +96,21 @@ class SharedPref {
       }
       completer.complete(
         ToggleFavResult(
-          added: added,
-          error: null,
-          result: result,
-          id: id,
+          (b) => b
+            ..added = added
+            ..error = null
+            ..result = result
+            ..id = id,
         ),
       );
     } catch (e) {
       completer.complete(
         ToggleFavResult(
-          added: added,
-          error: e,
-          result: false,
-          id: id,
+          (b) => b
+            ..added = added
+            ..error = e
+            ..result = false
+            ..id = id,
         ),
       );
     }

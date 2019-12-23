@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac4dfd0e-6c27-4c5c-bebb-0d50a02a3700" name="Default Changelist" comment="">
+    <list default="true" id="3c473bd5-e887-45af-9877-0dbb4641a972" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared_pref.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Admin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_for_Android.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/release/app-release.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/book.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/book.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/detail_page/detail_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/detail_page/detail_state.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_state.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_state.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared_pref.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/shared_pref_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/shared_pref_test.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,42 +32,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Dart File" />
-      </list>
-    </option>
-  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_One_API_23" />
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="Petrus Nguyễn Thái Học &lt;hoc081098@gmail.com&gt;" />
-        <option value="Peter Hoc &lt;hoc081098@gmail.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1V60dH9pmmkJkChwuaaiuWGOy11" />
-  <component name="ProjectReloadState">
-    <option name="STATE" value="1" />
-  </component>
+  <component name="ProjectId" id="1VNGcwXXCWnmY0Uly3Dtnt6KhiI" />
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561289199915" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
-    <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="flutter.settings" />
-    <property name="settings.editor.splitter.proportion" value="0.29622266" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="show.migrate.to.gradle.popup" value="false" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Admin\Documents\Android\search-book\screenshots" />
-      <recent name="C:\Users\Admin\Desktop\Search-book-api-demo_BLoC_pattern_RxDart\screenshots" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -61,20 +54,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Flutter.main.dart">
-    <configuration name="Add or remove id" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
-      <option name="testName" value="Add or remove id" />
-      <option name="testFile" value="$PROJECT_DIR$/test/shared_pref_test.dart" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Emit initial value" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
-      <option name="testName" value="Emit initial value" />
-      <option name="testFile" value="$PROJECT_DIR$/test/shared_pref_test.dart" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Stream emit value after add or remove id" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
-      <option name="testName" value="Stream emit value after add or remove id" />
-      <option name="testFile" value="$PROJECT_DIR$/test/shared_pref_test.dart" />
+  <component name="RunManager" selected="Flutter Test.tests in shared_pref_test.dart">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
       <method v="2" />
     </configuration>
     <configuration name="tests in shared_pref_test.dart" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
@@ -84,9 +66,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Flutter Test.tests in shared_pref_test.dart" />
-        <item itemvalue="Flutter Test.Stream emit value after add or remove id" />
-        <item itemvalue="Flutter Test.Add or remove id" />
-        <item itemvalue="Flutter Test.Emit initial value" />
       </list>
     </recent_temporary>
   </component>
@@ -95,219 +74,25 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ac4dfd0e-6c27-4c5c-bebb-0d50a02a3700" name="Default Changelist" comment="" />
-      <created>1529973059746</created>
+      <changelist id="3c473bd5-e887-45af-9877-0dbb4641a972" name="Default Changelist" comment="" />
+      <created>1577086221987</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1529973059746</updated>
+      <updated>1577086221987</updated>
     </task>
-    <task id="LOCAL-00001" summary="[UPDATE]">
-      <created>1555954619855</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1555954619856</updated>
-    </task>
-    <task id="LOCAL-00002" summary="[UPDATE]">
-      <created>1556463240955</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1556463240955</updated>
-    </task>
-    <task id="LOCAL-00003" summary="[UPDATE] fav page">
-      <created>1561277598482</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1561277598483</updated>
-    </task>
-    <task id="LOCAL-00004" summary="[UPDATE] screenshots">
-      <created>1561277781982</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1561277781982</updated>
-    </task>
-    <task id="LOCAL-00005" summary="[UPDATE]">
-      <created>1561288102838</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1561288102838</updated>
-    </task>
-    <task id="LOCAL-00006" summary="[UPDATE] rm">
-      <created>1561288381968</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1561288381968</updated>
-    </task>
-    <task id="LOCAL-00007" summary="[UPDATE] add">
-      <created>1561288412804</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1561288412804</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="tests_in_shared_pref_test_dart - 2019.04.19 at 22h 57m 24s.xml">
-      <configuration name="tests in shared_pref_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_shared_pref_test_dart - 2019.04.19 at 22h 58m 07s.xml">
-      <configuration name="tests in shared_pref_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_shared_pref_test_dart - 2019.04.19 at 22h 58m 53s.xml">
-      <configuration name="tests in shared_pref_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_shared_pref_test_dart - 2019.04.19 at 22h 59m 45s.xml">
-      <configuration name="tests in shared_pref_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_shared_pref_test_dart - 2019.04.19 at 23h 00m 19s.xml">
-      <configuration name="tests in shared_pref_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_shared_pref_test_dart - 2019.04.19 at 23h 00m 39s.xml">
-      <configuration name="tests in shared_pref_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="Emit_initial_value - 2019.04.19 at 23h 00m 47s.xml">
-      <configuration name="Emit initial value" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="Add_or_remove_id - 2019.04.19 at 23h 00m 58s.xml">
-      <configuration name="Add or remove id" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="Stream_emit_value_after_add_or_remove_id - 2019.04.19 at 23h 01m 09s.xml">
-      <configuration name="Stream emit value after add or remove id" configurationId="FlutterTestConfigType" />
-    </history-entry>
-    <history-entry file="tests_in_shared_pref_test_dart - 2019.04.19 at 23h 01m 24s.xml">
-      <configuration name="tests in shared_pref_test.dart" configurationId="FlutterTestConfigType" />
-    </history-entry>
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Changes..." />
-    <MESSAGE value="Some change" />
-    <MESSAGE value="[REFACTOR]" />
-    <MESSAGE value="Merge branch 'master' of https://github.com/hoc081098/Search-book-api-demo_BLoC_pattern_RxDart&#10;and update" />
-    <MESSAGE value="[UPDATE] fav page" />
-    <MESSAGE value="[UPDATE] screenshots" />
-    <MESSAGE value="[UPDATE]" />
-    <MESSAGE value="[UPDATE] rm" />
-    <MESSAGE value="[UPDATE] add" />
-    <option name="LAST_COMMIT_MESSAGE" value="[UPDATE] add" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Android</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>io.reactivex.rxjava2:rxkotlin:2.3.0</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>demo_bloc_pattern</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Dart Packages</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

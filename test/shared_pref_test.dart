@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:search_book/shared_pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   group('Test $SharedPref', () {
     const channel = MethodChannel(
       'plugins.flutter.io/shared_preferences',
@@ -44,19 +47,23 @@ main() {
 
     test('Add or remove id', () async {
       const id = 'hoc081098';
-      const result1 = ToggleFavResult(
-        id: id,
-        added: true,
-        error: null,
-        result: true,
+      final result1 = ToggleFavResult(
+            (b) =>
+        b
+          ..id = id
+          ..added = true
+          ..error = null
+          ..result = true,
       );
       expect(await sharedPref.toggleFavorite(id), result1);
 
-      const result2 = ToggleFavResult(
-        id: id,
-        added: false,
-        error: null,
-        result: true,
+      final result2 = ToggleFavResult(
+            (b) =>
+        b
+          ..id = id
+          ..added = false
+          ..error = null
+          ..result = true,
       );
       expect(await sharedPref.toggleFavorite(id), result2);
 

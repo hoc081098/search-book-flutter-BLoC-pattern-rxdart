@@ -24,7 +24,7 @@ class _$Book extends Book {
   @override
   final String publishedDate;
 
-  factory _$Book([void updates(BookBuilder b)]) =>
+  factory _$Book([void Function(BookBuilder) updates]) =>
       (new BookBuilder()..update(updates)).build();
 
   _$Book._(
@@ -43,7 +43,7 @@ class _$Book extends Book {
   }
 
   @override
-  Book rebuild(void updates(BookBuilder b)) =>
+  Book rebuild(void Function(BookBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -157,7 +157,7 @@ class BookBuilder implements Builder<Book, BookBuilder> {
   }
 
   @override
-  void update(void updates(BookBuilder b)) {
+  void update(void Function(BookBuilder) updates) {
     if (updates != null) updates(this);
   }
 

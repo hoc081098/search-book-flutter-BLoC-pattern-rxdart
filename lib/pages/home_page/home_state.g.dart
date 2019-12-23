@@ -18,7 +18,7 @@ class _$BookItem extends BookItem {
   @override
   final bool isFavorited;
 
-  factory _$BookItem([void updates(BookItemBuilder b)]) =>
+  factory _$BookItem([void Function(BookItemBuilder) updates]) =>
       (new BookItemBuilder()..update(updates)).build();
 
   _$BookItem._(
@@ -30,7 +30,7 @@ class _$BookItem extends BookItem {
   }
 
   @override
-  BookItem rebuild(void updates(BookItemBuilder b)) =>
+  BookItem rebuild(void Function(BookItemBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -113,7 +113,7 @@ class BookItemBuilder implements Builder<BookItem, BookItemBuilder> {
   }
 
   @override
-  void update(void updates(BookItemBuilder b)) {
+  void update(void Function(BookItemBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -145,7 +145,7 @@ class _$HomePageState extends HomePageState {
   @override
   final Object loadNextPageError;
 
-  factory _$HomePageState([void updates(HomePageStateBuilder b)]) =>
+  factory _$HomePageState([void Function(HomePageStateBuilder) updates]) =>
       (new HomePageStateBuilder()..update(updates)).build();
 
   _$HomePageState._(
@@ -171,7 +171,7 @@ class _$HomePageState extends HomePageState {
   }
 
   @override
-  HomePageState rebuild(void updates(HomePageStateBuilder b)) =>
+  HomePageState rebuild(void Function(HomePageStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
@@ -271,7 +271,7 @@ class HomePageStateBuilder
   }
 
   @override
-  void update(void updates(HomePageStateBuilder b)) {
+  void update(void Function(HomePageStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 
