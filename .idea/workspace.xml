@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c473bd5-e887-45af-9877-0dbb4641a972" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/domain/favorited_books_repo.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/domain/toggle_fav_result.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/local/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/favorited_books_repo_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/local/shared_pref.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/toggle_fav_result.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain/book.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/book.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated/i18n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/i18n.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/shared_pref_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/shared_pref_test.dart" afterDir="false" />
-    </list>
+    <list default="true" id="3c473bd5-e887-45af-9877-0dbb4641a972" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +93,7 @@
       <workItem from="1577153223455" duration="61000" />
       <workItem from="1577153311027" duration="2437000" />
       <workItem from="1577156629643" duration="1548000" />
-      <workItem from="1577158184721" duration="551000" />
+      <workItem from="1577158184721" duration="704000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1577092859689</created>
@@ -134,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577093594853</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update">
+      <created>1577159040902</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1577159040902</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
