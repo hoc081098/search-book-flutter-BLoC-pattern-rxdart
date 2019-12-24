@@ -5,25 +5,25 @@ part 'book.g.dart';
 
 abstract class Book implements Built<Book, BookBuilder> {
   String get id;
-  
+
   @nullable
   String get title;
-  
+
   @nullable
   String get subtitle;
-  
+
   @nullable
   BuiltList<String> get authors;
-  
+
   @nullable
   String get thumbnail;
-  
+
   @nullable
   String get largeImage;
-  
+
   @nullable
   String get description;
-  
+
   @nullable
   String get publishedDate;
 

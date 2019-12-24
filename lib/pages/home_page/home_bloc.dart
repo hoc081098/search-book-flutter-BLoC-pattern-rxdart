@@ -8,8 +8,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:search_book/domain/book.dart';
 import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/pages/home_page/home_state.dart';
-import 'package:search_book/data/local/shared_pref.dart';
 import 'package:tuple/tuple.dart';
+import 'package:search_book/domain/favorited_books_repo.dart';
 
 // ignore_for_file: close_sinks
 
@@ -49,10 +49,10 @@ class HomeBloc implements BaseBloc {
 
   factory HomeBloc(
     final BookRepo bookRepo,
-    final SharedPref sharedPref,
+    final FavoritedBooksRepo favBooksRepo,
   ) {
     assert(bookRepo != null);
-    assert(sharedPref != null);
+    assert(favBooksRepo != null);
 
     /// Stream controllers, receive input intents
     final queryController = PublishSubject<String>();
@@ -123,7 +123,7 @@ class HomeBloc implements BaseBloc {
             (state, action, _) => action.reduce(state),
             HomePageState.initial(),
           ),
-      sharedPref.favoritedIds$,
+      favBooksRepo.favoritedIds$,
       (HomePageState state, BuiltSet<String> ids) => state.rebuild(
         (b) => b.books.map(
           (book) => book.rebuild((b) => b.isFavorited = ids.contains(b.id)),
@@ -132,9 +132,9 @@ class HomeBloc implements BaseBloc {
     ).publishValueSeededDistinct(seedValue: HomePageState.initial());
 
     final message$ =
-        _getMessage$(toggleFavoritedController, sharedPref, state$);
+        _getMessage$(toggleFavoritedController, favBooksRepo, state$);
 
-    final favoriteCount$ = sharedPref.favoritedIds$
+    final favoriteCount$ = favBooksRepo.favoritedIds$
         .map((ids) => ids.length)
         .publishValueSeededDistinct(seedValue: 0);
 
@@ -162,14 +162,14 @@ class HomeBloc implements BaseBloc {
 
 ConnectableStream<HomePageMessage> _getMessage$(
   PublishSubject<String> toggleFavoritedController,
-  SharedPref sharedPref,
+  FavoritedBooksRepo favBooksRepo,
   DistinctValueConnectableStream<HomePageState> state$,
 ) {
   return toggleFavoritedController
       .groupBy((id) => id)
       .map((group$) => group$.throttleTime(Duration(milliseconds: 600)))
       .flatMap((group$) => group$)
-      .asyncExpand((id) => Stream.fromFuture(sharedPref.toggleFavorite(id)))
+      .asyncExpand((id) => Stream.fromFuture(favBooksRepo.toggleFavorited(id)))
       .withLatestFrom(
         state$,
         (result, HomePageState item) => HomePageMessage.fromResult(

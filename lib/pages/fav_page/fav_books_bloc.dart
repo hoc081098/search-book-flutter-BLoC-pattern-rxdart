@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/domain/cache_policy.dart';
 import 'package:search_book/pages/fav_page/fav_books_state.dart';
-import 'package:search_book/data/local/shared_pref.dart';
+import 'package:search_book/domain/favorited_books_repo.dart';
 import 'package:tuple/tuple.dart';
 
 // ignore_for_file: close_sinks
@@ -18,11 +18,11 @@ class FavBooksInteractor {
   final ValueStream<BuiltSet<String>> favoritedIds$;
   final void Function(String) toggleFavorite;
 
-  FavBooksInteractor(this._bookRepo, SharedPref _sharedPref)
+  FavBooksInteractor(this._bookRepo, FavoritedBooksRepo favBooksRepo)
       : assert(_bookRepo != null),
-        assert(_sharedPref != null),
-        favoritedIds$ = _sharedPref.favoritedIds$,
-        toggleFavorite = _sharedPref.toggleFavorite;
+        assert(favBooksRepo != null),
+        favoritedIds$ = favBooksRepo.favoritedIds$,
+        toggleFavorite = favBooksRepo.toggleFavorited;
 
   Stream<FavBookPartialChange> partialChanges(
     Iterable<String> ids, [

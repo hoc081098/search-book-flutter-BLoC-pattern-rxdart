@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:search_book/domain/book.dart';
 import 'package:search_book/domain/book_repo.dart';
 import 'package:search_book/pages/detail_page/detail_state.dart';
-import 'package:search_book/data/local/shared_pref.dart';
+import 'package:search_book/domain/favorited_books_repo.dart';
 
 // ignore_for_file: close_sinks
 
@@ -34,11 +34,11 @@ class DetailBloc implements BaseBloc {
 
   factory DetailBloc(
     final BookRepo bookRepo,
-    final SharedPref sharedPref,
+    final FavoritedBooksRepo favBooksRepo,
     final Book initial,
   ) {
     assert(bookRepo != null);
-    assert(sharedPref != null);
+    assert(favBooksRepo != null);
     assert(initial != null);
 
     /// Controllers
@@ -60,7 +60,7 @@ class DetailBloc implements BaseBloc {
 
     final state$ = Rx.combineLatest2(
       book$,
-      sharedPref.favoritedIds$,
+      favBooksRepo.favoritedIds$,
       (Book book, BuiltSet<String> ids) {
         return BookDetailState.fromDomain(
           book,
@@ -75,7 +75,7 @@ class DetailBloc implements BaseBloc {
       [
         toggleController
             .throttleTime(const Duration(milliseconds: 600))
-            .listen((_) => sharedPref.toggleFavorite(initial.id)),
+            .listen((_) => favBooksRepo.toggleFavorited(initial.id)),
         state$.listen((book) => print('[DETAIL] book=$book')),
         //
         state$.connect(),

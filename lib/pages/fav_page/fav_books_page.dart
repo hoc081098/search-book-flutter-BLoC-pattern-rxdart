@@ -5,7 +5,7 @@ import 'package:search_book/pages/detail_page/detail_bloc.dart';
 import 'package:search_book/pages/detail_page/detail_page.dart';
 import 'package:search_book/pages/fav_page/fav_books_bloc.dart';
 import 'package:search_book/pages/fav_page/fav_books_state.dart';
-import 'package:search_book/data/local/shared_pref.dart';
+import 'package:search_book/domain/favorited_books_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
@@ -116,7 +116,7 @@ class FavBookItemWidget extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return Consumer2<SharedPref, BookRepo>(
+                return Consumer2<FavoritedBooksRepo, BookRepo>(
                   builder: (context, sharedPref, bookRepo) {
                     return DetailPage(
                       initBloc: () {

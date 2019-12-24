@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shared_pref.dart';
+part of 'toggle_fav_result.dart';
 
 // **************************************************************************
 // BuiltValueGenerator

@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c473bd5-e887-45af-9877-0dbb4641a972" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utils/custome_built_value_to_string_helper.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/favorited_books_repo.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/domain/toggle_fav_result.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/local/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/favorited_books_repo_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/local/shared_pref.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/toggle_fav_result.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/book.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/book.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/i18n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/i18n.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/detail_page/detail_bloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/fav_page/fav_books_bloc.dart" afterDir="false" />
@@ -12,8 +23,8 @@
       <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_bloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home_page/home_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/local/shared_pref.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared_pref.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/local/shared_pref.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/shared_pref_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/shared_pref_test.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +33,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_One_API_23" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -35,16 +45,19 @@
   </component>
   <component name="ProjectId" id="1VNGcwXXCWnmY0Uly3Dtnt6KhiI" />
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/data" />
       <recent name="$PROJECT_DIR$/lib/widgets" />
       <recent name="$PROJECT_DIR$/lib/utils" />
       <recent name="$PROJECT_DIR$/lib/data/local" />
-      <recent name="$PROJECT_DIR$/lib/data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -64,6 +77,21 @@
       <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
       <method v="2" />
     </configuration>
+    <configuration name="Add or remove id" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testName" value="Add or remove id" />
+      <option name="testFile" value="$PROJECT_DIR$/test/shared_pref_test.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Emit initial value" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testName" value="Emit initial value" />
+      <option name="testFile" value="$PROJECT_DIR$/test/shared_pref_test.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Stream emit value after add or remove id" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testName" value="Stream emit value after add or remove id" />
+      <option name="testFile" value="$PROJECT_DIR$/test/shared_pref_test.dart" />
+      <method v="2" />
+    </configuration>
     <configuration name="tests in shared_pref_test.dart" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
       <option name="testFile" value="$PROJECT_DIR$/test/shared_pref_test.dart" />
       <method v="2" />
@@ -71,6 +99,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Flutter Test.tests in shared_pref_test.dart" />
+        <item itemvalue="Flutter Test.Stream emit value after add or remove id" />
+        <item itemvalue="Flutter Test.Emit initial value" />
+        <item itemvalue="Flutter Test.Add or remove id" />
       </list>
     </recent_temporary>
   </component>
@@ -84,6 +115,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1577086221987</updated>
+      <workItem from="1577153223455" duration="61000" />
+      <workItem from="1577153311027" duration="2437000" />
+      <workItem from="1577156629643" duration="1548000" />
+      <workItem from="1577158184721" duration="551000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1577092859689</created>
@@ -92,8 +127,18 @@
       <option name="project" value="LOCAL" />
       <updated>1577092859689</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update">
+      <created>1577093594853</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1577093594853</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -1,51 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search_book/data/local/shared_pref.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+import 'package:search_book/data/favorited_books_repo_impl.dart';
+import 'package:search_book/domain/toggle_fav_result.dart';
+import 'package:mockito/mockito.dart';
+
+class MockRxPrefs extends Mock implements RxSharedPreferences {}
 
 main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  group('Test $SharedPref', () {
-    const channel = MethodChannel(
-      'plugins.flutter.io/shared_preferences',
-    );
+  group('Test $FavoritedBooksRepoImpl', () {
     const kTestValues = <String, dynamic>{
-      'flutter.${SharedPref.favoritedIdsKey}': <String>[],
+      'flutter.${FavoritedBooksRepoImpl.favoritedIdsKey}': <String>[],
     };
-    SharedPref sharedPref;
-    Future<SharedPreferences> sharedPrefFuture;
-    List<MethodCall> log = [];
+    FavoritedBooksRepoImpl favBooksRepo;
+    MockRxPrefs mockRxPrefs;
 
     setUp(() async {
-      channel.setMockMethodCallHandler((MethodCall methodCall) async {
-        log.add(methodCall);
-        await Future.delayed(const Duration(milliseconds: 1000));
+      mockRxPrefs = MockRxPrefs();
 
-        if (methodCall.method == 'getAll') {
-          return kTestValues;
-        }
-        if (methodCall.method.startsWith('set')) {
-          return true;
-        }
-        return null;
-      });
+      when(mockRxPrefs
+              .getStringListStream(FavoritedBooksRepoImpl.favoritedIdsKey))
+          .thenAnswer((_) => Stream.value(<String>[]));
+      when(mockRxPrefs.getStringList(FavoritedBooksRepoImpl.favoritedIdsKey))
+          .thenAnswer((_) => Future.value(<String>[]));
+      when(mockRxPrefs.setStringList(
+              FavoritedBooksRepoImpl.favoritedIdsKey, any))
+          .thenAnswer((_) => Future.value(true));
 
-      sharedPrefFuture = Future.value(await SharedPreferences.getInstance());
-      sharedPref = SharedPref(sharedPrefFuture);
-      log.clear();
+      favBooksRepo = FavoritedBooksRepoImpl(mockRxPrefs);
     });
-    tearDown(() async {
-      await (await sharedPrefFuture).clear();
-    });
+
+    tearDown(() async {});
 
     test('Emit initial value', () async {
-      await expectLater(sharedPref.favoritedIds$, emits(<String>[]));
-      expect(log, []);
+      await expectLater(favBooksRepo.favoritedIds$, emits(<String>[]));
     });
 
     test('Add or remove id', () async {
+      when(mockRxPrefs.getStringList(FavoritedBooksRepoImpl.favoritedIdsKey))
+          .thenAnswer((_) => Future.value(<String>[]));
+
       const id = 'hoc081098';
       final result1 = ToggleFavResult(
         (b) => b
@@ -54,7 +50,10 @@ main() {
           ..error = null
           ..result = true,
       );
-      expect(await sharedPref.toggleFavorite(id), result1);
+      expect(await favBooksRepo.toggleFavorited(id), result1);
+
+      when(mockRxPrefs.getStringList(FavoritedBooksRepoImpl.favoritedIdsKey))
+          .thenAnswer((_) => Future.value([id]));
 
       final result2 = ToggleFavResult(
         (b) => b
@@ -63,70 +62,29 @@ main() {
           ..error = null
           ..result = true,
       );
-      expect(await sharedPref.toggleFavorite(id), result2);
-
-      expect(
-        log,
-        <Matcher>[
-          isMethodCall(
-            'setStringList',
-            arguments: <String, dynamic>{
-              'key': 'flutter.${SharedPref.favoritedIdsKey}',
-              'value': <String>[id],
-            },
-          ),
-          isMethodCall(
-            'setStringList',
-            arguments: <String, dynamic>{
-              'key': 'flutter.${SharedPref.favoritedIdsKey}',
-              'value': <String>[],
-            },
-          ),
-        ],
-      );
+      expect(await favBooksRepo.toggleFavorited(id), result2);
     });
 
     test('Stream emit value after add or remove id', () async {
-      const id = 'hoc081098';
-      final future = expectLater(
-        sharedPref.favoritedIds$,
-        emitsInOrder(<List<String>>[
-          <String>[],
-          <String>[id],
-          <String>[],
-          <String>[id],
-        ]),
-      );
-      await sharedPref.toggleFavorite(id);
-      await sharedPref.toggleFavorite(id);
-      await sharedPref.toggleFavorite(id);
-      await future;
 
-      expect(
-        log,
-        <Matcher>[
-          isMethodCall(
-            'setStringList',
-            arguments: <String, dynamic>{
-              'key': 'flutter.${SharedPref.favoritedIdsKey}',
-              'value': <String>[id],
-            },
-          ),
-          isMethodCall(
-            'setStringList',
-            arguments: <String, dynamic>{
-              'key': 'flutter.${SharedPref.favoritedIdsKey}',
-              'value': <String>[],
-            },
-          ),
-          isMethodCall(
-            'setStringList',
-            arguments: <String, dynamic>{
-              'key': 'flutter.${SharedPref.favoritedIdsKey}',
-              'value': <String>[id],
-            },
-          ),
-        ],
+
+      const id = 'hoc081098';
+      const expected = <List<String>>[
+        <String>[],
+        <String>[id],
+        <String>[],
+        <String>[id],
+      ];
+
+      mockRxPrefs = MockRxPrefs();
+      when(mockRxPrefs
+          .getStringListStream(FavoritedBooksRepoImpl.favoritedIdsKey))
+          .thenAnswer((_) => Stream<List<String>>.fromIterable(expected));
+      favBooksRepo = FavoritedBooksRepoImpl(mockRxPrefs);
+
+      await expectLater(
+        favBooksRepo.favoritedIds$,
+        emitsInOrder(expected),
       );
     });
   });

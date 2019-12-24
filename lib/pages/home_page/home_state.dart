@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:sealed_unions/sealed_unions.dart';
 import 'package:search_book/data/api/book_response.dart';
 import 'package:search_book/domain/book.dart';
-import 'package:search_book/data/local/shared_pref.dart';
+import 'package:search_book/domain/toggle_fav_result.dart';
 
 part 'home_state.g.dart';
 
